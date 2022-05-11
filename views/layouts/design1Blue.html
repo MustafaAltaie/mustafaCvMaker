@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <script src="https://superal.github.io/canvas2image/canvas2image.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+        <link rel="stylesheet" href="../mutualStyle.css">
+    </head>
+    <body>
+        <input type="hidden" value="{{imageFiles}}" id="allImageNames">
+
+        <form action="/imageUpload" method="post" enctype="multipart/form-data" style="display: none">
+            <input type="file" name="file" id="imageFile">
+            <input type="text" name="fileName" id="imageFileName">
+            <input type="hidden" name="redirect" value="design1Blue">
+            <button id="imageUploadSubmit"></button>
+        </form>
+
+        <div id="cvWrapper">
+            <h7 id="imageSizeLabel"></h7>
+            <button id="screenShott" onclick="screenShot()">Take a screenshot</button>
+            <input type="range" id="cvSizeRange" min="1000" max="10000">
+            <input type="range" id="ppSizeRange" min="10" max="100" class="fontPSize">
+            <div id="cv">
+                <div id="settings">
+                    <textarea id="editText"></textarea>
+                    <p id="actionButton">Update</p>
+                </div>
+                <div id="allSettingsMenu">
+                    <p id="changeImage" class="allSettingsMenuOption" onclick="imageFile.click()">Change image</p>
+                    <p id="removeImage" class="allSettingsMenuOption">Remove image</p>
+                    <p id="addEducation" class="allSettingsMenuOption" onclick="allSettingsMenuF('addEducationText')">Add education</p>
+                    <textarea id="addEducationText" class="allSettingsMenuOption" placeholder="Add education"></textarea>
+                    <p id="addSkill" class="allSettingsMenuOption" onclick="allSettingsMenuF('addSkillText', 'addSkillLevel')">Add skill</p>
+                    <textarea id="addSkillText" placeholder="Title" class="allSettingsMenuOption"></textarea>
+                    <input type="number" id="addSkillLevel" min="1" max="10" placeholder="Level" class="allSettingsMenuOption">
+                    <p id="addExperience" class="allSettingsMenuOption" onclick="allSettingsMenuF('addExperienceTitle', 'addExperienceText')">Add experience</p>
+                    <textarea id="addExperienceTitle" placeholder="Experience title" class="allSettingsMenuOption"></textarea>
+                    <textarea id="addExperienceText" placeholder="Experience text" class="allSettingsMenuOption"></textarea>
+                    <p id="allSettingsMenuSubmit">OK</p>
+                </div>
+                <!--------------------------left side Starts-------------------------->
+                <div id="leftSide">
+                    <div id="imageWrapper">
+                        <img src="" id="clientPhoto">
+                        <a id="imageSetting" class="secSetting" onclick="allSettingsMenuF('changeImage', 'removeImage')">...</a>
+                        <div id="imageAlignment">
+                            <p id="top">/\</p>
+                            <div>
+                                <p id="left"><</p>
+                                <p id="center">Center</p>
+                                <p id="right">></p>
+                            </div>
+                            <p id="bottom">\/</p>
+                        </div>
+                    </div>
+
+                    <!--Contact Info-->
+
+                    <div id="contactSection">
+                        <img src="/images/mobileIcon.png" class="bigImage">
+                        <h4 id="contactTitle" class="changable">Contact</h4>
+                        <div>
+                            <img src="/images/mobileIcon.png" class="contactIcon">
+                            <p id="clientNumber" class="changable"></p>
+                        </div>
+                        <div>
+                            <img src="/images/emailIcon.png" class="contactIcon">
+                            <p id="clientEmail" class="changable"></p>
+                        </div>
+                        <div>
+                            <img src="/images/addressIcon.png" class="contactIcon">
+                            <p id="clientAddress" class="changable"></p>
+                        </div>
+                    </div>
+
+                    <!--Education-->
+
+                    <div id="educationSection">
+                        <a id="educationSetting" class="secSetting" onclick="allSettingsMenuF('addEducation')">...</a>
+                        <img src="/images/educationImage.png" class="bigImage">
+                        <h3 id="educationTitle" class="changable">Education</h3>
+                    </div>
+
+                    <!--Skills-->
+
+                    <div id="skillsSection">
+                        <a id="skillSetting" class="secSetting" onclick="allSettingsMenuF('addSkill')">...</a>
+                        <h4 id="skillsTitle" class="changable"></h4>
+                    </div>
+                </div>
+                <!--------------------------left side Ends-------------------------->
+
+
+                <!--------------------------Yellow Rectangle-------------------------->
+                <div id="floatText">
+                    <p id="FloatingText" class="changable"></p>
+                </div>
+
+                <!--------------------------Right side Starts-------------------------->
+                <div id="rightSide">
+                    <div id="rightSideHeader">
+                        <h1 id="clientName" class="changable">Mustafa Altaie</h1>
+                        <h5 id="clientTitle" class="changable">Software Developer</h5>
+                        <p id="clientEmail2" class="changable"></p>
+                    </div>
+                    <div id="rightSideFooter">
+                        <div id="rightSideFooterProfile">
+                            <h4 id="profileTitle" class="changable"></h4>
+                            <p id="clientProfile" class="changable"></p>
+                        </div>
+                        <div id="rightSideFooterExperience">
+                            <a id="experienceSetting" class="secSetting" onclick="allSettingsMenuF('addExperience')">...</a>
+                            <img src="/images/experienceImage.png" class="bigImage">
+                            <h4 id="experienceTitle" class="changable"></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Barlow Semi Condensed', sans-serif;
+            /*font-family: 'Racing Sans One', cursive;*/
+            font-weight: normal;
+            outline: none;
+        }
+        body{
+            background: #aaa;
+        }
+        #cvWrapper{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            padding: 200px 0 50px 0;
+        }
+        #cv{
+            position: relative;
+            background: #eee;
+            display: flex;
+        }
+        #leftSide{
+            position: relative;
+            width: 35%;
+            background: #252525;
+            color: #fff;
+        }
+        #imageWrapper{
+            position: relative;
+            width: 100%;
+            height: 30%;
+        }
+        #imageWrapper > img{
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            transition: 0.2s;
+        }
+        #imageWrapper > a{
+            z-index: 100;
+            top: 0;
+        }
+        #cv:hover > a, #imageWrapper:hover > a, #imageWrapper:hover > #imageAlignment{
+            display: block;
+        }
+        #imageAlignment{
+            position: relative;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+        #imageAlignment > div{
+            display: flex;
+            justify-content: space-between;
+        }
+        #imageAlignment p{
+            cursor: pointer;
+            user-select: none;
+        }
+        h4{
+            color: rgb(124, 190, 231);
+            border-bottom: solid 3px rgb(97, 143, 183);
+        }
+        h6{
+            font-weight: bold;
+        }
+        img{
+            pointer-events: none;
+        }
+        .bigImage{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0.05;
+        }
+        .secSetting{
+            top: 15%;
+        }
+
+        /* ----------- Contact Section------------- */
+
+        #contactSection{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 10%;
+        }
+        #contactSection > h4{
+            padding: 0 5%;
+        }
+        #contactSection > img{
+            top: 70%;
+        }
+        #contactSection > div{
+            display: flex;
+            align-items: center;
+            gap: 2%;
+            padding: 0 5%;
+            margin-top: 4%;
+        }
+
+        /* ----------- Education Section------------- */
+
+        #educationSection{
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            padding-bottom: 7%;
+            margin: 15% 0;
+        }
+        #educationSection:hover > #educationSetting{
+            display: block;
+        }
+        #educationSection > img{
+            top: 60%;
+        }
+        #educationSection > h3{
+            background: rgb(43, 119, 185);
+            color: #ddd;
+            padding: 2% 5%;
+        }
+        #educationSection > p{
+            padding: 5%;
+        }
+
+        /* ----------- Skills Section------------- */
+
+        #skillsSection{
+            position: relative;
+        }
+        #skillsSection:hover > a{
+            display: block;
+        }
+        #skillsSection > h4{
+            margin-bottom: 5%;
+            padding: 0 5%;
+        }
+        #skillsSection > div{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2% 7% 5px 5%;
+        }
+        #skillsSection > div > div{
+            width: 40%;
+            height: 15px;
+            background: #444;
+            pointer-events: none;
+        }
+        #skillsSection > div > div > div{
+            height: 100%;
+            background: rgb(70, 113, 139);
+            pointer-events: all;
+        }
+
+        /* ----------- Floating colored Rectangle------------- */
+
+        #floatText{
+            z-index: 90;
+            position: absolute;
+            top: 20%;
+            right: 0;
+            height: 10%;
+            width: 55%;
+            background: rgb(51, 133, 204);
+            color: #fff;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+        }
+
+
+        /* ----------- Right Side------------- */
+
+        #rightSide{
+            position: relative;
+            width: 65%;
+        }
+        #rightSide h4{
+            font-weight: bold;
+        }
+        #rightSideHeader{
+            height: 31%;
+            padding-left: 5%;
+            transform: translateY(10%);
+        }
+        #rightSideHeader > h1{
+            font-family: 'Racing Sans One', cursive;
+            color:rgb(51, 133, 204);
+        }
+        #rightSideHeader > h5{
+            background: #252525;
+            color: rgb(255, 255, 255);
+            padding: 1% 0 1% 3%;
+            margin: 1.5% 0 2.5% 0;
+        }
+        #rightSideHeader > p{
+            font-weight: bold;
+        }
+
+        #rightSideFooter{
+            height: 70%;
+        }
+        #rightSideFooter > div{
+            padding: 2% 5%;
+        }
+        #rightSideFooter h4, #rightSideFooter p{
+            color: #000;
+        }
+        #rightSideFooter h4{
+            margin-bottom: 3%;
+            padding: 1% 0;
+        }
+
+        #rightSideFooterExperience{
+            position: relative;
+        }
+        #rightSideFooterExperience > h4{
+            margin-bottom: 3%;
+        }
+        #rightSideFooterExperience:hover > a{
+            display: block;
+        }
+        #rightSideFooterExperience > img{
+            top: 60%;
+        }
+        #rightSideFooterExperience > div{
+            padding: 0 2% 4% 2%;
+            border-left: solid 5px rgb(97, 143, 183);
+        }
+        #rightSideFooterExperience > div > div{
+            display: flex;
+            align-items: center;
+            gap: 4%;
+            transform: translateX(-3.2%);
+        }
+        #rightSideFooterExperience > div > div > div{
+            background: rgb(97, 143, 183);
+        }
+    </style>
+
+    <script>
+
+        document.body.style.zoom = "15%";
+
+        function screenShot(){
+            html2canvas(document.getElementById('cv'), {
+                onrendered: function(canvas){
+                    return Canvas2Image.saveAsPNG(canvas);
+                }
+            });
+            window.location.href = '/cvCreated/' + localStorage.clientName + '/' + new Date().toJSON() + '/design1Blue';
+        }
+
+        function Topdf(){
+            var file = document.getElementById('cv');
+            html2pdf()
+            .from(file)
+            .save();
+        }
+
+
+        // --------------- Get CV size from localStorage -------------//
+
+        if(localStorage.cvSize != '' || localStorage.cvSize != undefined)
+        cvSizeRange.value = localStorage.cvSize;
+        else
+        cvSizeRange.value = 3000;
+
+
+        // --------------- Get P size from localStorage -------------//
+        
+        if(localStorage.ppSize == '' || localStorage.ppSize == undefined){
+            var ppSize = 45;
+            ppSizeRange.value = 45;
+        }
+        else{
+            var ppSize = localStorage.ppSize;
+            ppSizeRange.value = localStorage.ppSize;
+        }
+
+
+        // --------------- Change CV size via range -------------//
+
+        document.getElementById('cvSizeRange').oninput = function(){
+            ratio1 = cv.offsetWidth*cv.offsetHeight/9.5;
+            ratio2 = Math.ceil(ratio1/100000);
+            imageSizeLabel.innerHTML = ratio2/10;
+            sizingAllCv(cvSizeRange.value);
+            localStorage.cvSize = cvSizeRange.value;
+        }
+
+
+        // --------------- Change P size via range -------------//
+
+        document.getElementById('ppSizeRange').oninput = function(){
+            localStorage.ppSize = ppSizeRange.value;
+            for(i = 0; i < document.querySelectorAll('p').length; i++)
+            document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/ppSizeRange.value + 'px';
+        }
+
+
+        // --------------- CV properties function -------------//
+
+        function sizingAllCv(n){
+            cv.style.width = n + 'px';
+            cv.style.height = n * 1.414285714285714 + 'px';
+            for(i = 0; i < document.querySelectorAll('a').length; i++)
+            document.getElementsByTagName('a')[i].style.fontSize = cv.offsetWidth/30 + 'px';
+            for(i = 0; i < document.querySelectorAll('p').length; i++)
+            document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/ppSize + 'px';
+            for(i = 0; i < document.querySelectorAll('h4').length; i++)
+            document.getElementsByTagName('h4')[i].style.fontSize = cv.offsetWidth/30.625 + 'px';
+            for(i = 0; i < document.querySelectorAll('h6').length; i++)
+            document.getElementsByTagName('h6')[i].style.fontSize = cv.offsetWidth/36.75 + 'px';
+            for(i = 0; i < document.querySelectorAll('h1').length; i++)
+            document.getElementsByTagName('h1')[i].style.fontSize = cv.offsetWidth/14.7 + 'px';
+            for(i = 0; i < document.querySelectorAll('h3').length; i++)
+            document.getElementsByTagName('h3')[i].style.fontSize = cv.offsetWidth/30.625 + 'px';
+            for(i = 0; i < document.querySelectorAll('h5').length; i++)
+            document.getElementsByTagName('h5')[i].style.fontSize = cv.offsetWidth/29.4 + 'px';
+            for(i = 0; i < contactSection.querySelectorAll('.contactIcon').length; i++){
+                contactSection.getElementsByClassName('contactIcon')[i].style.width = cv.offsetWidth/29.4 + 'px';
+                contactSection.getElementsByClassName('contactIcon')[i].style.height = cv.offsetWidth/29.4 + 'px';
+            }
+            contactSection.getElementsByClassName('bigImage')[0].style.width = cv.offsetWidth/8 + 'px';
+            educationSection.getElementsByClassName('bigImage')[0].style.width = cv.offsetWidth/6 + 'px';
+            rightSideFooterExperience.getElementsByClassName('bigImage')[0].style.width = cv.offsetWidth/3 + 'px';
+            for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++){
+                document.getElementsByClassName('experiencePoint')[i].style.width = cv.offsetWidth/100 + 'px';
+                document.getElementsByClassName('experiencePoint')[i].style.height = cv.offsetWidth/30 + 'px';
+            }
+            for(i = 0; i < document.getElementsByClassName('experience').length; i++){
+                document.getElementsByClassName('experience')[i].style.borderLeft = 'solid ' + cv.offsetWidth/650 + 'px rgb(97, 143, 183)';
+            }
+            for(i = 0; i < document.querySelectorAll('.levelDiv').length; i++)
+            document.getElementsByClassName('levelDiv')[i].style.height = cv.offsetWidth/170 + 'px';
+            document.getElementById('editText').style.fontSize = cv.offsetWidth/ppSize + 'px';
+            for(i = 0; i < allSettingsMenu.querySelectorAll('textarea').length; i++)
+            allSettingsMenu.getElementsByTagName('textarea')[i].style.fontSize = cv.offsetWidth/36.75 + 'px';
+            addSkillLevel.style.fontSize = cv.offsetWidth/ppSize + 'px';
+        }
+        setTimeout(function(){
+            sizingAllCv(cvSizeRange.value);
+        }, 0);
+
+
+        //--------- Show edit settings ---------//
+
+        var currentElement;
+
+        document.addEventListener('click', function(evt){
+            if(evt.target.className == 'changable'){
+                editText.style.width = evt.target.offsetWidth*1.5 + 'px';
+                editText.style.height = evt.target.offsetHeight + 'px';
+                editText.value = evt.target.innerHTML;
+                currentElement = evt.target.id;
+                settings.style.display = 'flex';
+            }
+        });
+
+
+        //--------- Hyde forms mouse down ---------//
+
+        document.addEventListener('mousedown', function(evt){
+            if(evt.target.className != 'changable'
+            && evt.target.parentNode.id != 'settings'){
+                settings.style.display = 'none';
+            }
+
+            if(evt.target.className != 'secSetting'
+            && evt.target.parentNode.id != 'allSettingsMenu')
+            allSettingsMenu.style.display = "none";
+        });
+
+
+        //--------- Remove or update and recorde ---------//
+
+        document.getElementById('actionButton').onclick = function(){
+            document.getElementById(currentElement).innerHTML = editText.value;
+            settings.style.display = 'none';
+
+            contactInfoToLocalS();
+
+            if(editText.value == '' && document.getElementById(currentElement).title != undefined && document.getElementById(currentElement).title != ''){
+                var skillDiv = document.getElementById(currentElement).id;
+                document.getElementById('clientSkill' + skillDiv.slice(11, skillDiv.length-5) + 'Div').remove();
+                lclStSkill();
+            }
+
+            if(editText.value == '' && currentElement.substr(0, 10) == 'experience'){
+                document.getElementById(currentElement.substr(0, currentElement.length-5)).remove();
+                lclStExperience();
+                window.location.reload();
+            }
+
+            if(editText.value == '') document.getElementById(currentElement).remove();
+            lclStEducation();
+
+            if(document.getElementById(currentElement).level != undefined){
+                document.getElementById(currentElement).innerHTML = '';
+                document.getElementById(currentElement).style.width = editText.value*10 + '%';
+                document.getElementById(currentElement).level = editText.value;
+            }
+            lclStSkill();
+            headerInfoToLocalS();
+            lclStExperience();
+        }
+
+
+        //--------- Show all settings menu beside setting 3 button ---------//
+
+        document.addEventListener('click', function(evt){
+            if(evt.target.className == 'secSetting'){
+                allSettingsMenu.style.top = evt.target.parentNode.offsetTop + 'px';
+                allSettingsMenu.style.left = evt.target.offsetLeft + 'px';
+            }
+        });
+
+
+        //--------- All settings options to view ---------//
+
+        var allSettingSelectedOption;
+
+        function allSettingsMenuF(n, n2){
+            allSettingsMenu.style.display = "flex";
+            for(i = 0; i < allSettingsMenu.childElementCount-1; i++){
+                document.getElementsByClassName('allSettingsMenuOption')[i].style.display = "none";
+            }
+            allSettingSelectedOption = n;
+            document.getElementById(n).style.display = "block";
+            document.getElementById(n).focus();
+            if(n2)
+            document.getElementById(n2).style.display = "block";
+        }
+
+
+        //--------- Personal image section ---------//
+        //--------- Upload personal image ---------//
+
+        if(localStorage.imageName != undefined)
+        clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';
+        else{
+            changeImage.innerHTML = 'Add image';
+            clientPhoto.style.display = 'none';
+            imageWrapper.style.height = '15%';
+            educationSection.style.margin = '30% 0';
+        }
+
+        var imageExt = '.jpg,.JPG,jpeg,JPEG,.bmp,.BMP,.gif,.GIF,.png,.PNG';
+
+        var uploadPerm = 0;
+        var rndNumber;
+
+        document.getElementById('imageFile').onchange = function(){
+            if(imageFile.value != ''){
+                for(i = 0; i < imageExt.split(',').length; i++){
+                    if(imageFile.value.substr(imageFile.value.length-4, imageFile.value.length) == imageExt.split(',')[i]){
+                        uploadPerm = 1;
+                        break;
+                    }
+                    else uploadPerm = 0;
+                }
+                if(uploadPerm == 0) alert('File is not image');
+                else{
+                    if(changeImage.innerHTML == 'Add image')
+                    for(i = 0; i != -1; i++){   //-- Checking if the random number is already used --//
+                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
+                        if(allImageNames.value.includes(rndNumber))
+                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
+                        else{
+                            localStorage.imageName = rndNumber;
+                            imageFileName.value = rndNumber;
+                            imageUploadSubmit.click();
+                            break;
+                        }
+                    }
+                    else{
+                        imageFileName.value = localStorage.imageName;
+                        imageUploadSubmit.click();
+                    }
+                }
+            }
+        }
+
+        document.getElementById('removeImage').onclick = function(){
+            window.location.href = '/deleteImage/' + localStorage.imageName + '/design1Blue';
+            delete localStorage.imageName;
+        }
+
+        //Change image position//
+
+        imageAlignment.addEventListener('click', function(evt){
+            if(evt.target.tagName == 'P')
+            clientPhoto.style.objectPosition = evt.target.id;
+            localStorage.objectPosition = evt.target.id;
+        });
+
+        if(localStorage.objectPosition != undefined){
+            clientPhoto.style.objectPosition = localStorage.objectPosition;
+        }
+
+
+        //--------- Contact section ---------//
+
+        function contactInfoToLocalS(){
+            localStorage.contactWord = contactTitle.innerHTML;
+            localStorage.clientNumber = clientNumber.innerHTML;
+            localStorage.clientEmail = clientEmail.innerHTML;
+            localStorage.clientAddress = clientAddress.innerHTML;
+        }
+
+        if(localStorage.contactWord == '' || localStorage.contactWord == undefined)
+        clientNumber.innerHTML = 'Contact';
+        else
+        contactTitle.innerHTML = localStorage.contactWord;
+
+        if(localStorage.clientNumber == '' || localStorage.clientNumber == undefined)
+        clientNumber.innerHTML = 'Number: 0721234567';
+        else
+        clientNumber.innerHTML = localStorage.clientNumber;
+
+        if(localStorage.clientEmail == '' || localStorage.clientEmail == undefined)
+        clientEmail.innerHTML = 'emailaddress@example.com';
+        else
+        clientEmail.innerHTML = localStorage.clientEmail;
+
+        if(localStorage.clientAddress == '' || localStorage.clientAddress == undefined)
+        clientAddress.innerHTML = 'Here you add your address';
+        else
+        clientAddress.innerHTML = localStorage.clientAddress;
+
+
+        //--------- Education section ---------//
+
+        if(localStorage.educationWord == '' || localStorage.educationWord == undefined)
+        educationTitle.innerHTML = 'Education';
+        else
+        educationTitle.innerHTML = localStorage.educationWord;
+
+        document.getElementById('allSettingsMenuSubmit').onclick = function(){
+            // Add education //
+            if(allSettingSelectedOption == 'addEducationText'){
+                if(addEducationText.value != ''){
+                    addEducationFromStorage(addEducationText.value);
+                    lclStEducation();
+                }
+            }
+            // Add skill //
+            if(allSettingSelectedOption == 'addSkillText'){
+                if(addSkillText.value != '' && addSkillLevel.value != ''){
+                    addSkillFromStorage(addSkillText.value, addSkillLevel.value);
+                    allSettingsMenu.style.display = 'none';
+                    lclStSkill();
+                }
+            }
+            // Add experience //
+            if(allSettingSelectedOption == 'addExperienceTitle'){
+                if(addExperienceTitle.value != '' && addExperienceText.value != ''){
+                    addExperienceFromStorage(addExperienceTitle.value, addExperienceText.value);
+                    allSettingsMenu.style.display = 'none';
+                    lclStExperience();
+                }
+            }
+        }
+
+        function lclStEducation(){
+            localStorage.education = '';
+            for(i = 0; i < educationSection.getElementsByTagName('P').length; i++){
+                localStorage.education += educationSection.getElementsByTagName('P')[i].innerHTML + '/';
+            }
+            localStorage.educationWord = educationTitle.innerHTML;
+        }
+
+        if(localStorage.education != undefined && localStorage.education != '')
+        for(i = 0; i < localStorage.education.split('/').length-1; i++){
+            addEducationFromStorage(localStorage.education.split('/')[i]);
+        }
+        else{
+            addEducationFromStorage('Lorem, ipsum dolor sit amet consectetur elit. Nesciunt nihil praesentium')
+        }
+
+        function addEducationFromStorage(n){
+            var newEducation = document.createElement('p');
+            newEducation.id = 'clientEducation' + parseInt(educationSection.getElementsByTagName('P').length + 1);
+            newEducation.className = 'changable';
+            newEducation.innerHTML = n;
+            educationSection.appendChild(newEducation);
+            allSettingsMenu.style.display = "none";
+        }
+
+
+        //--------- Skills section ---------//
+
+        if(localStorage.skillWord == '' || localStorage.skillWord == undefined)
+        skillsTitle.innerHTML = 'Technical Skills';
+        else
+        skillsTitle.innerHTML = localStorage.skillWord;
+
+        function addSkillFromStorage(ttl, lvl){
+            var skill = document.createElement('div');
+            var numbrOfSkll = skillsSection.getElementsByClassName('skill').length;
+            skill.id = 'clientSkill' + parseInt(numbrOfSkll + 1) + 'Div';
+            skill.className = 'skill';
+
+            var title = document.createElement('p');
+            title.id = 'clientSkill' + parseInt(numbrOfSkll + 1) + 'Title';
+            title.className = 'changable';
+            title.innerHTML = ttl;
+            title.title = ttl;
+            
+            var levelDiv = document.createElement('div');
+            levelDiv.className = 'levelDiv';
+
+            var level = document.createElement('div');
+            level.id = 'clientSkill' + parseInt(numbrOfSkll + 1) + 'Level';
+            level.className = 'changable';
+            level.level = lvl;
+            level.style.width = lvl*10 + '%';
+
+            levelDiv.appendChild(level);
+
+            skill.appendChild(title);
+            skill.appendChild(levelDiv);
+
+            skillsSection.appendChild(skill);
+        }
+
+        function lclStSkill(){
+            localStorage.skills = '';
+            for(i = 0; i < document.getElementsByClassName('skill').length; i++){
+                document.getElementsByClassName('skill')[i].title = document.getElementById('clientSkill' + parseInt(i + 1) + 'Title').innerHTML;
+                document.getElementsByClassName('skill')[i].level = document.getElementById('clientSkill' + parseInt(i + 1) + 'Level').level;
+                localStorage.skills += document.getElementsByClassName('skill')[i].title + '|||' + document.getElementsByClassName('skill')[i].level + '|||' + '***';
+            }
+            localStorage.skillWord = skillsTitle.innerHTML;
+        }
+
+        if(localStorage.skills == '' || localStorage.skills == undefined)
+            addSkillFromStorage('Example', 5);
+        else
+        for(i = 0; i < localStorage.skills.split('***').length-1; i++){
+            addSkillFromStorage(localStorage.skills.split('***')[i].split('|||')[0], localStorage.skills.split('***')[i].split('|||')[1]);
+        }
+
+        //--------- Right section ---------//
+        //--------- Header info and profile ---------//
+        
+
+        if(localStorage.clientName == '' || localStorage.clientName == undefined)
+        localStorage.clientName = 'Full name';
+
+        if(localStorage.clientTitle == '' || localStorage.clientTitle == undefined)
+        localStorage.clientTitle = 'Career title';
+
+        if(localStorage.clientTitle2 == '' || localStorage.clientTitle2 == undefined)
+        clientEmail2.innerHTML = 'Address: ' + clientAddress.innerHTML;
+        else
+        clientEmail2.innerHTML = localStorage.clientTitle2;
+
+        if(localStorage.FloatingText == '' || localStorage.FloatingText == undefined)
+        localStorage.FloatingText = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione voluptate ducimus est illum iusto animi';
+
+        if(localStorage.profileWord == '' || localStorage.profileWord == undefined)
+        profileTitle.innerHTML = '/// Profile';
+        else
+        profileTitle.innerHTML = localStorage.profileWord;
+
+        if(localStorage.clientProfile == '' || localStorage.clientProfile == undefined)
+        localStorage.clientProfile = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione voluptate ducimus est illum iusto animi vitae magnam, ea soluta quisquam, non praesentium amet perferendis, qui nulla optio! Quis, voluptate hic! Lorem ipsum dolor sit amet consectetur adipisicing elit.';
+
+        clientName.innerHTML = localStorage.clientName;
+        clientTitle.innerHTML = localStorage.clientTitle;
+        FloatingText.innerHTML = localStorage.FloatingText;
+        clientProfile.innerHTML = localStorage.clientProfile;
+
+        function headerInfoToLocalS(){
+            localStorage.clientName = clientName.innerHTML;
+            localStorage.clientTitle = clientTitle.innerHTML;
+            localStorage.clientTitle2 = clientEmail2.innerHTML;
+            localStorage.FloatingText = FloatingText.innerHTML;
+            localStorage.profileWord = profileTitle.innerHTML;
+            localStorage.clientProfile = clientProfile.innerHTML;
+        }
+
+
+        //--------- Experience section ---------//
+
+        if(localStorage.experience == '' || localStorage.experience == undefined)
+        addExperienceFromStorage('Lorem ipsum dolor sit', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione voluptate ducimus est illum');
+        else
+        for(i = 0; i < localStorage.experience.split('***').length-1; i++){
+            addExperienceFromStorage(localStorage.experience.split('***')[i].split('|||')[0], localStorage.experience.split('***')[i].split('|||')[1]);
+        }
+
+        if(localStorage.experienceWord == '' || localStorage.experienceWord == undefined)
+        experienceTitle.innerHTML = '/// Experience';
+        else
+        experienceTitle.innerHTML = localStorage.experienceWord;
+
+        function addExperienceFromStorage(ttl, txt){
+            var experience = document.createElement('div');
+            var nmOfExprns = document.getElementsByClassName('experience').length;
+            experience.id = 'experience' + parseInt(nmOfExprns + 1);
+            experience.className = 'experience';
+
+            var divMain = document.createElement('div');
+
+            var div = document.createElement('div');
+            div.className = 'experiencePoint';
+
+            var experienceTitle = document.createElement('h6');
+            experienceTitle.id = 'experience' + parseInt(nmOfExprns + 1) + 'Title';
+            experienceTitle.className = 'changable';
+            experienceTitle.innerHTML = ttl;
+
+            divMain.appendChild(div);
+            divMain.appendChild(experienceTitle);
+
+            var experienceText = document.createElement('p');
+            experienceText.id = 'experience' + parseInt(nmOfExprns + 1) + 'Text';
+            experienceText.className = 'changable';
+            experienceText.innerHTML = txt;
+
+            experience.appendChild(divMain);
+            experience.appendChild(experienceText);
+
+            rightSideFooterExperience.appendChild(experience);
+        }
+
+        function lclStExperience(){
+            localStorage.experience = '';
+            for(i = 0; i < document.getElementsByClassName('experience').length; i++){
+                document.getElementsByClassName('experience')[i].id = 'experience' + parseInt(i + 1);
+                document.getElementsByClassName('experience')[i].getElementsByClassName('changable')[0].id = 'experience' + parseInt(i + 1) + 'Title';
+                document.getElementsByClassName('experience')[i].getElementsByClassName('changable')[1].id = 'experience' + parseInt(i + 1) + 'Text';
+                localStorage.experience += document.getElementById('experience' + parseInt(i + 1) + 'Title').innerHTML + '|||' + document.getElementById('experience' + parseInt(i + 1) + 'Text').innerHTML + '|||' + '***';
+            }
+            localStorage.experienceWord = experienceTitle.innerHTML;
+        }
+
+    </script>
+</html>

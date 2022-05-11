@@ -1,0 +1,122 @@
+#allSettingsMenu{
+    z-index: 200;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    display: none;
+}
+#allSettingsMenu > p{
+    background: hsl(204, 26%, 23%);
+    color: #fff;
+    width: 100%;
+    padding: 10% 20%;
+    cursor: pointer;
+}
+#allSettingsMenu > p:hover{
+    background: hsl(204, 26%, 30%);
+}
+#allSettingsMenu > textarea, #allSettingsMenu > input, #allSettingsMenuSubmit{
+    width: 100%;
+    text-align: center;
+    border: none;
+    padding: 0 20%;
+    font-size: 40px;
+}
+#allSettingsMenu > textarea, #allSettingsMenu > input{
+    border-bottom: solid 1px #111;
+}
+
+#cvSizeRange, .fontPSize{
+    z-index: 100;
+    position: fixed;
+    top: 130px;
+    left: 10px;
+    height: 30px;
+    width: 30%;
+    -webkit-appearance: none;
+}
+#cvSizeRange::-webkit-slider-thumb, .fontPSize::-webkit-slider-thumb{
+    height: 50px;
+    width: 50px;
+    background: #000;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+.fontPSize{
+    top: 50px;
+    transform: rotate(180deg);
+}
+
+#screenShott, #toPdf{
+    z-index: 10;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    padding: 50px;
+    font-size: 100px;
+    background: #fff;
+    cursor: pointer;
+}
+#toPdf{
+    right: 1000px;
+}
+
+#imageSizeLabel{
+    z-index: 100;
+    position: absolute;
+    font-size: 100px;
+    left: 70px;
+    color: #fff;
+}
+#colorSettings{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+#colorSettings > div{
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.secSetting{
+    position: absolute;
+    right: 20px;
+    top: 0;
+    transform: translateY(-50%);
+    font-weight: bold;
+    user-select: none;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+}
+.secSetting:hover{
+    color: #999;
+}
+
+.changable{
+    cursor: pointer;
+    user-select: none;
+}
+
+#settings{
+    z-index: 100;
+    position: fixed;
+    flex-direction: column;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+#settings > p, #editText{
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+    padding: 2% 0;
+    text-align: center;
+    font-size: 130px;
+}
+#settings > p:hover{
+    background: #333;
+}
