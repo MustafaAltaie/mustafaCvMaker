@@ -69,6 +69,18 @@
     left: 70px;
     color: #fff;
 }
+
+#mainSettings{
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #111;
+    color: #fff;
+    width: 10%;
+    padding: 1%;
+    display: none;
+}
 #colorSettings{
     display: flex;
     flex-wrap: wrap;

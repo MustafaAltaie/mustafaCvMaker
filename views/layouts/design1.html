@@ -378,7 +378,7 @@
         function screenShot(){
             html2canvas(document.getElementById('cv'), {
                 onrendered: function(canvas){
-                    return Canvas2Image.saveAsPNG(canvas);
+                    return Canvas2Image.saveAsJPEG(canvas);
                 }
             });
             window.location.href = '/cvCreated/' + localStorage.clientName + '/' + new Date().toJSON() + '/design1Blue';
@@ -415,7 +415,7 @@
         // --------------- Change CV size via range -------------//
 
         document.getElementById('cvSizeRange').oninput = function(){
-            ratio1 = cv.offsetWidth*cv.offsetHeight/9.5;
+            ratio1 = cv.offsetWidth*cv.offsetHeight/27;
             ratio2 = Math.ceil(ratio1/100000);
             imageSizeLabel.innerHTML = ratio2/10;
             sizingAllCv(cvSizeRange.value);

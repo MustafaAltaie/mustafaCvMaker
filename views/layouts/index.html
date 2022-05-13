@@ -5,30 +5,32 @@
         <script src="https://superal.github.io/canvas2image/canvas2image.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
         <link rel="stylesheet" href="../mutualStyle.css">
     </head>
     <body>
         <div id="mainSettings" class="mainSettings">
             <div id="colorSettings" class="mainSettings">
-                <div id="rgb(122, 122, 122)" class="colorSettingDivs" style="background:rgb(122, 122, 122)"></div>
-                <div id="rgb(70, 70, 70)" class="colorSettingDivs" style="background:rgb(70, 70, 70)"></div>
-                <div id="rgb(53, 53, 53)" class="colorSettingDivs" style="background:rgb(53, 53, 53)"></div>
-                <div id="rgb(10, 10, 10)" class="colorSettingDivs" style="background:rgb(10, 10, 10)"></div>
-                <div id="rgb(65, 84, 104)" class="colorSettingDivs" style="background:rgb(65, 84, 104)"></div>
-                <div id="rgb(50, 79, 108)" class="colorSettingDivs" style="background:rgb(50, 79, 108)"></div>
-                <div id="rgb(37, 75, 179)" class="colorSettingDivs" style="background:rgb(37, 75, 179)"></div>
-                <div id="rgb(0, 44, 165)" class="colorSettingDivs" style="background:rgb(0, 44, 165)"></div>
-                <div id="rgb(129, 12, 12)" class="colorSettingDivs" style="background:rgb(129, 12, 12)"></div>
-                <div id="rgb(102, 58, 58)" class="colorSettingDivs" style="background:rgb(102, 58, 58)"></div>
-                <div id="rgb(73, 56, 44)" class="colorSettingDivs" style="background:rgb(73, 56, 44)"></div>
-                <div id="rgb(197, 109, 176)" class="colorSettingDivs" style="background:rgb(197, 109, 176)"></div>
-                <div id="rgb(167, 60, 142)" class="colorSettingDivs" style="background:rgb(167, 60, 142)"></div>
-                <div id="rgb(118, 70, 106)" class="colorSettingDivs" style="background:rgb(118, 70, 106)"></div>
-                <div id="rgb(134, 128, 98)" class="colorSettingDivs" style="background:rgb(134, 128, 98)"></div>
-                <div id="rgb(153, 137, 54)" class="colorSettingDivs" style="background:rgb(153, 137, 54)"></div>
-                <div id="rgb(86, 78, 41)" class="colorSettingDivs" style="background:rgb(86, 78, 41)"></div>
-                <div id="rgb(56, 54, 45)" class="colorSettingDivs" style="background:rgb(56, 54, 45)"></div>
+                <div id="#eee" class="colorSettingDivs" style="background:#eee"></div>
+                <div id="rgb(213, 213, 213)" class="colorSettingDivs" style="background:rgb(213, 213, 213)"></div>
+                <div id="rgb(184, 184, 184)" class="colorSettingDivs" style="background:rgb(184, 184, 184)"></div>
+                <div id="rgb(160, 182, 206)" class="colorSettingDivs" style="background:rgb(160, 182, 206)"></div>
+                <div id="rgb(144, 179, 216)" class="colorSettingDivs" style="background:rgb(144, 179, 216)"></div>
+                <div id="hsl(208, 30%, 65%)" class="colorSettingDivs" style="background:hsl(208, 30%, 65%)"></div>
+                <div id="hsl(208, 60%, 65%)" class="colorSettingDivs" style="background:hsl(208, 60%, 65%)"></div>
+                <div id="rgb(204, 188, 143)" class="colorSettingDivs" style="background:rgb(204, 188, 143)"></div>
+                <div id="rgb(190, 164, 98)" class="colorSettingDivs" style="background:rgb(190, 164, 98)"></div>
+                <div id="rgb(145, 131, 94)" class="colorSettingDivs" style="background:rgb(145, 131, 94)"></div>
+                <div id="rgb(200, 181, 159)" class="colorSettingDivs" style="background:rgb(200, 181, 159)"></div>
+                <div id="rgb(188, 162, 129)" class="colorSettingDivs" style="background:rgb(188, 162, 129)"></div>
+                <div id="rgb(153, 125, 91)" class="colorSettingDivs" style="background:rgb(153, 125, 91)"></div>
+                <div id="rgb(216, 185, 209)" class="colorSettingDivs" style="background:rgb(216, 185, 209)"></div>
+                <div id="rgb(216, 162, 203)" class="colorSettingDivs" style="background:rgb(216, 162, 203)"></div>
+                <div id="rgb(186, 142, 176)" class="colorSettingDivs" style="background:rgb(186, 142, 176)"></div>
+                <div id="rgb(176, 107, 159)" class="colorSettingDivs" style="background:rgb(176, 107, 159)"></div>
+                <div id="rgb(169, 202, 168)" class="colorSettingDivs" style="background:rgb(169, 202, 168)"></div>
+                <div id="rgb(155, 171, 155)" class="colorSettingDivs" style="background:rgb(155, 171, 155)"></div>
+                <div id="rgb(109, 176, 107)" class="colorSettingDivs" style="background:rgb(109, 176, 107)"></div>
+                <div id="rgb(115, 155, 114)" class="colorSettingDivs" style="background:rgb(115, 155, 114)"></div>
             </div>
         </div>
 
@@ -37,12 +39,11 @@
         <form action="/imageUpload" method="post" enctype="multipart/form-data" style="display: none">
             <input type="file" name="file" id="imageFile">
             <input type="text" name="fileName" id="imageFileName">
-            <input type="hidden" name="redirect" value="">
+            <input type="hidden" name="redirect" value="design2">
             <button id="imageUploadSubmit"></button>
         </form>
 
         <div id="cvWrapper">
-            <h6 id="imageSizeLabel"></h6>
             <button id="screenShott" onclick="screenShot()">Take a screenshot</button>
             <input type="range" id="cvSizeRange" min="1000" max="10000">
             <input type="range" id="pSizeRange" min="10" max="100" class="fontPSize">
@@ -55,11 +56,10 @@
                 <div id="allSettingsMenu">
                     <p id="changeImage" class="allSettingsMenuOption" onclick="imageFile.click()">Change image</p>
                     <p id="removeImage" class="allSettingsMenuOption">Remove image</p>
-                    <p id="addEducation" class="allSettingsMenuOption" onclick="allSettingsMenuF('addEducationDate', 'addEducationTitle', 'addEducationText', 'addEducationType'); allSettingsMenuSubmit.style.display='block'">Add education</p>
-                    <textarea id="addEducationDate" class="allSettingsMenuOption" placeholder="Education data"></textarea>
+                    <p id="addEducation" class="allSettingsMenuOption" onclick="allSettingsMenuF('addEducationDate', 'addEducationTitle', 'addEducationText'); allSettingsMenuSubmit.style.display='block'">Add education</p>
+                    <textarea id="addEducationDate" class="allSettingsMenuOption" placeholder="Education date"></textarea>
                     <textarea id="addEducationTitle" class="allSettingsMenuOption" placeholder="Education title"></textarea>
                     <textarea id="addEducationText" class="allSettingsMenuOption" placeholder="Education description"></textarea>
-                    <textarea id="addEducationType" class="allSettingsMenuOption" placeholder="Education type"></textarea>
                     <p id="addSkill" class="allSettingsMenuOption" onclick="allSettingsMenuF('addSkillText', 'addSkillLevel'); allSettingsMenuSubmit.style.display='block'">Add skill</p>
                     <textarea id="addSkillText" placeholder="Skill title" class="allSettingsMenuOption"></textarea>
                     <input type="number" id="addSkillLevel" min="1" max="10" placeholder="Skill level" class="allSettingsMenuOption">
@@ -70,104 +70,98 @@
                     <textarea id="addExperienceType" placeholder="Type of experience" class="allSettingsMenuOption"></textarea>
                     <p id="addHobby" class="allSettingsMenuOption" onclick="allSettingsMenuF('addhobbyName'); allSettingsMenuSubmit.style.display='block'">Add hobby</p>
                     <textarea id="addhobbyName" placeholder="Hobby name" class="allSettingsMenuOption"></textarea>
-                    <p id="addLanguage" class="allSettingsMenuOption" onclick="allSettingsMenuF('addLanguageName'); allSettingsMenuSubmit.style.display='block'">Add language</p>
-                    <textarea id="addLanguageName" placeholder="Language name" class="allSettingsMenuOption"></textarea>
-                    <p id="addReference" class="allSettingsMenuOption" onclick="allSettingsMenuF('addReferenceName', 'addReferenceInfo', 'addReferenceEmail', 'addReferenceNumber'); allSettingsMenuSubmit.style.display='block'">Add reference</p>
-                    <textarea id="addReferenceName" placeholder="Reference name" class="allSettingsMenuOption"></textarea>
-                    <textarea id="addReferenceInfo" placeholder="Reference info" class="allSettingsMenuOption"></textarea>
-                    <textarea id="addReferenceEmail" placeholder="Reference email" class="allSettingsMenuOption"></textarea>
-                    <textarea id="addReferenceNumber" placeholder="Reference number" class="allSettingsMenuOption"></textarea>
-                    <p id="addSocialMdia" class="allSettingsMenuOption" onclick="allSettingsMenuF('addSocialMdiaName', 'addSocialMdiaText'); allSettingsMenuSubmit.style.display='block'">Add social media</p>
-                    <textarea id="addSocialMdiaName" placeholder="Social media title" class="allSettingsMenuOption"></textarea>
-                    <textarea id="addSocialMdiaText" placeholder="Social media text" class="allSettingsMenuOption"></textarea>
                     <p id="allSettingsMenuSubmit">OK</p>
                     <p id="clearLocalStorage" class="allSettingsMenuOption">Clear</p>
                     <p id="hideSection" class="allSettingsMenuOption">Delete section</p>
                 </div>
-                <!-- ----------------- left side ------------------ -->
-                <div id="leftSide">
-                    <div id="imageWrapper">
+                <!-- Header section -->
+                <div id="headerSection">
+                    <div id="headerLeftSection">
                         <a id="imageSetting" class="secSetting" onclick="allSettingsMenuF('changeImage', 'removeImage')">...</a>
                         <img src="" id="clientPhoto">
                     </div>
-                    <!-- Profile -->
-                    <div id="profile">
-                        <h3 id="profileTitle" class="changable">My profile</h3>
-                        <p id="clientProfile" class="changable">Lorem ips um dolor sit amet con sec tetur adipi sicing elit. Ven iam com modi saepe Lorem ips um dolor sit amet con sec tetur adipi sicing elit. Ven iam com modi saepe, tempora archit ecto ipsa inci dunt sint impedit illo laborum quas est.</p>
-                    </div>
-                    <!-- Social media and links -->
-                    <div id="mySocialMediaSection">
-                        <a id="mySocialMediaSectionSetting" class="secSetting" onclick="allSettingsMenuF('addSocialMdia', 'clearLocalStorage', 'hideSection')">...</a>
-                        <h3 id="socialMediaWord" class="changable">Social media and links</h3>
-                    </div>
-                    <!-- Reference -->
-                    <div id="referenceSection">
-                        <a id="referenceSectionSetting" class="secSetting" onclick="allSettingsMenuF('addReference', 'clearLocalStorage', 'hideSection')">...</a>
-                        <h3 id="referenceWord" class="changable">Reference</h3>
-                    </div>
-                    <!-- Languages -->
-                    <div id="languageSection">
-                        <a id="languageSectionSetting" class="secSetting" onclick="allSettingsMenuF('addLanguage', 'clearLocalStorage', 'hideSection')">...</a>
-                        <h3 id="languageWord" class="changable">Languages</h3>
+                    <div id="headerRightSection">
+                        <h1 id="clientName" class="changable">Mustafa Altaie</h1>
+                        <b id="clientTitle" class="changable">Software Developer</b>
+                        <p id="clientTitle2"class="changable">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione voluptas et distinctio numquam quidem placeat incidunt</p>
                     </div>
                 </div>
-
-                <!-- ----------------- Right side ------------------ -->
-                <!-- ---- Header ----- -->
-                <div id="rightSide">
-                    <div id="rightSideHeader">
-                        <div id="nameAndTitle">
-                            <h1 id="clientName" class="changable"></h1>
-                            <h3 id="clientTitle" class="changable"></h3>
+                <!-- Footer section -->
+                <div id="footerSection">
+                    <div id="footerLeftSection">
+                        <!-- ---- Contact ----- -->
+                        <div id="contactMeSection">
+                            <div>
+                                <img src="/images/mobileIconBlack2.png" id="mobileIcon" class="icons">
+                                <div class="contactInfoBlock">
+                                    <u id="mobileWord" class="changable">Mobile</u>
+                                    <p id="clientNumber" class="changable">0721234567</p>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="/images/emailIconBlack2.png" id="emailIcon" class="icons">
+                                <div class="contactInfoBlock">
+                                    <u id="emailWord" class="changable">Email</u>
+                                    <p id="clientEmail" class="changable">mustafaphoto@gmail.com</p>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="/images/addressIconBlack2.png" id="addressIcon" class="icons">
+                                <div class="contactInfoBlock">
+                                    <u id="addressWord" class="changable">Address</u>
+                                    <p id="clientAddress" class="changable">Kerstinbodagatan 16</p>
+                                </div>
+                            </div>
                         </div>
-                        <div id="contactSection">
-                            <div>
-                                <img src="/images/mobileIconBlack.png">
-                                <p id="clientNumber" class="changable">Mobile: 0725255471</p>
+                        <!-- ---- Skills and education ----- -->
+                        <div id="skillEducationContainer">
+                            <!-- ---- Skills ----- -->
+                            <div id="skillsSection">
+                                <a id="skillsSectionSetting" class="secSetting" onclick="allSettingsMenuF('addSkill', 'clearLocalStorage', 'hideSection')">...</a>
+                                <b id="skillWord" class="changable">Technical skills</b>
+                                <div id="mainSkillWrapper"></div>
                             </div>
-                            <div>
-                                <img src="/images/emailIconBlack.png">
-                                <p id="clientEmail" class="changable">mustafaphoto111@gmail.com</p>
-                            </div>
-                            <div>
-                                <img src="/images/addressIconBlack.png">
-                                <p id="clientAddress" class="changable">Kerstinbodagatan 16 Katrineholm</p>
+                            <!-- ---- Educations ----- -->
+                            <div id="educationsSection">
+                                <a id="educationsSectionSetting" class="secSetting" onclick="allSettingsMenuF('addEducation', 'clearLocalStorage', 'hideSection')">...</a>
+                                <b id="educationWord" class="changable">Education</b>
                             </div>
                         </div>
                     </div>
-                    <!-- ---- Experience ----- -->
-                    <div id="experiencesSection">
-                        <a id="experiencesSectionSetting" class="secSetting" onclick="allSettingsMenuF('addExperience', 'clearLocalStorage', 'hideSection')">...</a>
-                        <h3 id="experienceWord" class="changable">WORK EXPERIENCE</h3>
-                    </div>
-                    <!-- ---- Education ----- -->
-                    <div id="educationsSection">
-                        <a id="educationsSectionSetting" class="secSetting" onclick="allSettingsMenuF('addEducation', 'clearLocalStorage', 'hideSection')">...</a>
-                        <h3 id="educationWord" class="changable">EDUCATION</h3>
-                    </div>
-                    <!-- ---- SKILLS AND KNOWLEDGE ----- -->
-                    <div id="skillsSection">
-                        <a id="skillsSectionSetting" class="secSetting" onclick="allSettingsMenuF('addSkill', 'clearLocalStorage', 'hideSection')">...</a>
-                        <h3 id="skillWord" class="changable">SKILLS AND KNOWLEDGE</h3>
-                        <div id="mainSkillWrapper"></div>
-                    </div>
-                    <!-- ---- Hobbies ----- -->
-                    <div id="hobbySection">
-                        <a id="hobbySectionSetting" class="secSetting" onclick="allSettingsMenuF('addHobby', 'clearLocalStorage', 'hideSection')">...</a>
-                        <h3 id="hobbyWord" class="changable">HOBBIES</h3>
-                        <div id="mainHobbyWrapper"></div>
+                    <div id="footerRightSection">
+                        <!-- ---- Profile ----- -->
+                        <div id="profile">
+                            <div id="profileTitleWrapper">
+                                <b id="profileTitle" class="changable">/// Profile</b>
+                                <p id="clientProfile" class="changable">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet, quasi numquam vero, saepe temporibus iure officiis quia dolore voluptas veniam consequatur.</p>
+                            </div>
+                        </div>
+                        <!-- ---- Experience and hobby ----- -->
+                        <div id="experienceHobbySection">
+                            <!-- ---- Experience ----- -->
+                            <div id="experiencesSection">
+                                <a id="experiencesSectionSetting" class="secSetting" onclick="allSettingsMenuF('addExperience', 'clearLocalStorage', 'hideSection')">...</a>
+                                <b id="experienceWord" class="changable">/// Work experience</b>
+                            </div>
+                            <!-- ---- Hooby ----- -->
+                            <div id="hobbySectionMainSection">
+                                <a id="hobbySectionMainSectionSetting" class="secSetting" onclick="allSettingsMenuF('addHobby', 'clearLocalStorage', 'hideSection')">...</a>
+                                <div id="hobbySection">
+                                    <u id="hobbyWord" class="changable">/// My hobbies</u>
+                                    <div id="mainHobbyWrapper"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </body>
-
     <style>
         *{
             margin: 0;
             padding: 0;
-            font-family: 'Barlow Semi Condensed', sans-serif;
-            /*font-family: 'Racing Sans One', cursive;*/
+            font-family: 'Comfortaa', cursive;
             font-weight: normal;
             outline: none;
         }
@@ -177,200 +171,197 @@
         b{
             font-weight: bold;
         }
-        h1{
-            color: #555;
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-        }
-        h3{
+        h6{
             font-weight: bold;
-            margin-bottom: 2%;
         }
-        #mainSettings{
-            z-index: 100;
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: #111;
+        p{
+            font-family: 'Comfortaa', cursive;
+        }
+        u{
+            text-decoration: none;
             color: #fff;
-            width: 10%;
-            padding: 1%;
-            display: none;
         }
-        #colorSettings > div{
-            width: 100px;
-            height: 100px;
-            cursor: pointer;
+        h1{
+            font-family: 'Racing Sans One';
+            color: #333;
         }
         #cvWrapper{
             display: flex;
             justify-content: center;
             padding: 200px 0 50px 0;
         }
-        #cv{
-            display: flex;
-        }
-        #imageWrapper:hover > a, #experiencesSection:hover > a, #educationsSection:hover > a, #referenceSection:hover > a, #languageSection:hover > a, #cv:hover > a, #skillsSection:hover > a, #hobbySection:hover > a, #mySocialMediaSection:hover > a{
-            display: block;
-        }
-        #cvWrapper, #experiencesSection, #educationsSection, #referenceSection, #languageSection, #cv, #skillsSection, #hobbySection, #leftSide, #profile, #mySocialMediaSection, .expDiv2, .educDiv2, #imageWrapper{
+        #cv, #headerLeftSection, #skillsSection, #educationsSection, #experiencesSection, #hobbySectionMainSection{
             position: relative;
         }
-
-        /* ------------ Left side ------------ */
-        #leftSide{
-            width: 25%;
-            background: #353535;
-            color: #ddd;
+        #cv:hover > a, #headerLeftSection:hover > a, #skillsSection:hover > a, #educationsSection:hover > a, #experiencesSection:hover > a, #hobbySectionMainSection:hover > a{
+            display: block;
+        }
+        #cv{
+            background: #eee;
+            overflow: hidden;
+        }
+        /* -----------------Header section---------------- */
+        #headerSection{
+            color: #111;
+            display: flex;
+        }
+        #headerRightSection{
+            width: 55%;
+            padding: 5%;
             display: flex;
             flex-direction: column;
+        }
+        #headerRightSection > b{
+            margin: 3% 0;
+        }
+        #headerLeftSection{
+            width: 35%;
+            display: flex;
+            justify-content: center;
             align-items: center;
-            padding: 5%;
         }
-        /* Image */
-        #imageWrapper{
-            width: 100%;
-            min-height: 20%;
-        }
-        #imageWrapper > img{
-            width: 100%;
-            height: 100%;
+        #clientPhoto{
             object-fit: cover;
         }
-        /* Profile contact reference languages */
-        #profile, #mySocialMediaSection, #referenceSection{
-            width: 100%;
-            padding: 12% 0;
-        }
-        #profile > h3, #mySocialMediaSection > p, #mySocialMediaSection > h3{
-            margin-bottom: 7%;
-        }
-        #languageSection{
+        /* -----------------Footer section---------------- */
+        #footerSection{
             display: flex;
-            flex-wrap: wrap;
         }
-        #languageSection > div{
-            width: 50%;
-            margin: 2% 0;
-        }
-        #languageSection > h3{
-            margin: 10% 0 5% 0;
-            width: 100%;
-        }
-        #languageSection > div{
-            width: 50%;
-        }
-        #languageSection > div > div{
-            display: flex;
-            align-items: center;
-            gap: 5%;
-        }
-        .languageSectionPoint{
-            width: 15px;
-            height: 15px;
-            background: #ccc;
-        }
-        #referenceSection > div{
-            margin: 7% 0;
-        }
-
-
-        /* ------------ Right side ------------ */
-        #rightSide{
-            width: 65%;
-            background: #eee;
-            color: #222;
-        }
-        #rightSideHeader{
-            display: flex;
-            justify-content: space-between;
-            padding: 4% 5%;
-        }
-        #nameAndTitle{
+        /* left Section */
+        #footerLeftSection{
             width: 35%;
         }
-        /* -- Contact -- */
-        #contactSection{
-            width: 55%;
+        /* Contact */
+        #contactMeSection{
+            padding: 10% 7%;
+            background: #353535;
+            color: #eee;
         }
-        #contactSection > div > img{
-            width: 50px;
-            height: 50px;
-            opacity: 0.7;
-        }
-        #contactSection > div{
+        #contactMeSection > div{
             display: flex;
             align-items: center;
+            margin: 7% 0;
             gap: 3%;
-            margin-bottom: 5%;
         }
-        /* -- Experience and Education -- */
-        #experiencesSection, #educationsSection{
-            padding: 4% 5%;
-        }
-        .experiencePoint, .educationPoint{
-            position: absolute;
-            left: -1px;
-            transform: translateX(-57%);
-            background: #555;
-        }
-        #experiencesSection > div, #educationsSection > div{
+        .contactInfoBlock{
             display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        .expDiv1, .educDiv1{
-            width: 30%;
+        /* Skills */
+        #skillEducationContainer{
+            background: #bea462;
+            height: 100%;
         }
-        .expDiv2, .educDiv2{
-            width: 67%;
-            padding-left: 3%;
-            padding-bottom: 3%;
+        #skillsSection, #educationsSection{
+            padding: 13% 13% 0 13%;
+            color: #000;
+            display: flex;
+            flex-direction: column;
         }
-        /* -- Skills -- */
-        #skillsSection{
-            padding: 4% 5%;
+        #skillWord, #educationWord{
+            margin-bottom: 10%;
+            padding: 2%;
         }
         #mainSkillWrapper{
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            padding: 0 5% 0 0;
+            flex-direction: column;
         }
         .skillMainBlock{
-            width: 40%;
-            margin: 1% 0;
+            width: 100%;
+            margin: 3% 0;
+        }
+        .skillMainBlock > p{
+            margin-bottom: 2%;
         }
         .clientSkillWrapper{
-            margin: 1% 0;
             width: 100%;
-            background: #aaa;
         }
         .clientSkill{
             height: 100%;
-            background: #555;
+            width: 50%;
+            background: #333;
             cursor: pointer;
         }
-
+        /* Education */
+        .educationMainBlock{
+            margin-bottom: 10%;
+        }
+        .educationMainBlock > p{
+            margin-top: 3%;
+        }
+        /* Right Section */
+        #footerRightSection{
+            width: 65%;
+        }
+        /* Profile */
+        #profile{
+            padding: 5%;
+        }
+        #profileTitleWrapper{
+            background: rgb(190, 164, 98);
+            display: flex;
+            flex-direction: column;
+            padding: 5% 5% 7% 5%;
+        }
+        #profileTitleWrapper > b{
+            margin-bottom: 3%;
+        }
+        /* Experience */
+        #experiencesSection{
+            padding: 5%;
+            display: flex;
+            flex-direction: column;
+        }
+        #experiencesSection > b{
+            margin-bottom: 5%;
+        }
+        #experiencesSection > div{
+            display: flex;
+        }
+        .experiencePoint{
+            position: absolute;
+            left: 0;
+            transform: translateX(-57%);
+            background: #353535;
+        }
+        .expDiv1{
+            width: 35%;
+        }
+        .expDiv2{
+            position: relative;
+            width: 60%;
+            padding: 0 0 5% 5%;
+        }
+        .expDiv2 > p{
+            margin: 2% 0;
+        }
         /* -- Hobbies -- */
+        #hobbySectionMainSection{
+            padding: 5%;
+        }
         #hobbySection{
-            padding: 4% 5%;
+            padding: 5%;
+            background: #353535;
+            color: #eee;
         }
         #mainHobbyWrapper{
             display: flex;
             flex-wrap: wrap;
-            gap: 7%;
+            gap: 10%;
+            margin-top: 2%;
         }
         #mainHobbyWrapper > div{
             display: flex;
             align-items: center;
             gap: 10%;
-            margin: 1% 0;
+            margin: 3% 0;
         }
         #mainHobbyWrapper > div > p{
             white-space: nowrap;
         }
         .hobbyPoint{
-            min-width: 15px;
-            min-height: 15px;
-            background: #555;
+            background: #bea462;
         }
     </style>
 
@@ -379,12 +370,16 @@
         document.body.style.zoom = "15%";
 
         function screenShot(){
+            //sizingAllCv(10000);
             html2canvas(document.getElementById('cv'), {
                 onrendered: function(canvas){
-                    return Canvas2Image.saveAsPNG(canvas);
+                    return Canvas2Image.saveAsJPEG(canvas);
                 }
             });
-            window.location.href = '/cvCreated/' + localStorage.clientName + '/' + new Date().toJSON() + '/home';
+            // setTimeout(function(){
+            //     sizingAllCv(cvSizeRange.value);
+            // }, 10);
+            //window.location.href = '/cvCreated/' + localStorage.clientName + '/' + new Date().toJSON() + '/home';
         }
 
         // --------------- Get CV size from localStorage -------------//
@@ -397,22 +392,19 @@
 
         // --------------- Get P size from localStorage -------------//
 
-        if(localStorage.pSize == '' || localStorage.pSize == undefined){
+        if(localStorage.pppSize == '' || localStorage.pppSize == undefined){
             var pSize = 45;
             pSizeRange.value = 45;
         }
         else{
-            var pSize = localStorage.pSize;
-            pSizeRange.value = localStorage.pSize;
+            var pSize = localStorage.pppSize;
+            pSizeRange.value = localStorage.pppSize;
         }
 
 
         // --------------- Change CV size via range -------------//
 
         document.getElementById('cvSizeRange').oninput = function(){
-            ratio1 = cv.offsetWidth*cv.offsetHeight/9.5;
-            ratio2 = Math.ceil(ratio1/100000);
-            imageSizeLabel.innerHTML = ratio2/10;
             sizingAllCv(cvSizeRange.value);
             localStorage.cvSize = cvSizeRange.value;
         }
@@ -421,13 +413,11 @@
         // --------------- Change P size via range -------------//
 
         document.getElementById('pSizeRange').oninput = function(){
-            localStorage.pSize = pSizeRange.value;
+            localStorage.pppSize = pSizeRange.value;
             for(i = 0; i < document.querySelectorAll('p').length; i++)
             document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSizeRange.value + 'px';
         }
 
-
-        // --------------- CV properties function -------------//
 
         function sizingAllCv(n){
             cv.style.width = n + 'px';
@@ -435,103 +425,101 @@
             for(i = 0; i < document.querySelectorAll('p').length; i++)
             document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
             for(i = 0; i < document.querySelectorAll('b').length; i++)
-            document.getElementsByTagName('b')[i].style.fontSize = cv.offsetWidth/50.68965517241379 + 'px';
-            for(i = 0; i < document.querySelectorAll('h3').length; i++)
-            document.getElementsByTagName('h3')[i].style.fontSize = cv.offsetWidth/42 + 'px';
-            for(i = 0; i < document.querySelectorAll('h1').length; i++)
-            document.getElementsByTagName('h1')[i].style.fontSize = cv.offsetWidth/21 + 'px';
+            document.getElementsByTagName('b')[i].style.fontSize = cv.offsetWidth/pSize*1.3 + 'px';
+            for(i = 0; i < document.querySelectorAll('h6').length; i++)
+            document.getElementsByTagName('h6')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
+            for(i = 0; i < document.querySelectorAll('h1').length; i++){
+                document.getElementsByTagName('h1')[i].style.fontSize = cv.offsetWidth/pSize*3 + 'px';
+                document.getElementsByTagName('h1')[i].style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
+            }
+            for(i = 0; i < document.querySelectorAll('u').length; i++)
+            document.getElementsByTagName('u')[i].style.fontSize = cv.offsetWidth/pSize*1.25 + 'px';
             for(i = 0; i < document.querySelectorAll('a').length; i++)
             document.getElementsByTagName('a')[i].style.fontSize = cv.offsetWidth/24.5 + 'px';
-            if(document.querySelectorAll('.languageSectionPoint').length > 0)
-            for(i = 0; i < document.querySelectorAll('.languageSectionPoint').length; i++){
-                document.getElementsByClassName('languageSectionPoint')[i].style.width = cv.offsetWidth/98 + 'px';
-                document.getElementsByClassName('languageSectionPoint')[i].style.height = cv.offsetWidth/98 + 'px';
+            if(localStorage.cvColor1 == '' || localStorage.cvColor1 == undefined){
+                headerRightSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px #bea462';
+                headerRightSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px #bea462';
+                headerLeftSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px #bea462';
+                headerLeftSection.style.borderLeft = 'solid ' + cv.offsetWidth/60 + 'px #bea462';
+                profile.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px #bea462';
+                //experiencesSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px #333';
             }
-            for(i = 0; i < contactSection.querySelectorAll('IMG').length; i++){
-                contactSection.getElementsByTagName('img')[i].style.width = cv.offsetWidth/29.4 + 'px';
-                contactSection.getElementsByTagName('img')[i].style.height = cv.offsetWidth/29.4 + 'px';
+            profile.style.borderTop = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
+            clientPhoto.style.width = cv.offsetWidth/4 + 'px';
+            clientPhoto.style.height = cv.offsetWidth/4 + 'px';
+            for(i = 0; i < document.querySelectorAll('.icons').length; i++){
+                document.querySelectorAll('.icons')[i].style.width = cv.offsetWidth/25 + 'px';
+                document.querySelectorAll('.icons')[i].style.minHeight = cv.offsetWidth/23 + 'px';
             }
+            for(i = 0; i < document.querySelectorAll('.clientSkillWrapper').length; i++){
+                document.querySelectorAll('.clientSkillWrapper')[i].style.height = cv.offsetWidth/70 + 'px';
+                document.querySelectorAll('.clientSkillWrapper')[i].style.border = 'solid ' + cv.offsetWidth/800 + 'px #333'
+            }
+            experiencesSection.style.borderTop = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
+            experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
             if(document.querySelectorAll('.experiencePoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++){
                 document.getElementsByClassName('experiencePoint')[i].style.width = cv.offsetWidth/150 + 'px';
                 document.getElementsByClassName('experiencePoint')[i].style.height = cv.offsetWidth/38 + 'px';
             }
-            if(document.querySelectorAll('.educationPoint').length > 0)
-            for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++){
-                document.getElementsByClassName('educationPoint')[i].style.width = cv.offsetWidth/150 + 'px';
-                document.getElementsByClassName('educationPoint')[i].style.height = cv.offsetWidth/38 + 'px';
-            }
-            if(document.querySelectorAll('.clientSkillWrapper').length > 0)
-            for(i = 0; i < document.querySelectorAll('.clientSkillWrapper').length; i++)
-            document.getElementsByClassName('clientSkillWrapper')[i].style.height = cv.offsetWidth/90 + 'px';
-            document.getElementById('editText').style.fontSize = cv.offsetWidth/pSize + 'px';
+            if(document.getElementsByClassName('expDiv2').length > 0)
+            for(i = 0; i < document.getElementsByClassName('expDiv2').length; i++)
+            document.getElementsByClassName('expDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
             if(document.querySelectorAll('.hobbyPoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.hobbyPoint').length; i++){
                 document.getElementsByClassName('hobbyPoint')[i].style.minWidth = cv.offsetWidth/98 + 'px';
                 document.getElementsByClassName('hobbyPoint')[i].style.minHeight = cv.offsetWidth/98 + 'px';
             }
-            profile.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.3)';
-            mySocialMediaSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.3)';
-            referenceSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.3)';
-            rightSideHeader.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.3)';
-            experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.3)';
-            educationsSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.3)';
-            if(document.getElementsByClassName('expDiv2').length > 0)
-            for(i = 0; i < document.getElementsByClassName('expDiv2').length; i++)
-            document.getElementsByClassName('expDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
-            if(document.getElementsByClassName('educDiv2').length > 0)
-            for(i = 0; i < document.getElementsByClassName('educDiv2').length; i++)
-            document.getElementsByClassName('educDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
-            skillsSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.3)';
-            if(localStorage.imageName != undefined)
-            imageWrapper.style.border = 'solid ' + cv.offsetWidth/890 + 'px' + ' rgba(255, 255, 255, 0.5)';
-            for(i = 0; i < document.getElementsByClassName('allSettingsMenuOption').length; i++)
-            document.getElementsByClassName('allSettingsMenuOption')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
+            skillWord.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
+            educationWord.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
+            document.getElementById('editText').style.fontSize = cv.offsetWidth/pSize + 'px';
         }
         setTimeout(function(){
             sizingAllCv(cvSizeRange.value);
         }, 0);
 
+
+
         // --------------- Get background color from localStorage -------------//
-
-        if(localStorage.cvColor != '' || localStorage.cvColor != undefined){
-            leftSide.style.background = localStorage.cvColor;
-            clientName.style.color = localStorage.cvColor;
-            for(i = 0; i < document.getElementsByClassName('clientSkill').length; i++)
-            document.getElementsByClassName('clientSkill')[i].style.background = localStorage.cvColor;
-            document.getElementById(localStorage.cvColor).style.border = 'solid 1px #fff';
-            if(document.querySelectorAll('.experiencePoint').length > 0)
-            for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++)
-            document.getElementsByClassName('experiencePoint')[i].style.background = localStorage.cvColor;
-            if(document.querySelectorAll('.educationPoint').length > 0)
-            for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++)
-            document.getElementsByClassName('educationPoint')[i].style.background = localStorage.cvColor;
-        }
-
-        // --------------- Change background color -------------//
-
-        colorSettings.addEventListener('click', function(evt){
-            if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings'){
-                leftSide.style.background = evt.target.id;
-                clientName.style.color = evt.target.id;
-                for(i = 0; i < document.getElementsByClassName('clientSkill').length; i++)
-                document.getElementsByClassName('clientSkill')[i].style.background = evt.target.id;
+        setTimeout(function(){
+            if(localStorage.cvColor1 != '' || localStorage.cvColor1 != undefined){
+                document.getElementById(localStorage.cvColor1).style.transform = 'rotate(10deg)';
+                skillEducationContainer.style.background = localStorage.cvColor1;
+                profileTitleWrapper.style.background = localStorage.cvColor1;
+                for(i = 0; i < document.getElementsByClassName('hobbyPoint').length; i++)
+                document.getElementsByClassName('hobbyPoint')[i].style.background = localStorage.cvColor1;
+                headerRightSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor1;
+                headerRightSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor1;
+                headerLeftSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor1;
+                headerLeftSection.style.borderLeft = 'solid ' + cv.offsetWidth/60 + 'px '  + localStorage.cvColor1;
+                profile.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor1;
                 for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
                 document.getElementsByClassName('colorSettingDivs')[i].style.border = 'none';
-                document.getElementById(evt.target.id).style.border = 'solid 1px #fff';
-                if(document.querySelectorAll('.experiencePoint').length > 0)
-                for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++)
-                document.getElementsByClassName('experiencePoint')[i].style.background = evt.target.id;
-                if(document.querySelectorAll('.educationPoint').length > 0)
-                for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++)
-                document.getElementsByClassName('educationPoint')[i].style.background = evt.target.id;
             }
-            localStorage.cvColor = evt.target.id;
+        }, 1);
+
+        // --------------- Change background color -------------//
+        colorSettings.addEventListener('click', function(evt){
+            if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings'){
+                skillEducationContainer.style.background = evt.target.id;
+                profileTitleWrapper.style.background = evt.target.id;
+                for(i = 0; i < document.getElementsByClassName('hobbyPoint').length; i++)
+                document.getElementsByClassName('hobbyPoint')[i].style.background = evt.target.id;
+                headerRightSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + evt.target.id;
+                headerRightSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + evt.target.id;
+                headerLeftSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + evt.target.id;
+                headerLeftSection.style.borderLeft = 'solid ' + cv.offsetWidth/60 + 'px '  + evt.target.id;
+                profile.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + evt.target.id;
+                for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
+                document.getElementsByClassName('colorSettingDivs')[i].style.transform = 'rotate(0deg)';
+                document.getElementById(evt.target.id).style.transform = 'rotate(10deg)';
+            }
+            localStorage.cvColor1 = evt.target.id;
         });
 
 
-        //--------- Show edit settings ---------//
 
+        //--------- Show edit settings ---------//
         var currentElement;
         var currentSection;
 
@@ -559,8 +547,8 @@
         });
 
 
-        //--------- All settings options to view ---------//
 
+        //--------- All settings options to view ---------//
         var allSettingSelectedOption;
 
         function allSettingsMenuF(n, n2, n3, n4){
@@ -578,33 +566,10 @@
         }
 
 
+
         //--------- All settings button clicked ---------//
 
         document.getElementById('allSettingsMenuSubmit').onclick = function(){
-            // Add social media //
-            if(allSettingSelectedOption == 'addSocialMdiaName'){
-                if(addSocialMdiaName.value != '' && addSocialMdiaText.value != ''){
-                    addSocialMedia(addSocialMdiaName.value, addSocialMdiaText.value);
-                    setLocalStorageSocialMedia();
-                    allSettingsMenu.style.display = 'none';
-                }
-            }
-            // Add reference //
-            if(allSettingSelectedOption == 'addReferenceName'){
-                if(addReferenceName.value != '' && addReferenceInfo.value != '' && addReferenceEmail.value != '' && addReferenceNumber.value != ''){
-                    addReference(addReferenceName.value, addReferenceInfo.value, addReferenceEmail.value, addReferenceNumber.value);
-                    setLocalStorageReference();
-                    allSettingsMenu.style.display = 'none';
-                }
-            }
-            // Add language //
-            if(allSettingSelectedOption == 'addLanguageName'){
-                if(addLanguageName.value != ''){
-                    addLanguage(addLanguageName.value);
-                    setLocalStorageLanguage();
-                    allSettingsMenu.style.display = 'none';
-                }
-            }
             // Add experience //
             if(allSettingSelectedOption == 'addExperienceDate'){
                 if(addExperienceDate.value != '' && addExperienceTitle.value != '' && addExperienceText.value != '' && addExperienceType.value != ''){
@@ -615,8 +580,8 @@
             }
             // Add education //
             if(allSettingSelectedOption == 'addEducationDate'){
-                if(addEducationDate.value != '' && addEducationTitle.value != '' && addEducationText.value != '' && addEducationType.value != ''){
-                    addEducation(addEducationTitle.value, addEducationDate.value, addEducationType.value, addEducationText.value);
+                if(addEducationDate.value != '' && addEducationTitle.value != '' && addEducationText.value != ''){
+                    addEducation(addEducationTitle.value, addEducationDate.value, addEducationText.value);
                     setLocalStorageEducation();
                     allSettingsMenu.style.display = 'none';
                 }
@@ -644,8 +609,8 @@
         }
 
 
-        //--------- Hyde forms mouse down ---------//
 
+        //--------- Hyde forms mouse down ---------//
         document.addEventListener('mousedown', function(evt){
             if(evt.target.className != 'changable'
             && evt.target.parentNode.id != 'settings'){
@@ -658,23 +623,14 @@
         });
 
 
-        //--------- Remove or update and recorde ---------//
 
+        //--------- Remove or update and recorde ---------//
         document.getElementById('actionButton').onclick = function(){
             document.getElementById(currentElement).innerHTML = editText.value;
             settings.style.display = 'none';
             // Profile localStorage
             localStorage.profileWord = profileTitle.innerHTML;
             localStorage.clientProfile = clientProfile.innerHTML;
-            // Social media localStorage
-            localStorage.mySocialMediaWord = socialMediaWord.innerHTML;
-            setLocalStorageSocialMedia();
-            // Reference localStorage
-            localStorage.referenceWord = referenceWord.innerHTML;
-            setLocalStorageReference();
-            // Language localStorage
-            localStorage.languageWord = languageWord.innerHTML;
-            setLocalStorageLanguage();
             // Header
             setLocalStorageHeader();
             // Experience
@@ -693,6 +649,7 @@
         }
 
 
+
         //---- Clear localStorage and hide sections -----//
         document.getElementById('hideSection').onclick = function(){
             var sectionName = currentSection.substr(0, currentSection.length-14) + 'Section';
@@ -708,33 +665,26 @@
         document.getElementById(sessionStorage.hiddenSection.split('|||')[i]).style.display = 'none';
 
         document.getElementById('clearLocalStorage').onclick = function(){
-            if(currentSection == 'mySocialMediaSectionSetting')
-            delete localStorage.mySocialMediaTitle;
-            if(currentSection == 'referenceSectionSetting')
-            delete localStorage.referenceTitle;
-            if(currentSection == 'languageSectionSetting')
-            delete localStorage.languageTitle;
             if(currentSection == 'experiencesSectionSetting')
             delete localStorage.experiences;
             if(currentSection == 'educationsSectionSetting')
-            delete localStorage.educations;
+            delete localStorage.myEducations;
             if(currentSection == 'skillsSectionSetting')
             delete localStorage.skills;
-            if(currentSection == 'hobbySectionSetting')
+            if(currentSection == 'hobbySectionMainSectionSetting')
             delete localStorage.hobby;
             window.location.reload();
         }
 
 
+
+        //-----------Header------------//
         //---- Personal image section -----//
         if(localStorage.imageName != undefined)
         clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';
         else{
             changeImage.innerHTML = 'Add image';
-            clientPhoto.style.display = 'none';
-            leftSide.style.padding = '15% 5%';
-            imageWrapper.style.position = 'absolute';
-            imageWrapper.style.top = 0;
+            clientPhoto.src = '/images/personalImageIcon.png';
         }
 
         var imageExt = '.jpg,.JPG,jpeg,JPEG,.bmp,.BMP,.gif,.GIF,.png,.PNG';
@@ -774,160 +724,13 @@
         }
 
         document.getElementById('removeImage').onclick = function(){
-            window.location.href = '/deleteImage/' + localStorage.imageName + '/home';
+            window.location.href = '/deleteImage/' + localStorage.imageName + '/design2';
             delete localStorage.imageName;
         }
 
-        //----- Profile ----//
-        if(localStorage.profileWord == '' || localStorage.profileWord == undefined)
-        profileTitle.innerHTML = '/// Profile';
-        else
-        profileTitle.innerHTML = localStorage.profileWord;
-
-        if(localStorage.clientProfile == '' || localStorage.clientProfile == undefined)
-        clientProfile.innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione voluptate ducimus est illum iusto animi vitae magnam, ea soluta quisquam, non praesentium amet perferendis, qui nulla optio! Quis, voluptate hic! Lorem ipsum dolor sit amet consectetur adipisicing elit.';
-        else
-        clientProfile.innerHTML = localStorage.clientProfile;
 
 
-        //----- Social media and links ----//
-        if(localStorage.mySocialMediaWord == '' || localStorage.mySocialMediaWord == undefined)
-        socialMediaWord.innerHTML = '/// Social media and links';
-        else
-        socialMediaWord.innerHTML = localStorage.mySocialMediaWord;
-
-        if(localStorage.mySocialMediaTitle == '' || localStorage.mySocialMediaTitle == undefined)
-        addSocialMedia('Field Title', 'Lorem ipsum dolor sit amet');
-        else
-        for(i = 0; i < localStorage.mySocialMediaTitle.split('|||').length-1; i++)
-        addSocialMedia(localStorage.mySocialMediaTitle.split('|||')[i], localStorage.mySocialMediaText.split('|||')[i]);
-
-        function addSocialMedia(ttl, txt){
-            var title = document.createElement('b');
-            title.id = 'socialTitle' + parseInt(Math.ceil(Math.random()*9999)+10000);
-            title.className = 'changable';
-            title.innerHTML = ttl;
-
-            var text = document.createElement('p');
-            text.id = 'socialInfo' + title.id;
-            text.className = 'changable';
-            text.innerHTML = txt;
-
-            mySocialMediaSection.appendChild(title);
-            mySocialMediaSection.appendChild(text);
-        }
-
-        function setLocalStorageSocialMedia(){
-            localStorage.mySocialMediaTitle = '';
-            localStorage.mySocialMediaText = '';
-            for(i = 0; i < mySocialMediaSection.getElementsByTagName('b').length; i++){
-                localStorage.mySocialMediaTitle += mySocialMediaSection.getElementsByTagName('b')[i].innerHTML + '|||';
-                localStorage.mySocialMediaText += mySocialMediaSection.getElementsByTagName('p')[i].innerHTML + '|||';
-            }
-        }
-        setLocalStorageSocialMedia();
-
-
-        //----- Reference ----//
-        if(localStorage.referenceWord == '' || localStorage.referenceWord == undefined)
-        referenceWord.innerHTML = '/// Reference';
-        else
-        referenceWord.innerHTML = localStorage.referenceWord;
-
-        if(localStorage.referenceTitle == '' || localStorage.referenceTitle == undefined)
-        addReference('Reference name', 'Reference information', 'Reference email', 'Reference number');
-        else
-        for(i = 0; i < localStorage.referenceTitle.split('***').length-1; i++)
-        addReference(localStorage.referenceTitle.split('***')[i].split('|||')[0], localStorage.referenceTitle.split('***')[i].split('|||')[1], localStorage.referenceTitle.split('***')[i].split('|||')[2], localStorage.referenceTitle.split('***')[i].split('|||')[3]);
-
-        function addReference(nam, inf, emal, numbr){
-            var reference = document.createElement('div');
-            reference.id = 'reference' + parseInt(Math.ceil(Math.random()*9999)+10000);
-            reference.className = 'references';
-
-            var name = document.createElement('b');
-            name.id = reference.id + 'Name';
-            name.className = 'changable';
-            name.innerHTML = nam;
-
-            var info = document.createElement('p');
-            info.id = reference.id + 'Info';
-            info.className = 'changable';
-            info.innerHTML = inf;
-
-            var email = document.createElement('p');
-            email.id = reference.id + 'Email';
-            email.className = 'changable';
-            email.innerHTML = emal;
-
-            var number = document.createElement('p');
-            number.id = reference.id + 'Number';
-            number.className = 'changable';
-            number.innerHTML = numbr;
-
-            reference.appendChild(name);
-            reference.appendChild(info);
-            reference.appendChild(email);
-            reference.appendChild(number);
-
-            referenceSection.appendChild(reference);
-        }
-
-        function setLocalStorageReference(){
-            localStorage.referenceTitle = '';
-            var ref = document.getElementsByClassName('references');
-            for(i = 0; i < ref.length; i++)
-            localStorage.referenceTitle += ref[i].getElementsByTagName('b')[0].innerHTML + '|||' + ref[i].getElementsByTagName('p')[0].innerHTML + '|||' + ref[i].getElementsByTagName('p')[1].innerHTML + '|||' + ref[i].getElementsByTagName('p')[2].innerHTML + '|||' + '***';
-        }
-        setLocalStorageReference();
-
-
-        //----- Language ----//
-        if(localStorage.languageWord == '' || localStorage.languageWord == undefined)
-        languageWord.innerHTML = '/// Languages';
-        else
-        languageWord.innerHTML = localStorage.languageWord;
-
-        if(localStorage.languageTitle == '' || localStorage.languageTitle == undefined)
-        addLanguage('Add language');
-        else
-        for(i = 0; i < localStorage.languageTitle.split('|||').length-1; i++)
-        addLanguage(localStorage.languageTitle.split('|||')[i]);
-
-        function addLanguage(n){
-            var language = document.createElement('div');
-            language.id = 'language' + parseInt(Math.ceil(Math.random()*9999)+10000);
-            language.className = 'language';
-
-            var div = document.createElement('div');
-            div.className = 'languageDiv';
-
-            var div2 = document.createElement('div');
-            div2.className = 'languageSectionPoint';
-
-            var title = document.createElement('p');
-            title.id = language.id + 'Title';
-            title.className = 'changable';
-            title.innerHTML = n;
-
-            div.appendChild(div2);
-            div.appendChild(title);
-
-            language.appendChild(div);
-
-            languageSection.appendChild(language);
-        }
-
-        function setLocalStorageLanguage(){
-            localStorage.languageTitle = '';
-            var lang = document.getElementsByClassName('languageDiv');
-            for(i = 0; i < lang.length; i++)
-            localStorage.languageTitle += lang[i].getElementsByTagName('p')[0].innerHTML + '|||';
-        }
-        setLocalStorageLanguage();
-
-
-        //----- Header ----//
+        //-------------------Contact------------------//
         if(localStorage.clientName == '' || localStorage.clientName == undefined)
         clientName.innerHTML = 'Full name';
         else
@@ -938,15 +741,35 @@
         else
         clientTitle.innerHTML = localStorage.clientTitle;
 
+        if(localStorage.clientTitle2 == '' || localStorage.clientTitle2 == undefined)
+        clientTitle2.innerHTML = 'Title or information';
+        else
+        clientTitle2.innerHTML = localStorage.clientTitle2;
+
+        if(localStorage.mobileWord == '' || localStorage.mobileWord == undefined)
+        mobileWord.innerHTML = 'Mobile';
+        else
+        mobileWord.innerHTML = localStorage.mobileWord;
+
         if(localStorage.clientNumber == '' || localStorage.clientNumber == undefined)
-        clientNumber.innerHTML = 'Mobile: 0721234567';
+        clientNumber.innerHTML = '0721234567';
         else
         clientNumber.innerHTML = localStorage.clientNumber;
+
+        if(localStorage.emailWord == '' || localStorage.emailWord == undefined)
+        emailWord.innerHTML = 'Email';
+        else
+        emailWord.innerHTML = localStorage.emailWord;
 
         if(localStorage.clientEmail == '' || localStorage.clientEmail == undefined)
         clientEmail.innerHTML = 'Email address';
         else
         clientEmail.innerHTML = localStorage.clientEmail;
+
+        if(localStorage.addressWord == '' || localStorage.addressWord == undefined)
+        addressWord.innerHTML = 'Address';
+        else
+        addressWord.innerHTML = localStorage.addressWord;
 
         if(localStorage.clientAddress == '' || localStorage.clientAddress == undefined)
         clientAddress.innerHTML = 'Address information';
@@ -956,146 +779,15 @@
         function setLocalStorageHeader(){
             localStorage.clientName = clientName.innerHTML;
             localStorage.clientTitle = clientTitle.innerHTML;
+            localStorage.clientTitle2 = clientTitle2.innerHTML;
+            localStorage.mobileWord = mobileWord.innerHTML;
             localStorage.clientNumber = clientNumber.innerHTML;
+            localStorage.emailWord = emailWord.innerHTML;
             localStorage.clientEmail = clientEmail.innerHTML;
+            localStorage.addressWord = addressWord.innerHTML;
             localStorage.clientAddress = clientAddress.innerHTML;
         }
 
-
-        //----- Experience ----//
-        if(localStorage.experienceWord == '' || localStorage.experienceWord == undefined)
-        experienceWord.innerHTML = 'WORK EXPERIENCE';
-        else
-        experienceWord.innerHTML = localStorage.experienceWord;
-
-        if(localStorage.experiences == '' || localStorage.experiences == undefined)
-        addExperience('Experience title', 'Experience date', 'Type of the experience', 'Experience description');
-        else
-        for(i = 0; i < localStorage.experiences.split('***').length-1; i++)
-        addExperience(localStorage.experiences.split('***')[i].split('|||')[0], localStorage.experiences.split('***')[i].split('|||')[1], localStorage.experiences.split('***')[i].split('|||')[2], localStorage.experiences.split('***')[i].split('|||')[3]);
-
-        function addExperience(title, date, type, text){
-            var experience = document.createElement('div');
-            experience.id = 'experience' + parseInt(Math.ceil(Math.random()*9999)+10000);
-            experience.className = 'experience';
-
-            var expDiv1 = document.createElement('div');
-            expDiv1.className = 'expDiv1';
-
-            var jobTitle = document.createElement('b');
-            jobTitle.id = experience.id + 'JobTitle';
-            jobTitle.className = 'changable';
-            jobTitle.innerHTML = title;
-
-            var jobDate = document.createElement('p');
-            jobDate.id = experience.id + 'JobDate';
-            jobDate.className = 'changable';
-            jobDate.innerHTML = date;
-
-            expDiv1.appendChild(jobTitle);
-            expDiv1.appendChild(jobDate);
-
-            var expDiv2 = document.createElement('div');
-            expDiv2.className = 'expDiv2';
-
-            var point = document.createElement('div');
-            point.className = 'experiencePoint';
-            
-            var jobType = document.createElement('b');
-            jobType.id = experience.id + 'JobType';
-            jobType.className = 'changable';
-            jobType.innerHTML = type;
-
-            var jobText = document.createElement('p');
-            jobText.id = experience.id + 'JobText';
-            jobText.className = 'changable';
-            jobText.innerHTML = text;
-
-            expDiv2.appendChild(point);
-            expDiv2.appendChild(jobType);
-            expDiv2.appendChild(jobText);
-
-            experience.appendChild(expDiv1);
-            experience.appendChild(expDiv2);
-
-            experiencesSection.appendChild(experience);
-        }
-
-        function setLocalStorageExperience(){
-            localStorage.experiences = '';
-            var exp = document.getElementsByClassName('experience');
-            for(i = 0; i < exp.length; i++)
-            localStorage.experiences += exp[i].getElementsByTagName('b')[0].innerHTML + '|||' + exp[i].getElementsByTagName('p')[0].innerHTML + '|||' + exp[i].getElementsByTagName('b')[1].innerHTML + '|||' + exp[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
-        }
-        setLocalStorageExperience();
-
-
-        //----- Education ----//
-        if(localStorage.educationWord == '' || localStorage.educationWord == undefined)
-        educationWord.innerHTML = 'EDUCATION';
-        else
-        educationWord.innerHTML = localStorage.educationWord;
-
-        if(localStorage.educations == '' || localStorage.educations == undefined)
-        addEducation('Education title', 'Education date', 'Type of the education', 'Education description');
-        else
-        for(i = 0; i < localStorage.educations.split('***').length-1; i++)
-        addEducation(localStorage.educations.split('***')[i].split('|||')[0], localStorage.educations.split('***')[i].split('|||')[1], localStorage.educations.split('***')[i].split('|||')[2], localStorage.educations.split('***')[i].split('|||')[3]);
-
-        function addEducation(title, date, type, text){
-            var education = document.createElement('div');
-            education.id = 'education' + parseInt(Math.ceil(Math.random()*9999)+10000);
-            education.className = 'education';
-
-            var educDiv1 = document.createElement('div');
-            educDiv1.className = 'educDiv1';
-
-            var educationTitle = document.createElement('b');
-            educationTitle.id = education.id + 'educationTitle';
-            educationTitle.className = 'changable';
-            educationTitle.innerHTML = title;
-
-            var educationDate = document.createElement('p');
-            educationDate.id = education.id + 'educationDate';
-            educationDate.className = 'changable';
-            educationDate.innerHTML = date;
-
-            educDiv1.appendChild(educationTitle);
-            educDiv1.appendChild(educationDate);
-
-            var educDiv2 = document.createElement('div');
-            educDiv2.className = 'educDiv2';
-
-            var point = document.createElement('div');
-            point.className = 'educationPoint';
-            
-            var educationType = document.createElement('b');
-            educationType.id = education.id + 'educationType';
-            educationType.className = 'changable';
-            educationType.innerHTML = type;
-
-            var educationText = document.createElement('p');
-            educationText.id = education.id + 'educationText';
-            educationText.className = 'changable';
-            educationText.innerHTML = text;
-
-            educDiv2.appendChild(point);
-            educDiv2.appendChild(educationType);
-            educDiv2.appendChild(educationText);
-
-            education.appendChild(educDiv1);
-            education.appendChild(educDiv2);
-
-            educationsSection.appendChild(education);
-        }
-
-        function setLocalStorageEducation(){
-            localStorage.educations = '';
-            var edu = document.getElementsByClassName('education');
-            for(i = 0; i < edu.length; i++)
-            localStorage.educations += edu[i].getElementsByTagName('b')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[0].innerHTML + '|||' + edu[i].getElementsByTagName('b')[1].innerHTML + '|||' + edu[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
-        }
-        setLocalStorageEducation();
 
 
         //----- Skills ----//
@@ -1145,14 +837,153 @@
         setLocalStorageSkill();
 
 
-        //----- Hobbies ----//
+
+        // --------------- Education section -------------//
+        if(localStorage.educationWord == '' || localStorage.educationWord == undefined)
+        educationWord.innerHTML = 'EDUCATION';
+        else
+        educationWord.innerHTML = localStorage.educationWord;
+
+        if(localStorage.myEducations == '' || localStorage.myEducations == undefined){
+            addEducation('Education title', '2022/02/22', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
+            addEducation('Education title', '2022/02/22', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
+        }
+        else
+        for(i = 0; i < localStorage.myEducations.split('***').length-1; i++)
+        addEducation(localStorage.myEducations.split('***')[i].split('|||')[0], localStorage.myEducations.split('***')[i].split('|||')[1], localStorage.myEducations.split('***')[i].split('|||')[2]);
+
+        function addEducation(title, date, text){
+            var education = document.createElement('div');
+            education.id = 'education' + parseInt(Math.ceil(Math.random()*9999)+10000);
+            education.className = 'educationMainBlock';
+
+            var educationTitle = document.createElement('h6');
+            educationTitle.id = education.id + 'educationTitle';
+            educationTitle.className = 'changable';
+            educationTitle.innerHTML = title;
+
+            var educationDate = document.createElement('p');
+            educationDate.id = education.id + 'educationDate';
+            educationDate.className = 'changable';
+            educationDate.innerHTML = date;
+
+            var educationText = document.createElement('p');
+            educationText.id = education.id + 'educationText';
+            educationText.className = 'changable';
+            educationText.innerHTML = text;
+
+            education.appendChild(educationTitle);
+            education.appendChild(educationDate);
+            education.appendChild(educationText);
+
+            educationsSection.appendChild(education);
+        }
+
+        function setLocalStorageEducation(){
+            localStorage.myEducations = '';
+            var edu = document.getElementsByClassName('educationMainBlock');
+            for(i = 0; i < edu.length; i++)
+            localStorage.myEducations += edu[i].getElementsByTagName('h6')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
+        }
+
+
+
+        //----- Profile ----//
+        if(localStorage.profileWord == '' || localStorage.profileWord == undefined)
+        profileTitle.innerHTML = '/// Profile';
+        else
+        profileTitle.innerHTML = localStorage.profileWord;
+
+        if(localStorage.clientProfile == '' || localStorage.clientProfile == undefined)
+        clientProfile.innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione voluptate ducimus est illum iusto animi vitae magnam, ea soluta quisquam, non praesentium amet perferendis, qui nulla optio! Quis, voluptate hic! Lorem ipsum dolor sit amet consectetur adipisicing elit.';
+        else
+        clientProfile.innerHTML = localStorage.clientProfile;
+
+
+
+        // --------------- Experience section -------------//
+        if(localStorage.experienceWord == '' || localStorage.experienceWord == undefined)
+        experienceWord.innerHTML = 'WORK EXPERIENCE';
+        else
+        experienceWord.innerHTML = localStorage.experienceWord;
+
+        if(localStorage.experiences == '' || localStorage.experiences == undefined){
+            addExperience('Experience title', 'Experience date', 'Type of the experience', 'Lorem ipsum dolor sit amet con sec tetur adipis icing elit. Rat ione volu ptas et disti nctio numq uam quidem placeat');
+            addExperience('Experience title', 'Experience date', 'Type of the experience', 'Lorem ipsum dolor sit amet con sec tetur adipis icing elit. Rat ione volu ptas et disti nctio numq uam quidem placeat');
+            addExperience('Experience title', 'Experience date', 'Type of the experience', 'Lorem ipsum dolor sit amet con sec tetur adipis icing elit. Rat ione volu ptas et disti nctio numq uam quidem placeat');
+        }
+        else
+        for(i = 0; i < localStorage.experiences.split('***').length-1; i++)
+        addExperience(localStorage.experiences.split('***')[i].split('|||')[0], localStorage.experiences.split('***')[i].split('|||')[1], localStorage.experiences.split('***')[i].split('|||')[2], localStorage.experiences.split('***')[i].split('|||')[3]);
+
+        function addExperience(title, date, type, text){
+            var experience = document.createElement('div');
+            experience.id = 'experience' + parseInt(Math.ceil(Math.random()*9999)+10000);
+            experience.className = 'experience';
+
+            var expDiv1 = document.createElement('div');
+            expDiv1.className = 'expDiv1';
+
+            var jobTitle = document.createElement('h6');
+            jobTitle.id = experience.id + 'JobTitle';
+            jobTitle.className = 'changable';
+            jobTitle.innerHTML = title;
+
+            var jobDate = document.createElement('p');
+            jobDate.id = experience.id + 'JobDate';
+            jobDate.className = 'changable';
+            jobDate.innerHTML = date;
+
+            expDiv1.appendChild(jobTitle);
+            expDiv1.appendChild(jobDate);
+
+            var expDiv2 = document.createElement('div');
+            expDiv2.className = 'expDiv2';
+
+            var point = document.createElement('div');
+            point.className = 'experiencePoint';
+            
+            var jobType = document.createElement('h6');
+            jobType.id = experience.id + 'JobType';
+            jobType.className = 'changable';
+            jobType.innerHTML = type;
+
+            var jobText = document.createElement('p');
+            jobText.id = experience.id + 'JobText';
+            jobText.className = 'changable';
+            jobText.innerHTML = text;
+
+            expDiv2.appendChild(point);
+            expDiv2.appendChild(jobType);
+            expDiv2.appendChild(jobText);
+
+            experience.appendChild(expDiv1);
+            experience.appendChild(expDiv2);
+
+            experiencesSection.appendChild(experience);
+        }
+
+        function setLocalStorageExperience(){
+            localStorage.experiences = '';
+            var exp = document.getElementsByClassName('experience');
+            for(i = 0; i < exp.length; i++)
+            localStorage.experiences += exp[i].getElementsByTagName('h6')[0].innerHTML + '|||' + exp[i].getElementsByTagName('p')[0].innerHTML + '|||' + exp[i].getElementsByTagName('h6')[1].innerHTML + '|||' + exp[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
+        }
+        setLocalStorageExperience();
+
+
+
+        // --------------- Hobby section -------------//
         if(localStorage.hobbyWord == '' || localStorage.hobbyWord == undefined)
-        hobbyWord.innerHTML = 'SKILLS AND KNOWLEDGE';
+        hobbyWord.innerHTML = 'My hobbies';
         else
         hobbyWord.innerHTML = localStorage.hobbyWord;
 
-        if(localStorage.hobby == '' || localStorage.hobby == undefined)
-        addHobby('Hobby name');
+        if(localStorage.hobby == '' || localStorage.hobby == undefined){
+            addHobby('Hobby1');
+            addHobby('Hobby2');
+            addHobby('Hobby3');
+        }
         else
         for(i = 0; i < localStorage.hobby.split('|||').length-1; i++)
         addHobby(localStorage.hobby.split('|||')[i]);
@@ -1183,6 +1014,5 @@
             localStorage.hobby += hby[i].getElementsByTagName('p')[0].innerHTML + '|||';
         }
         setLocalStorageHobby();
-
     </script>
 </html>

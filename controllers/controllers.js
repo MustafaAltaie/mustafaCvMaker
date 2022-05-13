@@ -10,16 +10,28 @@ router.get('/', function(req, res){
     });
 });
 
-router.get('/design1Blue', function(req, res){
+router.get('/design1', function(req, res){
     fs.readdir('personal images', function(err, imageFiles){
-        res.render('./layouts/design1Blue', {
+        res.render('./layouts/design1', {
             imageFiles: imageFiles
         });
     });
 });
 
 router.get('/design2', function(req, res){
-    res.render('./layouts/design2');
+    fs.readdir('personal images', function(err, imageFiles){
+        res.render('./layouts/design2', {
+            imageFiles: imageFiles
+        });
+    });
+});
+
+router.get('/design3', function(req, res){
+    fs.readdir('personal images', function(err, imageFiles){
+        res.render('./layouts/design3', {
+            imageFiles: imageFiles
+        });
+    });
 });
 
 router.post('/imageUpload', function(req, res){
