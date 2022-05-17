@@ -34,6 +34,38 @@ router.get('/design3', function(req, res){
     });
 });
 
+router.get('/design4', function(req, res){
+    fs.readdir('personal images', function(err, imageFiles){
+        res.render('./layouts/design4', {
+            imageFiles: imageFiles
+        });
+    });
+});
+
+router.get('/design5', function(req, res){
+    fs.readdir('personal images', function(err, imageFiles){
+        res.render('./layouts/design5', {
+            imageFiles: imageFiles
+        });
+    });
+});
+
+router.get('/design6', function(req, res){
+    fs.readdir('personal images', function(err, imageFiles){
+        res.render('./layouts/design6', {
+            imageFiles: imageFiles
+        });
+    });
+});
+
+router.get('/design7', function(req, res){
+    fs.readdir('personal images', function(err, imageFiles){
+        res.render('./layouts/design7', {
+            imageFiles: imageFiles
+        });
+    });
+});
+
 router.post('/imageUpload', function(req, res){
     var file = req.files.file;
     file.mv('personal images/' + req.body.fileName + '.jpg', function(){});

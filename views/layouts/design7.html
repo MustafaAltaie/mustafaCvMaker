@@ -121,7 +121,7 @@
                     <div id="header2Right">
                         <!-- ---- Profile ----- -->
                         <div id="profile">
-                            <h4 id="clientProfile" class="changable">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet, quasi numquam vero, saepe temporibus iure officiis quia dolore voluptas veniam consequatur. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet, quasi numquam vero, saepe temporibus iure officiis quia dolore voluptas veniam consequatur.</h4>
+                            <h4 id="clientProfile" class="changable"></h4>
                         </div>
                         <!-- ---- Contact ----- -->
                         <div id="contactMeSection">
@@ -275,7 +275,7 @@
             width: 48%;
             padding-left: 6%;
         }
-        #header h2, #profileTitle, #profile, #middleLeft p, #middleLeft h2, #middleLeft h3{
+        #profileTitle, #profile, #middleLeft p, #middleLeft h2, #middleLeft h3{
             text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.7);
         }
         /* --------------Header2--------------- */
@@ -433,6 +433,7 @@
         }
         .expDiv1{
             width: 35%;
+            padding: 0 2% 0 0;
         }
         .expDiv2{
             width: 60%;
@@ -523,7 +524,7 @@
             }
             for(i = 0; i < document.querySelectorAll('p').length; i++)
             document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
-            document.getElementsByTagName('h4')[0].style.fontSize = cv.offsetWidth/45 + 'px';
+            document.getElementsByTagName('h4')[0].style.fontSize = cv.offsetWidth/48 + 'px';
             for(i = 0; i < document.querySelectorAll('u').length; i++)
                 document.getElementsByTagName('u')[i].style.fontSize = cv.offsetWidth/45 + 'px';
             for(i = 0; i < document.querySelectorAll('a').length; i++)
@@ -534,7 +535,6 @@
             }
             clientPhoto.style.border = 'solid ' + cv.offsetWidth/cv.offsetWidth + 'px ';
             clientPhoto.style.borderBottom = 'none';
-            profile.style.borderLeft = 'solid ' + cv.offsetWidth/cv.offsetWidth + 'px ';
             for(i = 0; i < document.querySelectorAll('.clientSkillWrapper').length; i++)
                 document.querySelectorAll('.clientSkillWrapper')[i].style.height = cv.offsetWidth/190 + 'px';
             if(document.querySelectorAll('.hobbyPoint').length > 0)
@@ -629,7 +629,7 @@
 
             if(evt.target.className == 'changable' || evt.target.className == 'clientSkill'){
                 editText.style.width = cv.offsetWidth/2 + 'px';
-                editText.style.height = evt.target.offsetHeight*2 + 'px';
+                editText.style.height = evt.target.offsetHeight + 'px';
                 editText.value = evt.target.innerHTML;
                 currentElement = evt.target.id;
                 settings.style.display = 'flex';

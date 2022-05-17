@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <script src="https://superal.github.io/canvas2image/canvas2image.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../mutualStyle.css">
+    </head>
+    <body>
+        <div id="mainSettings" class="mainSettings">
+            <div id="colorSettings" class="mainSettings">
+                <div id="#eee" class="colorSettingDivs" style="background:#eee"></div>
+                <div id="rgb(213, 213, 213)" class="colorSettingDivs" style="background:rgb(213, 213, 213)"></div>
+                <div id="rgb(184, 184, 184)" class="colorSettingDivs" style="background:rgb(184, 184, 184)"></div>
+                <div id="rgb(160, 182, 206)" class="colorSettingDivs" style="background:rgb(160, 182, 206)"></div>
+                <div id="rgb(144, 179, 216)" class="colorSettingDivs" style="background:rgb(144, 179, 216)"></div>
+                <div id="hsl(208, 30%, 65%)" class="colorSettingDivs" style="background:hsl(208, 30%, 65%)"></div>
+                <div id="hsl(208, 60%, 65%)" class="colorSettingDivs" style="background:hsl(208, 60%, 65%)"></div>
+                <div id="rgb(204, 188, 143)" class="colorSettingDivs" style="background:rgb(204, 188, 143)"></div>
+                <div id="rgb(190, 164, 98)" class="colorSettingDivs" style="background:rgb(190, 164, 98)"></div>
+                <div id="rgb(145, 131, 94)" class="colorSettingDivs" style="background:rgb(145, 131, 94)"></div>
+                <div id="rgb(200, 181, 159)" class="colorSettingDivs" style="background:rgb(200, 181, 159)"></div>
+                <div id="rgb(188, 162, 129)" class="colorSettingDivs" style="background:rgb(188, 162, 129)"></div>
+                <div id="rgb(153, 125, 91)" class="colorSettingDivs" style="background:rgb(153, 125, 91)"></div>
+                <div id="rgb(216, 185, 209)" class="colorSettingDivs" style="background:rgb(216, 185, 209)"></div>
+                <div id="rgb(216, 162, 203)" class="colorSettingDivs" style="background:rgb(216, 162, 203)"></div>
+                <div id="rgb(186, 142, 176)" class="colorSettingDivs" style="background:rgb(186, 142, 176)"></div>
+                <div id="rgb(176, 107, 159)" class="colorSettingDivs" style="background:rgb(176, 107, 159)"></div>
+                <div id="rgb(169, 202, 168)" class="colorSettingDivs" style="background:rgb(169, 202, 168)"></div>
+                <div id="rgb(155, 171, 155)" class="colorSettingDivs" style="background:rgb(155, 171, 155)"></div>
+                <div id="rgb(109, 176, 107)" class="colorSettingDivs" style="background:rgb(109, 176, 107)"></div>
+                <div id="rgb(115, 155, 114)" class="colorSettingDivs" style="background:rgb(115, 155, 114)"></div>
+            </div>
+        </div>
+
+        <input type="hidden" value="{{imageFiles}}" id="allImageNames">
+
+        <form action="/imageUpload" method="post" enctype="multipart/form-data" style="display: none">
+            <input type="file" name="file" id="imageFile">
+            <input type="text" name="fileName" id="imageFileName">
+            <input type="hidden" name="redirect" value="design2">
+            <button id="imageUploadSubmit"></button>
+        </form>
+
+        <div id="cvWrapper">
+            <button id="screenShott" onclick="screenShot()">Take a screenshot</button>
+            <input type="range" id="cvSizeRange" min="1000" max="10000">
+            <input type="range" id="pSizeRange" min="10" max="100" class="fontPSize">
+            <div id="cv">
+                <div id="settings">
+                    <textarea id="editText"></textarea>
+                    <p id="actionButton">Update</p>
+                </div>
+                <a id="mainSettingButton" class="secSetting" onclick="mainSettings.style.display='block'">...</a>
+                <div id="allSettingsMenu">
+                    <p id="changeImage" class="allSettingsMenuOption" onclick="imageFile.click()">Change image</p>
+                    <p id="removeImage" class="allSettingsMenuOption">Remove image</p>
+                    <p id="addEducation" class="allSettingsMenuOption" onclick="allSettingsMenuF('addEducationDate', 'addEducationTitle', 'addEducationText'); allSettingsMenuSubmit.style.display='block'">Add education</p>
+                    <textarea id="addEducationDate" class="allSettingsMenuOption" placeholder="Education date"></textarea>
+                    <textarea id="addEducationTitle" class="allSettingsMenuOption" placeholder="Education title"></textarea>
+                    <textarea id="addEducationText" class="allSettingsMenuOption" placeholder="Education description"></textarea>
+                    <p id="addSkill" class="allSettingsMenuOption" onclick="allSettingsMenuF('addSkillText', 'addSkillLevel'); allSettingsMenuSubmit.style.display='block'">Add skill</p>
+                    <textarea id="addSkillText" placeholder="Skill title" class="allSettingsMenuOption"></textarea>
+                    <input type="number" id="addSkillLevel" min="1" max="10" placeholder="Skill level" class="allSettingsMenuOption">
+                    <p id="addExperience" class="allSettingsMenuOption" onclick="allSettingsMenuF('addExperienceDate', 'addExperienceTitle', 'addExperienceText', 'addExperienceType'); allSettingsMenuSubmit.style.display='block'">Add experience</p>
+                    <textarea id="addExperienceDate" placeholder="Experience date" class="allSettingsMenuOption"></textarea>
+                    <textarea id="addExperienceTitle" placeholder="Experience title" class="allSettingsMenuOption"></textarea>
+                    <textarea id="addExperienceText" placeholder="Experience text" class="allSettingsMenuOption"></textarea>
+                    <textarea id="addExperienceType" placeholder="Type of experience" class="allSettingsMenuOption"></textarea>
+                    <p id="addHobby" class="allSettingsMenuOption" onclick="allSettingsMenuF('addhobbyName'); allSettingsMenuSubmit.style.display='block'">Add hobby</p>
+                    <textarea id="addhobbyName" placeholder="Hobby name" class="allSettingsMenuOption"></textarea>
+                    <p id="allSettingsMenuSubmit">OK</p>
+                    <p id="clearLocalStorage" class="allSettingsMenuOption">Clear</p>
+                    <p id="hideSection" class="allSettingsMenuOption">Delete section</p>
+                </div>
+                <!-- Header section -->
+                <div id="headerSection">
+                    <div id="headerLeftSection">
+                        <a id="imageSetting" class="secSetting" onclick="allSettingsMenuF('changeImage', 'removeImage')">...</a>
+                        <img src="" id="clientPhoto">
+                    </div>
+                    <div id="headerRightSection">
+                        <h1 id="clientName" class="changable">Mustafa Altaie</h1>
+                        <b id="clientTitle" class="changable">Software Developer</b>
+                        <p id="clientTitle2"class="changable">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione voluptas et distinctio numquam quidem placeat incidunt</p>
+                    </div>
+                </div>
+                <!-- Footer section -->
+                <div id="footerSection">
+                    <div id="footerLeftSection">
+                        <!-- ---- Contact ----- -->
+                        <div id="contactMeSection">
+                            <div>
+                                <img src="/images/mobileIconWhite.png" id="mobileIcon" class="icons">
+                                <div class="contactInfoBlock">
+                                    <u id="mobileWord" class="changable">Mobile</u>
+                                    <p id="clientNumber" class="changable">0721234567</p>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="/images/emailIconWhite.png" id="emailIcon" class="icons">
+                                <div class="contactInfoBlock">
+                                    <u id="emailWord" class="changable">Email</u>
+                                    <p id="clientEmail" class="changable">mustafaphoto@gmail.com</p>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="/images/addressIconWhite.png" id="addressIcon" class="icons">
+                                <div class="contactInfoBlock">
+                                    <u id="addressWord" class="changable">Address</u>
+                                    <p id="clientAddress" class="changable">Kerstinbodagatan 16</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ---- Skills and education ----- -->
+                        <div id="skillEducationContainer">
+                            <!-- ---- Skills ----- -->
+                            <div id="skillsSection">
+                                <a id="skillsSectionSetting" class="secSetting" onclick="allSettingsMenuF('addSkill', 'clearLocalStorage', 'hideSection')">...</a>
+                                <b id="skillWord" class="changable">Technical skills</b>
+                                <div id="mainSkillWrapper"></div>
+                            </div>
+                            <!-- ---- Educations ----- -->
+                            <div id="educationsSection">
+                                <a id="educationsSectionSetting" class="secSetting" onclick="allSettingsMenuF('addEducation', 'clearLocalStorage', 'hideSection')">...</a>
+                                <b id="educationWord" class="changable">Education</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="footerRightSection">
+                        <!-- ---- Profile ----- -->
+                        <div id="profile">
+                            <div id="profileTitleWrapper">
+                                <b id="profileTitle" class="changable">/// Profile</b>
+                                <p id="clientProfile" class="changable">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Amet, quasi numquam vero, saepe temporibus iure officiis quia dolore voluptas veniam consequatur.</p>
+                            </div>
+                        </div>
+                        <!-- ---- Experience and hobby ----- -->
+                        <div id="experienceHobbySection">
+                            <!-- ---- Experience ----- -->
+                            <div id="experiencesSection">
+                                <a id="experiencesSectionSetting" class="secSetting" onclick="allSettingsMenuF('addExperience', 'clearLocalStorage', 'hideSection')">...</a>
+                                <b id="experienceWord" class="changable">/// Work experience</b>
+                            </div>
+                            <!-- ---- Hooby ----- -->
+                            <div id="hobbySectionMainSection">
+                                <a id="hobbySectionMainSectionSetting" class="secSetting" onclick="allSettingsMenuF('addHobby', 'clearLocalStorage', 'hideSection')">...</a>
+                                <div id="hobbySection">
+                                    <u id="hobbyWord" class="changable">/// My hobbies</u>
+                                    <div id="mainHobbyWrapper"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Comfortaa', cursive;
+            font-weight: normal;
+            outline: none;
+        }
+        body{
+            background: #aaa;
+        }
+        b{
+            font-weight: bold;
+        }
+        h6{
+            font-weight: bold;
+        }
+        p{
+            font-family: 'Comfortaa', cursive;
+        }
+        u{
+            text-decoration: none;
+            color: #fff;
+        }
+        h1{
+            font-family: 'Racing Sans One';
+            color: #333;
+        }
+        #cvWrapper{
+            display: flex;
+            justify-content: center;
+            padding: 200px 0 50px 0;
+        }
+        #cv, #headerLeftSection, #skillsSection, #educationsSection, #experiencesSection, #hobbySectionMainSection{
+            position: relative;
+        }
+        #cv:hover > a, #headerLeftSection:hover > a, #skillsSection:hover > a, #educationsSection:hover > a, #experiencesSection:hover > a, #hobbySectionMainSection:hover > a{
+            display: block;
+        }
+        #cv{
+            background: #eee;
+            overflow: hidden;
+        }
+        /* -----------------Header section---------------- */
+        #headerSection{
+            color: #111;
+            display: flex;
+        }
+        #headerRightSection{
+            width: 55%;
+            padding: 5%;
+            display: flex;
+            flex-direction: column;
+        }
+        #headerRightSection > b{
+            margin: 3% 0;
+        }
+        #headerLeftSection{
+            width: 35%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #clientPhoto{
+            object-fit: cover;
+        }
+        /* -----------------Footer section---------------- */
+        #footerSection{
+            display: flex;
+        }
+        /* left Section */
+        #footerLeftSection{
+            width: 35%;
+        }
+        /* Contact */
+        #contactMeSection{
+            padding: 10% 7%;
+            background: #353535;
+            color: #eee;
+        }
+        #contactMeSection > div{
+            display: flex;
+            align-items: center;
+            margin: 7% 0;
+            gap: 3%;
+        }
+        .contactInfoBlock{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        /* Skills */
+        #skillEducationContainer{
+            background: #bea462;
+            height: 100%;
+        }
+        #skillsSection, #educationsSection{
+            padding: 13% 13% 0 13%;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+        }
+        #skillWord, #educationWord{
+            margin-bottom: 10%;
+            padding: 2%;
+        }
+        #mainSkillWrapper{
+            display: flex;
+            flex-direction: column;
+        }
+        .skillMainBlock{
+            width: 100%;
+            margin: 3% 0;
+        }
+        .skillMainBlock > p{
+            margin-bottom: 2%;
+        }
+        .clientSkillWrapper{
+            width: 100%;
+        }
+        .clientSkill{
+            height: 100%;
+            width: 50%;
+            background: #333;
+            cursor: pointer;
+        }
+        /* Education */
+        .educationMainBlock{
+            margin-bottom: 10%;
+        }
+        .educationMainBlock > p{
+            margin-top: 3%;
+        }
+        /* Right Section */
+        #footerRightSection{
+            width: 65%;
+        }
+        /* Profile */
+        #profile{
+            padding: 5%;
+        }
+        #profileTitleWrapper{
+            background: rgb(190, 164, 98);
+            display: flex;
+            flex-direction: column;
+            padding: 5% 5% 7% 5%;
+        }
+        #profileTitleWrapper > b{
+            margin-bottom: 3%;
+        }
+        /* Experience */
+        #experiencesSection{
+            padding: 5%;
+            display: flex;
+            flex-direction: column;
+        }
+        #experiencesSection > b{
+            margin-bottom: 5%;
+        }
+        #experiencesSection > div{
+            display: flex;
+        }
+        .experiencePoint{
+            position: absolute;
+            left: 0;
+            transform: translateX(-57%);
+            background: #353535;
+        }
+        .expDiv1{
+            width: 35%;
+        }
+        .expDiv2{
+            position: relative;
+            width: 60%;
+            padding: 0 0 5% 5%;
+        }
+        .expDiv2 > p{
+            margin: 2% 0;
+        }
+        /* -- Hobbies -- */
+        #hobbySectionMainSection{
+            padding: 5%;
+        }
+        #hobbySection{
+            padding: 5%;
+            background: #353535;
+            color: #eee;
+        }
+        #mainHobbyWrapper{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10%;
+            margin-top: 2%;
+        }
+        #mainHobbyWrapper > div{
+            display: flex;
+            align-items: center;
+            gap: 10%;
+            margin: 3% 0;
+        }
+        #mainHobbyWrapper > div > p{
+            white-space: nowrap;
+        }
+        .hobbyPoint{
+            background: #bea462;
+        }
+    </style>
+
+    <script>
+
+        document.body.style.zoom = "15%";
+
+        function screenShot(){
+            //sizingAllCv(10000);
+            html2canvas(document.getElementById('cv'), {
+                onrendered: function(canvas){
+                    return Canvas2Image.saveAsJPEG(canvas);
+                }
+            });
+            // setTimeout(function(){
+            //     sizingAllCv(cvSizeRange.value);
+            // }, 10);
+            window.location.href = '/cvCreated/' + localStorage.clientName + '/' + new Date().toJSON() + '/design3';
+        }
+
+        // --------------- Get CV size from localStorage -------------//
+
+        if(localStorage.cvSize != '' || localStorage.cvSize != undefined)
+        cvSizeRange.value = localStorage.cvSize;
+        else
+        cvSizeRange.value = 3000;
+
+
+        // --------------- Get P size from localStorage -------------//
+
+        if(localStorage.pppSize == '' || localStorage.pppSize == undefined){
+            var pSize = 45;
+            pSizeRange.value = 45;
+        }
+        else{
+            var pSize = localStorage.pppSize;
+            pSizeRange.value = localStorage.pppSize;
+        }
+
+
+        // --------------- Change CV size via range -------------//
+
+        document.getElementById('cvSizeRange').oninput = function(){
+            sizingAllCv(cvSizeRange.value);
+            localStorage.cvSize = cvSizeRange.value;
+        }
+
+
+        // --------------- Change P size via range -------------//
+
+        document.getElementById('pSizeRange').oninput = function(){
+            localStorage.pppSize = pSizeRange.value;
+            for(i = 0; i < document.querySelectorAll('p').length; i++)
+            document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSizeRange.value + 'px';
+        }
+
+
+        function sizingAllCv(n){
+            cv.style.width = n + 'px';
+            cv.style.height = n * 1.414285714285714 + 'px';
+            for(i = 0; i < document.querySelectorAll('p').length; i++)
+            document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
+            for(i = 0; i < document.querySelectorAll('b').length; i++)
+            document.getElementsByTagName('b')[i].style.fontSize = cv.offsetWidth/pSize*1.3 + 'px';
+            for(i = 0; i < document.querySelectorAll('h6').length; i++)
+            document.getElementsByTagName('h6')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
+            for(i = 0; i < document.querySelectorAll('h1').length; i++){
+                document.getElementsByTagName('h1')[i].style.fontSize = cv.offsetWidth/pSize*3 + 'px';
+                document.getElementsByTagName('h1')[i].style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
+            }
+            for(i = 0; i < document.querySelectorAll('u').length; i++)
+            document.getElementsByTagName('u')[i].style.fontSize = cv.offsetWidth/pSize*1.25 + 'px';
+            for(i = 0; i < document.querySelectorAll('a').length; i++)
+            document.getElementsByTagName('a')[i].style.fontSize = cv.offsetWidth/24.5 + 'px';
+            if(localStorage.cvColor1 == '' || localStorage.cvColor1 == undefined){
+                headerRightSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px #bea462';
+                headerRightSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px #bea462';
+                headerLeftSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px #bea462';
+                headerLeftSection.style.borderLeft = 'solid ' + cv.offsetWidth/60 + 'px #bea462';
+                profile.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px #bea462';
+                //experiencesSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px #333';
+            }
+            profile.style.borderTop = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
+            clientPhoto.style.width = cv.offsetWidth/4 + 'px';
+            clientPhoto.style.height = cv.offsetWidth/4 + 'px';
+            for(i = 0; i < document.querySelectorAll('.icons').length; i++){
+                document.querySelectorAll('.icons')[i].style.width = cv.offsetWidth/25 + 'px';
+                document.querySelectorAll('.icons')[i].style.minHeight = cv.offsetWidth/23 + 'px';
+            }
+            for(i = 0; i < document.querySelectorAll('.clientSkillWrapper').length; i++){
+                document.querySelectorAll('.clientSkillWrapper')[i].style.height = cv.offsetWidth/70 + 'px';
+                document.querySelectorAll('.clientSkillWrapper')[i].style.border = 'solid ' + cv.offsetWidth/800 + 'px #333'
+            }
+            experiencesSection.style.borderTop = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
+            experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
+            if(document.querySelectorAll('.experiencePoint').length > 0)
+            for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++){
+                document.getElementsByClassName('experiencePoint')[i].style.width = cv.offsetWidth/150 + 'px';
+                document.getElementsByClassName('experiencePoint')[i].style.height = cv.offsetWidth/38 + 'px';
+            }
+            if(document.getElementsByClassName('expDiv2').length > 0)
+            for(i = 0; i < document.getElementsByClassName('expDiv2').length; i++)
+            document.getElementsByClassName('expDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
+            if(document.querySelectorAll('.hobbyPoint').length > 0)
+            for(i = 0; i < document.querySelectorAll('.hobbyPoint').length; i++){
+                document.getElementsByClassName('hobbyPoint')[i].style.minWidth = cv.offsetWidth/98 + 'px';
+                document.getElementsByClassName('hobbyPoint')[i].style.minHeight = cv.offsetWidth/98 + 'px';
+            }
+            skillWord.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
+            educationWord.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
+            document.getElementById('editText').style.fontSize = cv.offsetWidth/pSize + 'px';
+        }
+        setTimeout(function(){
+            sizingAllCv(cvSizeRange.value);
+        }, 0);
+
+
+
+        // --------------- Get background color from localStorage -------------//
+        setTimeout(function(){
+            if(localStorage.cvColor1 != '' || localStorage.cvColor1 != undefined){
+                document.getElementById(localStorage.cvColor1).style.transform = 'rotate(10deg)';
+                skillEducationContainer.style.background = localStorage.cvColor1;
+                profileTitleWrapper.style.background = localStorage.cvColor1;
+                for(i = 0; i < document.getElementsByClassName('hobbyPoint').length; i++)
+                document.getElementsByClassName('hobbyPoint')[i].style.background = localStorage.cvColor1;
+                headerRightSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor1;
+                headerRightSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor1;
+                headerLeftSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor1;
+                headerLeftSection.style.borderLeft = 'solid ' + cv.offsetWidth/60 + 'px '  + localStorage.cvColor1;
+                profile.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor1;
+                for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
+                document.getElementsByClassName('colorSettingDivs')[i].style.border = 'none';
+            }
+        }, 1);
+
+        // --------------- Change background color -------------//
+        colorSettings.addEventListener('click', function(evt){
+            if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings'){
+                skillEducationContainer.style.background = evt.target.id;
+                profileTitleWrapper.style.background = evt.target.id;
+                for(i = 0; i < document.getElementsByClassName('hobbyPoint').length; i++)
+                document.getElementsByClassName('hobbyPoint')[i].style.background = evt.target.id;
+                headerRightSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + evt.target.id;
+                headerRightSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + evt.target.id;
+                headerLeftSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + evt.target.id;
+                headerLeftSection.style.borderLeft = 'solid ' + cv.offsetWidth/60 + 'px '  + evt.target.id;
+                profile.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + evt.target.id;
+                for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
+                document.getElementsByClassName('colorSettingDivs')[i].style.transform = 'rotate(0deg)';
+                document.getElementById(evt.target.id).style.transform = 'rotate(10deg)';
+            }
+            localStorage.cvColor1 = evt.target.id;
+        });
+
+
+
+        //--------- Show edit settings ---------//
+        var currentElement;
+        var currentSection;
+
+        document.addEventListener('click', function(evt){
+            if(evt.target.id != 'mainSettingButton'
+            && evt.target.parentNode.className != 'mainSettings'
+            && evt.target.id != 'mainSettings')
+            mainSettings.style.display = 'none';
+
+            if(evt.target.className == 'changable' || evt.target.className == 'clientSkill'){
+                editText.style.width = cv.offsetWidth/2 + 'px';
+                editText.style.height = evt.target.offsetHeight + 'px';
+                editText.value = evt.target.innerHTML;
+                currentElement = evt.target.id;
+                settings.style.display = 'flex';
+            }
+
+            if(evt.target.className == 'secSetting' && evt.target.id != 'mainSettingButton'){
+                currentSection = evt.target.id;
+                allSettingsMenuSubmit.style.display = 'none';
+                allSettingsMenu.style.top = evt.target.parentNode.offsetTop + 'px';
+                allSettingsMenu.style.left = evt.target.offsetLeft + 'px';
+                allSettingsMenu.style.display = "flex";
+            }
+        });
+
+
+
+        //--------- All settings options to view ---------//
+        var allSettingSelectedOption;
+
+        function allSettingsMenuF(n, n2, n3, n4){
+            for(i = 0; i < allSettingsMenu.childElementCount-1; i++)
+            document.getElementsByClassName('allSettingsMenuOption')[i].style.display = "none";
+            allSettingSelectedOption = n;
+            document.getElementById(n).style.display = "block";
+            document.getElementById(n).focus();
+            if(n2)
+            document.getElementById(n2).style.display = "block";
+            if(n3)
+            document.getElementById(n3).style.display = "block";
+            if(n4)
+            document.getElementById(n4).style.display = "block";
+        }
+
+
+
+        //--------- All settings button clicked ---------//
+
+        document.getElementById('allSettingsMenuSubmit').onclick = function(){
+            // Add experience //
+            if(allSettingSelectedOption == 'addExperienceDate'){
+                if(addExperienceDate.value != '' && addExperienceTitle.value != '' && addExperienceText.value != '' && addExperienceType.value != ''){
+                    addExperience(addExperienceTitle.value, addExperienceDate.value, addExperienceType.value, addExperienceText.value)
+                    setLocalStorageExperience();
+                    allSettingsMenu.style.display = 'none';
+                }
+            }
+            // Add education //
+            if(allSettingSelectedOption == 'addEducationDate'){
+                if(addEducationDate.value != '' && addEducationTitle.value != '' && addEducationText.value != ''){
+                    addEducation(addEducationTitle.value, addEducationDate.value, addEducationText.value);
+                    setLocalStorageEducation();
+                    allSettingsMenu.style.display = 'none';
+                }
+            }
+            // Add skill //
+            if(allSettingSelectedOption == 'addSkillText'){
+                if(addSkillText.value != '' && addSkillLevel.value != ''){
+                    addSkill(addSkillText.value, addSkillLevel.value);
+                    setLocalStorageSkill();
+                    allSettingsMenu.style.display = 'none';
+                }
+            }
+            // Add hobby //
+            if(allSettingSelectedOption == 'addhobbyName'){
+                if(addhobbyName.value != ''){
+                    addHobby(addhobbyName.value);
+                    setLocalStorageHobby();
+                    allSettingsMenu.style.display = 'none';
+                }
+            }
+
+            setTimeout(function(){
+                sizingAllCv(cvSizeRange.value);
+            }, 0);
+        }
+
+
+
+        //--------- Hyde forms mouse down ---------//
+        document.addEventListener('mousedown', function(evt){
+            if(evt.target.className != 'changable'
+            && evt.target.parentNode.id != 'settings'){
+                settings.style.display = 'none';
+            }
+
+            if(evt.target.className != 'secSetting'
+            && evt.target.parentNode.id != 'allSettingsMenu')
+            allSettingsMenu.style.display = "none";
+        });
+
+
+
+        //--------- Remove or update and recorde ---------//
+        document.getElementById('actionButton').onclick = function(){
+            document.getElementById(currentElement).innerHTML = editText.value;
+            settings.style.display = 'none';
+            // Profile localStorage
+            localStorage.profileWord = profileTitle.innerHTML;
+            localStorage.clientProfile = clientProfile.innerHTML;
+            // Header
+            setLocalStorageHeader();
+            // Experience
+            localStorage.experienceWord = experienceWord.innerHTML;
+            setLocalStorageExperience();
+            // Education
+            localStorage.educationWord = educationWord.innerHTML;
+            setLocalStorageEducation();
+            // Skills
+            localStorage.skillWord = skillWord.innerHTML;
+            document.getElementById(currentElement).style.width = document.getElementById(currentElement).innerHTML*10 + '%';
+            setLocalStorageSkill();
+            // Hobbies
+            localStorage.hobbyWord = hobbyWord.innerHTML;
+            setLocalStorageHobby();
+        }
+
+
+
+        //---- Clear localStorage and hide sections -----//
+        document.getElementById('hideSection').onclick = function(){
+            var sectionName = currentSection.substr(0, currentSection.length-14) + 'Section';
+            document.getElementById(sectionName).style.display = 'none';
+            allSettingsMenu.style.display = 'none';
+            if(sessionStorage.hiddenSection == undefined)
+            sessionStorage.hiddenSection = '';
+            sessionStorage.hiddenSection += sectionName + '|||';
+        }
+
+        if(sessionStorage.hiddenSection != '' && sessionStorage.hiddenSection != undefined)
+        for(i = 0; i < sessionStorage.hiddenSection.split('|||').length-1; i++)
+        document.getElementById(sessionStorage.hiddenSection.split('|||')[i]).style.display = 'none';
+
+        document.getElementById('clearLocalStorage').onclick = function(){
+            if(currentSection == 'experiencesSectionSetting')
+            delete localStorage.experiences;
+            if(currentSection == 'educationsSectionSetting')
+            delete localStorage.myEducations;
+            if(currentSection == 'skillsSectionSetting')
+            delete localStorage.skills;
+            if(currentSection == 'hobbySectionMainSectionSetting')
+            delete localStorage.hobby;
+            window.location.reload();
+        }
+
+
+
+        //-----------Header------------//
+        //---- Personal image section -----//
+        if(localStorage.imageName != undefined)
+        clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';
+        else{
+            changeImage.innerHTML = 'Add image';
+            clientPhoto.src = '/images/personalImageIcon.png';
+        }
+
+        var imageExt = '.jpg,.JPG,jpeg,JPEG,.bmp,.BMP,.gif,.GIF,.png,.PNG';
+
+        var uploadPerm = 0;
+        var rndNumber;
+
+        document.getElementById('imageFile').onchange = function(){
+            if(imageFile.value != ''){
+                for(i = 0; i < imageExt.split(',').length; i++){
+                    if(imageFile.value.substr(imageFile.value.length-4, imageFile.value.length) == imageExt.split(',')[i]){
+                        uploadPerm = 1;
+                        break;
+                    }
+                    else uploadPerm = 0;
+                }
+                if(uploadPerm == 0) alert('File is not image');
+                else{
+                    if(changeImage.innerHTML == 'Add image')
+                    for(i = 0; i != -1; i++){   //-- Checking if the random number is already used --//
+                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
+                        if(allImageNames.value.includes(rndNumber))
+                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
+                        else{
+                            localStorage.imageName = rndNumber;
+                            imageFileName.value = rndNumber;
+                            imageUploadSubmit.click();
+                            break;
+                        }
+                    }
+                    else{
+                        imageFileName.value = localStorage.imageName;
+                        imageUploadSubmit.click();
+                    }
+                }
+            }
+        }
+
+        document.getElementById('removeImage').onclick = function(){
+            window.location.href = '/deleteImage/' + localStorage.imageName + '/design2';
+            delete localStorage.imageName;
+        }
+
+
+
+        //-------------------Contact------------------//
+        if(localStorage.clientName == '' || localStorage.clientName == undefined)
+        clientName.innerHTML = 'Full name';
+        else
+        clientName.innerHTML = localStorage.clientName;
+
+        if(localStorage.clientTitle == '' || localStorage.clientTitle == undefined)
+        clientTitle.innerHTML = 'Title or information';
+        else
+        clientTitle.innerHTML = localStorage.clientTitle;
+
+        if(localStorage.clientTitle2 == '' || localStorage.clientTitle2 == undefined)
+        clientTitle2.innerHTML = 'Title or information';
+        else
+        clientTitle2.innerHTML = localStorage.clientTitle2;
+
+        if(localStorage.mobileWord == '' || localStorage.mobileWord == undefined)
+        mobileWord.innerHTML = 'Mobile';
+        else
+        mobileWord.innerHTML = localStorage.mobileWord;
+
+        if(localStorage.clientNumber == '' || localStorage.clientNumber == undefined)
+        clientNumber.innerHTML = '0721234567';
+        else
+        clientNumber.innerHTML = localStorage.clientNumber;
+
+        if(localStorage.emailWord == '' || localStorage.emailWord == undefined)
+        emailWord.innerHTML = 'Email';
+        else
+        emailWord.innerHTML = localStorage.emailWord;
+
+        if(localStorage.clientEmail == '' || localStorage.clientEmail == undefined)
+        clientEmail.innerHTML = 'Email address';
+        else
+        clientEmail.innerHTML = localStorage.clientEmail;
+
+        if(localStorage.addressWord == '' || localStorage.addressWord == undefined)
+        addressWord.innerHTML = 'Address';
+        else
+        addressWord.innerHTML = localStorage.addressWord;
+
+        if(localStorage.clientAddress == '' || localStorage.clientAddress == undefined)
+        clientAddress.innerHTML = 'Address information';
+        else
+        clientAddress.innerHTML = localStorage.clientAddress;
+
+        function setLocalStorageHeader(){
+            localStorage.clientName = clientName.innerHTML;
+            localStorage.clientTitle = clientTitle.innerHTML;
+            localStorage.clientTitle2 = clientTitle2.innerHTML;
+            localStorage.mobileWord = mobileWord.innerHTML;
+            localStorage.clientNumber = clientNumber.innerHTML;
+            localStorage.emailWord = emailWord.innerHTML;
+            localStorage.clientEmail = clientEmail.innerHTML;
+            localStorage.addressWord = addressWord.innerHTML;
+            localStorage.clientAddress = clientAddress.innerHTML;
+        }
+
+
+
+        //----- Skills ----//
+        if(localStorage.skillWord == '' || localStorage.skillWord == undefined)
+        skillWord.innerHTML = 'SKILLS AND KNOWLEDGE';
+        else
+        skillWord.innerHTML = localStorage.skillWord;
+
+        if(localStorage.skills == '' || localStorage.skills == undefined)
+        addSkill('Skill title', 5);
+        else
+        for(i = 0; i < localStorage.skills.split('***').length-1; i++)
+        addSkill(localStorage.skills.split('***')[i].split('|||')[0], localStorage.skills.split('***')[i].split('|||')[1]);
+
+        function addSkill(title, level){
+            var skillMainBlock = document.createElement('div');
+            skillMainBlock.className = 'skillMainBlock';
+
+            var skillTitle = document.createElement('p');
+            skillTitle.id = parseInt(Math.ceil(Math.random()*9999)+10000) + 'Title';
+            skillTitle.className = 'changable';
+            skillTitle.innerHTML = title;
+
+            var clientSkillWrapper = document.createElement('div');
+            clientSkillWrapper.className = 'clientSkillWrapper';
+
+            var clientSkill = document.createElement('div');
+            clientSkill.id = parseInt(Math.ceil(Math.random()*9999)+10000) + 'Skill';
+            clientSkill.className = 'clientSkill';
+            clientSkill.innerHTML = level;
+            clientSkill.style.width = level*10 + '%';
+
+            clientSkillWrapper.appendChild(clientSkill);
+
+            skillMainBlock.appendChild(skillTitle);
+            skillMainBlock.appendChild(clientSkillWrapper);
+
+            mainSkillWrapper.appendChild(skillMainBlock);
+        }
+
+        function setLocalStorageSkill(){
+            localStorage.skills = '';
+            var skl = document.getElementsByClassName('skillMainBlock');
+            for(i = 0; i < skl.length; i++)
+            localStorage.skills += skl[i].getElementsByTagName('p')[0].innerHTML + '|||' + skl[i].getElementsByClassName('clientSkill')[0].innerHTML + '|||' + '***';
+        }
+        setLocalStorageSkill();
+
+
+
+        // --------------- Education section -------------//
+        if(localStorage.educationWord == '' || localStorage.educationWord == undefined)
+        educationWord.innerHTML = 'EDUCATION';
+        else
+        educationWord.innerHTML = localStorage.educationWord;
+
+        if(localStorage.myEducations == '' || localStorage.myEducations == undefined){
+            addEducation('Education title', '2022/02/22', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
+            addEducation('Education title', '2022/02/22', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
+        }
+        else
+        for(i = 0; i < localStorage.myEducations.split('***').length-1; i++)
+        addEducation(localStorage.myEducations.split('***')[i].split('|||')[0], localStorage.myEducations.split('***')[i].split('|||')[1], localStorage.myEducations.split('***')[i].split('|||')[2]);
+
+        function addEducation(title, date, text){
+            var education = document.createElement('div');
+            education.id = 'education' + parseInt(Math.ceil(Math.random()*9999)+10000);
+            education.className = 'educationMainBlock';
+
+            var educationTitle = document.createElement('h6');
+            educationTitle.id = education.id + 'educationTitle';
+            educationTitle.className = 'changable';
+            educationTitle.innerHTML = title;
+
+            var educationDate = document.createElement('p');
+            educationDate.id = education.id + 'educationDate';
+            educationDate.className = 'changable';
+            educationDate.innerHTML = date;
+
+            var educationText = document.createElement('p');
+            educationText.id = education.id + 'educationText';
+            educationText.className = 'changable';
+            educationText.innerHTML = text;
+
+            education.appendChild(educationTitle);
+            education.appendChild(educationDate);
+            education.appendChild(educationText);
+
+            educationsSection.appendChild(education);
+        }
+
+        function setLocalStorageEducation(){
+            localStorage.myEducations = '';
+            var edu = document.getElementsByClassName('educationMainBlock');
+            for(i = 0; i < edu.length; i++)
+            localStorage.myEducations += edu[i].getElementsByTagName('h6')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
+        }
+
+
+
+        //----- Profile ----//
+        if(localStorage.profileWord == '' || localStorage.profileWord == undefined)
+        profileTitle.innerHTML = '/// Profile';
+        else
+        profileTitle.innerHTML = localStorage.profileWord;
+
+        if(localStorage.clientProfile == '' || localStorage.clientProfile == undefined)
+        clientProfile.innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione voluptate ducimus est illum iusto animi vitae magnam, ea soluta quisquam, non praesentium amet perferendis, qui nulla optio! Quis, voluptate hic! Lorem ipsum dolor sit amet consectetur adipisicing elit.';
+        else
+        clientProfile.innerHTML = localStorage.clientProfile;
+
+
+
+        // --------------- Experience section -------------//
+        if(localStorage.experienceWord == '' || localStorage.experienceWord == undefined)
+        experienceWord.innerHTML = 'WORK EXPERIENCE';
+        else
+        experienceWord.innerHTML = localStorage.experienceWord;
+
+        if(localStorage.experiences == '' || localStorage.experiences == undefined){
+            addExperience('Experience title', 'Experience date', 'Type of the experience', 'Lorem ipsum dolor sit amet con sec tetur adipis icing elit. Rat ione volu ptas et disti nctio numq uam quidem placeat');
+            addExperience('Experience title', 'Experience date', 'Type of the experience', 'Lorem ipsum dolor sit amet con sec tetur adipis icing elit. Rat ione volu ptas et disti nctio numq uam quidem placeat');
+            addExperience('Experience title', 'Experience date', 'Type of the experience', 'Lorem ipsum dolor sit amet con sec tetur adipis icing elit. Rat ione volu ptas et disti nctio numq uam quidem placeat');
+        }
+        else
+        for(i = 0; i < localStorage.experiences.split('***').length-1; i++)
+        addExperience(localStorage.experiences.split('***')[i].split('|||')[0], localStorage.experiences.split('***')[i].split('|||')[1], localStorage.experiences.split('***')[i].split('|||')[2], localStorage.experiences.split('***')[i].split('|||')[3]);
+
+        function addExperience(title, date, type, text){
+            var experience = document.createElement('div');
+            experience.id = 'experience' + parseInt(Math.ceil(Math.random()*9999)+10000);
+            experience.className = 'experience';
+
+            var expDiv1 = document.createElement('div');
+            expDiv1.className = 'expDiv1';
+
+            var jobTitle = document.createElement('h6');
+            jobTitle.id = experience.id + 'JobTitle';
+            jobTitle.className = 'changable';
+            jobTitle.innerHTML = title;
+
+            var jobDate = document.createElement('p');
+            jobDate.id = experience.id + 'JobDate';
+            jobDate.className = 'changable';
+            jobDate.innerHTML = date;
+
+            expDiv1.appendChild(jobTitle);
+            expDiv1.appendChild(jobDate);
+
+            var expDiv2 = document.createElement('div');
+            expDiv2.className = 'expDiv2';
+
+            var point = document.createElement('div');
+            point.className = 'experiencePoint';
+            
+            var jobType = document.createElement('h6');
+            jobType.id = experience.id + 'JobType';
+            jobType.className = 'changable';
+            jobType.innerHTML = type;
+
+            var jobText = document.createElement('p');
+            jobText.id = experience.id + 'JobText';
+            jobText.className = 'changable';
+            jobText.innerHTML = text;
+
+            expDiv2.appendChild(point);
+            expDiv2.appendChild(jobType);
+            expDiv2.appendChild(jobText);
+
+            experience.appendChild(expDiv1);
+            experience.appendChild(expDiv2);
+
+            experiencesSection.appendChild(experience);
+        }
+
+        function setLocalStorageExperience(){
+            localStorage.experiences = '';
+            var exp = document.getElementsByClassName('experience');
+            for(i = 0; i < exp.length; i++)
+            localStorage.experiences += exp[i].getElementsByTagName('h6')[0].innerHTML + '|||' + exp[i].getElementsByTagName('p')[0].innerHTML + '|||' + exp[i].getElementsByTagName('h6')[1].innerHTML + '|||' + exp[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
+        }
+        setLocalStorageExperience();
+
+
+
+        // --------------- Hobby section -------------//
+        if(localStorage.hobbyWord == '' || localStorage.hobbyWord == undefined)
+        hobbyWord.innerHTML = 'My hobbies';
+        else
+        hobbyWord.innerHTML = localStorage.hobbyWord;
+
+        if(localStorage.hobby == '' || localStorage.hobby == undefined){
+            addHobby('Hobby1');
+            addHobby('Hobby2');
+            addHobby('Hobby3');
+        }
+        else
+        for(i = 0; i < localStorage.hobby.split('|||').length-1; i++)
+        addHobby(localStorage.hobby.split('|||')[i]);
+
+        function addHobby(title){
+            var hobby = document.createElement('div');
+            hobby.id = 'hobby' + parseInt(Math.ceil(Math.random()*9999)+10000);
+            hobby.className = 'hobby';
+
+            var hobbyPoint = document.createElement('div');
+            hobbyPoint.className = 'hobbyPoint';
+
+            var hobbyTitle = document.createElement('p');
+            hobbyTitle.id = hobby.id + 'Title';
+            hobbyTitle.className = 'changable';
+            hobbyTitle.innerHTML = title;
+
+            hobby.appendChild(hobbyPoint);
+            hobby.appendChild(hobbyTitle);
+
+            mainHobbyWrapper.appendChild(hobby);
+        }
+
+        function setLocalStorageHobby(){
+            localStorage.hobby = '';
+            var hby = document.getElementsByClassName('hobby');
+            for(i = 0; i < hby.length; i++)
+            localStorage.hobby += hby[i].getElementsByTagName('p')[0].innerHTML + '|||';
+        }
+        setLocalStorageHobby();
+    </script>
+</html>
