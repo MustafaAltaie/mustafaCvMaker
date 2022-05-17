@@ -6,7 +6,7 @@ const path = require('path');
 const upload = require('express-fileupload');
 
 const app = express();
-var port = process.env.port || 3000;
+var port = process.env.PORT || 3000;
 app.listen(port);
 
 console.log('App is listening to port: ' + port);
