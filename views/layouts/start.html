@@ -1,0 +1,42 @@
+<body>
+    <div>
+        <img src="/designs/design1.jpeg" id="design1">
+        <img src="/designs/design3.jpeg" id="design3">
+        <img src="/designs/design4.jpeg" id="design4">
+        <img src="/designs/design5.jpeg" id="design5">
+        <img src="/designs/design6.jpg" id="design6">
+        <img src="/designs/design7.jpg" id="design7">
+    </div>
+</body>
+
+
+<style>
+    body{
+        background: #777;
+    }
+    div{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 5%;
+        padding: 5%;
+    }
+    img{
+        width: 20%;
+        cursor: pointer;
+        margin-bottom: 5%;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        transition: 0.1s;
+    }
+    img:hover{
+        transform: rotate(5deg);
+    }
+</style>
+
+<script>
+    document.addEventListener('click', function(evt){
+        if(evt.target.tagName == 'IMG')
+        window.location.href = evt.target.id;
+    });
+</script>

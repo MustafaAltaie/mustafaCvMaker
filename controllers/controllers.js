@@ -3,11 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 
 router.get('/', function(req, res){
-    fs.readdir('personal images', function(err, imageFiles){
-        res.render('./layouts/index', {
-            imageFiles: imageFiles
-        });
-    });
+    res.render('./layouts/start');
 });
 
 router.get('/design1', function(req, res){
