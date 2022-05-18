@@ -39,7 +39,7 @@
         <form action="/imageUpload" method="post" enctype="multipart/form-data" style="display: none">
             <input type="file" name="file" id="imageFile">
             <input type="text" name="fileName" id="imageFileName">
-            <input type="hidden" name="redirect" value="design2">
+            <input type="hidden" name="redirect" value="design3">
             <button id="imageUploadSubmit"></button>
         </form>
 
@@ -724,7 +724,7 @@
         }
 
         document.getElementById('removeImage').onclick = function(){
-            window.location.href = '/deleteImage/' + localStorage.imageName + '/design2';
+            window.location.href = '/deleteImage/' + localStorage.imageName + '/design3';
             delete localStorage.imageName;
         }
 
