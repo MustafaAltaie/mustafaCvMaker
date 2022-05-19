@@ -381,13 +381,13 @@
 
         // --------------- Get P size from localStorage -------------//
 
-        if(localStorage.pSize == '' || localStorage.pSize == undefined){
+        if(localStorage.pSize2 == '' || localStorage.pSize2 == undefined){
             var pSize = 45;
             pSizeRange.value = 45;
         }
         else{
-            var pSize = localStorage.pSize;
-            pSizeRange.value = localStorage.pSize;
+            var pSize = localStorage.pSize2;
+            pSizeRange.value = localStorage.pSize2;
         }
 
 
@@ -405,7 +405,7 @@
         // --------------- Change P size via range -------------//
 
         document.getElementById('pSizeRange').oninput = function(){
-            localStorage.pSize = pSizeRange.value;
+            localStorage.pSize2 = pSizeRange.value;
             for(i = 0; i < document.querySelectorAll('p').length; i++)
             document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSizeRange.value + 'px';
         }
