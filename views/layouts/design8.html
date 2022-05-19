@@ -11,24 +11,27 @@
     <body>
         <div id="mainSettings" class="mainSettings">
             <div id="colorSettings" class="mainSettings">
-                <div id="rgb(122, 122, 122)" class="colorSettingDivs" style="background:rgb(122, 122, 122)"></div>
-                <div id="rgb(70, 70, 70)" class="colorSettingDivs" style="background:rgb(70, 70, 70)"></div>
-                <div id="rgb(53, 53, 53)" class="colorSettingDivs" style="background:rgb(53, 53, 53)"></div>
-                <div id="rgb(10, 10, 10)" class="colorSettingDivs" style="background:rgb(10, 10, 10)"></div>
-                <div id="rgb(65, 84, 104)" class="colorSettingDivs" style="background:rgb(65, 84, 104)"></div>
-                <div id="rgb(50, 79, 108)" class="colorSettingDivs" style="background:rgb(50, 79, 108)"></div>
-                <div id="rgb(37, 75, 179)" class="colorSettingDivs" style="background:rgb(37, 75, 179)"></div>
-                <div id="rgb(0, 44, 165)" class="colorSettingDivs" style="background:rgb(0, 44, 165)"></div>
-                <div id="rgb(129, 12, 12)" class="colorSettingDivs" style="background:rgb(129, 12, 12)"></div>
-                <div id="rgb(102, 58, 58)" class="colorSettingDivs" style="background:rgb(102, 58, 58)"></div>
-                <div id="rgb(73, 56, 44)" class="colorSettingDivs" style="background:rgb(73, 56, 44)"></div>
-                <div id="rgb(197, 109, 176)" class="colorSettingDivs" style="background:rgb(197, 109, 176)"></div>
-                <div id="rgb(167, 60, 142)" class="colorSettingDivs" style="background:rgb(167, 60, 142)"></div>
-                <div id="rgb(118, 70, 106)" class="colorSettingDivs" style="background:rgb(118, 70, 106)"></div>
-                <div id="rgb(134, 128, 98)" class="colorSettingDivs" style="background:rgb(134, 128, 98)"></div>
-                <div id="rgb(153, 137, 54)" class="colorSettingDivs" style="background:rgb(153, 137, 54)"></div>
-                <div id="rgb(86, 78, 41)" class="colorSettingDivs" style="background:rgb(86, 78, 41)"></div>
-                <div id="rgb(56, 54, 45)" class="colorSettingDivs" style="background:rgb(56, 54, 45)"></div>
+                <div id="#ddd" class="colorSettingDivs" style="background:#ddd"></div>
+                <div id="#bbb" class="colorSettingDivs" style="background:#bbb"></div>
+                <div id="#888" class="colorSettingDivs" style="background:#888"></div>
+                <div id="#555" class="colorSettingDivs" style="background:#555"></div>
+                <div id="#a94" class="colorSettingDivs" style="background:#a94"></div>
+                <div id="#c1b26b" class="colorSettingDivs" style="background:#c1b26b"></div>
+                <div id="#877724" class="colorSettingDivs" style="background:#877724"></div>
+                <div id="#a98135" class="colorSettingDivs" style="background:#a98135"></div>
+                <div id="#55ae53" class="colorSettingDivs" style="background:#55ae53"></div>
+                <div id="#6a8a69" class="colorSettingDivs" style="background:#6a8a69"></div>
+                <div id="#41863f" class="colorSettingDivs" style="background:#41863f"></div>
+                <div id="#4a6f49" class="colorSettingDivs" style="background:#4a6f49"></div>
+                <div id="#6ca6be" class="colorSettingDivs" style="background:#6ca6be"></div>
+                <div id="#488199" class="colorSettingDivs" style="background:#488199"></div>
+                <div id="#49626d" class="colorSettingDivs" style="background:#49626d"></div>
+                <div id="#9180ca" class="colorSettingDivs" style="background:#9180ca"></div>
+                <div id="#857ba6" class="colorSettingDivs" style="background:#857ba6"></div>
+                <div id="#746a94" class="colorSettingDivs" style="background:#746a94"></div>
+                <div id="#d4a1c1" class="colorSettingDivs" style="background:#d4a1c1"></div>
+                <div id="#bb85b4" class="colorSettingDivs" style="background:#bb85b4"></div>
+                <div id="#aa6ba2" class="colorSettingDivs" style="background:#aa6ba2"></div>
             </div>
         </div>
 
@@ -178,7 +181,6 @@
             font-weight: bold;
         }
         h1{
-            color: #a94;
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         }
         h3{
@@ -192,7 +194,7 @@
         }
         #cv{
             display: flex;
-            background: #222
+            background: rgb(40, 40, 40);
         }
         #imageWrapper:hover > a, #experiencesSection:hover > a, #educationsSection:hover > a, #referenceSection:hover > a, #languageSection:hover > a, #cv:hover > a, #skillsSection:hover > a, #hobbySection:hover > a, #mySocialMediaSection:hover > a{
             display: block;
@@ -204,10 +206,11 @@
         /* ------------ Left side ------------ */
         #leftSide{
             width: 25%;
-            color: #ddd;
+            color: #aaa;
             display: flex;
             flex-direction: column;
             align-items: center;
+            background: rgb(30, 30, 30);
             padding: 5%;
         }
         /* Image */
@@ -221,18 +224,12 @@
             object-fit: cover;
         }
         /* Profile contact reference languages */
-        #leftSide h3{
-            color: #a94;
-        }
         #profile, #mySocialMediaSection, #referenceSection{
             width: 100%;
             padding: 12% 0;
         }
         #profile > h3, #mySocialMediaSection > p, #mySocialMediaSection > h3{
             margin-bottom: 7%;
-        }
-        #mySocialMediaSection > b{
-            color: #a94;
         }
         #languageSection{
             display: flex;
@@ -257,7 +254,6 @@
         .languageSectionPoint{
             width: 15px;
             height: 15px;
-            background: #a94;
         }
         #referenceSection > div{
             margin: 7% 0;
@@ -268,9 +264,6 @@
         #rightSide{
             width: 65%;
             color: #aaa;
-        }
-        #rightSide h3{
-            color: #a94;
         }
         #rightSideHeader{
             display: flex;
@@ -298,9 +291,6 @@
         /* -- Experience and Education -- */
         #experiencesSection, #educationsSection{
             padding: 4% 5%;
-        }
-        #experiencesSection b, #educationsSection b{
-            color: #a94;
         }
         .experiencePoint, .educationPoint{
             position: absolute;
@@ -340,7 +330,6 @@
         }
         .clientSkill{
             height: 100%;
-            background: #a94;
             cursor: pointer;
         }
 
@@ -365,7 +354,6 @@
         .hobbyPoint{
             min-width: 15px;
             min-height: 15px;
-            background: #a94;
         }
     </style>
 
@@ -392,13 +380,13 @@
 
         // --------------- Get P size from localStorage -------------//
 
-        if(localStorage.pSize == '' || localStorage.pSize == undefined){
+        if(localStorage.pSize8 == '' || localStorage.pSize8 == undefined){
             var pSize = 45;
             pSizeRange.value = 45;
         }
         else{
-            var pSize = localStorage.pSize;
-            pSizeRange.value = localStorage.pSize;
+            var pSize = localStorage.pSize8;
+            pSizeRange.value = localStorage.pSize8;
         }
 
 
@@ -416,7 +404,7 @@
         // --------------- Change P size via range -------------//
 
         document.getElementById('pSizeRange').oninput = function(){
-            localStorage.pSize = pSizeRange.value;
+            localStorage.pSize8 = pSizeRange.value;
             for(i = 0; i < document.querySelectorAll('p').length; i++)
             document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSizeRange.value + 'px';
         }
@@ -487,41 +475,34 @@
             sizingAllCv(cvSizeRange.value);
         }, 0);
 
-        // --------------- Get background color from localStorage -------------//
+        //--------------- Get background color from localStorage -------------//
 
-        // if(localStorage.cvColor != '' || localStorage.cvColor != undefined){
-        //     leftSide.style.background = localStorage.cvColor;
-        //     clientName.style.color = localStorage.cvColor;
-        //     for(i = 0; i < document.getElementsByClassName('clientSkill').length; i++)
-        //     document.getElementsByClassName('clientSkill')[i].style.background = localStorage.cvColor;
-        //     if(document.querySelectorAll('.experiencePoint').length > 0)
-        //     for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++)
-        //     document.getElementsByClassName('experiencePoint')[i].style.background = localStorage.cvColor;
-        //     if(document.querySelectorAll('.educationPoint').length > 0)
-        //     for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++)
-        //     document.getElementsByClassName('educationPoint')[i].style.background = localStorage.cvColor;
-        // }
+        if(localStorage.cvColor8 != '' || localStorage.cvColor8 != undefined)
+        setInterval(function(){
+            changeColor(localStorage.cvColor8);
+        }, 1);
 
-        // // --------------- Change background color -------------//
+        // --------------- Change background color -------------//
 
-        // colorSettings.addEventListener('click', function(evt){
-        //     if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings'){
-        //         leftSide.style.background = evt.target.id;
-        //         clientName.style.color = evt.target.id;
-        //         for(i = 0; i < document.getElementsByClassName('clientSkill').length; i++)
-        //         document.getElementsByClassName('clientSkill')[i].style.background = evt.target.id;
-        //         for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
-        //         document.getElementsByClassName('colorSettingDivs')[i].style.border = 'none';
-        //         document.getElementById(evt.target.id).style.border = 'solid 1px #fff';
-        //         if(document.querySelectorAll('.experiencePoint').length > 0)
-        //         for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++)
-        //         document.getElementsByClassName('experiencePoint')[i].style.background = evt.target.id;
-        //         if(document.querySelectorAll('.educationPoint').length > 0)
-        //         for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++)
-        //         document.getElementsByClassName('educationPoint')[i].style.background = evt.target.id;
-        //     }
-        //     localStorage.cvColor = evt.target.id;
-        // });
+        colorSettings.addEventListener('click', function(evt){
+            if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings')
+            changeColor(evt.target.id);
+            localStorage.cvColor8 = evt.target.id;
+        });
+
+        function changeColor(n){
+            for(i = 0; i < document.getElementsByTagName('b').length; i++)
+            document.getElementsByTagName('b')[i].style.color = n;
+            for(i = 0; i < document.getElementsByTagName('h3').length; i++)
+            document.getElementsByTagName('h3')[i].style.color = n;
+            document.getElementsByTagName('h1')[0].style.color = n;
+            for(i = 0; i < document.getElementsByClassName('languageSectionPoint').length; i++)
+            document.getElementsByClassName('languageSectionPoint')[i].style.background = n;
+            for(i = 0; i < document.getElementsByClassName('clientSkill').length; i++)
+            document.getElementsByClassName('clientSkill')[i].style.background = n;
+            for(i = 0; i < document.getElementsByClassName('hobbyPoint').length; i++)
+            document.getElementsByClassName('hobbyPoint')[i].style.background = n;
+        }
 
 
         //--------- Show edit settings ---------//
