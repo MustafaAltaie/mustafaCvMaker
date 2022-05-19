@@ -3,7 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 
 router.get('/', function(req, res){
-    res.render('./layouts/start');
+    res.render('./layouts/index');
 });
 
 router.get('/design1', function(req, res){
@@ -65,6 +65,14 @@ router.get('/design7', function(req, res){
 router.get('/design8', function(req, res){
     fs.readdir('personal images', function(err, imageFiles){
         res.render('./layouts/design8', {
+            imageFiles: imageFiles
+        });
+    });
+});
+
+router.get('/design9', function(req, res){
+    fs.readdir('personal images', function(err, imageFiles){
+        res.render('./layouts/design9', {
             imageFiles: imageFiles
         });
     });
