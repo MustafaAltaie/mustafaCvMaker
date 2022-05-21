@@ -22,7 +22,7 @@
             <h7 id="imageSizeLabel"></h7>
             <button id="screenShott" onclick="screenShot()">Take a screenshot</button>
             <input type="range" id="cvSizeRange" min="1000" max="10000">
-            <input type="range" id="ppSizeRange" min="10" max="100" class="fontPSize">
+            <input type="range" id="pSizeRange" min="10" max="100" class="fontPSize">
             <div id="cv">
                 <div id="settings">
                     <textarea id="editText"></textarea>
@@ -404,11 +404,11 @@
         
         if(localStorage.pSize1 == '' || localStorage.pSize1 == undefined){
             var ppSize = 45;
-            ppSizeRange.value = 45;
+            pSizeRange.value = 45;
         }
         else{
             var ppSize = localStorage.pSize1;
-            ppSizeRange.value = localStorage.pSize1;
+            pSizeRange.value = localStorage.pSize1;
         }
 
 
@@ -425,14 +425,17 @@
         document.getElementById('cvSizeRange').onchange = function(){
             window.location.reload();
         }
+        document.getElementById('pSizeRange').onchange = function(){
+            window.location.reload();
+        }
 
 
         // --------------- Change P size via range -------------//
 
-        document.getElementById('ppSizeRange').oninput = function(){
-            localStorage.pSize1 = ppSizeRange.value;
+        document.getElementById('pSizeRange').oninput = function(){
+            localStorage.pSize1 = pSizeRange.value;
             for(i = 0; i < document.querySelectorAll('p').length; i++)
-            document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/ppSizeRange.value + 'px';
+            document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSizeRange.value + 'px';
         }
 
 

@@ -6,82 +6,9 @@ router.get('/', function(req, res){
     res.render('./layouts/index');
 });
 
-router.get('/design1', function(req, res){
+router.get('/:id', function(req, res){
     fs.readdir('personal images', function(err, imageFiles){
-        res.render('./layouts/design1', {
-            imageFiles: imageFiles
-        });
-    });
-});
-
-router.get('/design2', function(req, res){
-    fs.readdir('personal images', function(err, imageFiles){
-        res.render('./layouts/design2', {
-            imageFiles: imageFiles
-        });
-    });
-});
-
-router.get('/design3', function(req, res){
-    fs.readdir('personal images', function(err, imageFiles){
-        res.render('./layouts/design3', {
-            imageFiles: imageFiles
-        });
-    });
-});
-
-router.get('/design4', function(req, res){
-    fs.readdir('personal images', function(err, imageFiles){
-        res.render('./layouts/design4', {
-            imageFiles: imageFiles
-        });
-    });
-});
-
-router.get('/design5', function(req, res){
-    fs.readdir('personal images', function(err, imageFiles){
-        res.render('./layouts/design5', {
-            imageFiles: imageFiles
-        });
-    });
-});
-
-router.get('/design6', function(req, res){
-    fs.readdir('personal images', function(err, imageFiles){
-        res.render('./layouts/design6', {
-            imageFiles: imageFiles
-        });
-    });
-});
-
-router.get('/design7', function(req, res){
-    fs.readdir('personal images', function(err, imageFiles){
-        res.render('./layouts/design7', {
-            imageFiles: imageFiles
-        });
-    });
-});
-
-router.get('/design8', function(req, res){
-    fs.readdir('personal images', function(err, imageFiles){
-        res.render('./layouts/design8', {
-            imageFiles: imageFiles
-        });
-    });
-});
-
-
-router.get('/design9', function(req, res){
-    fs.readdir('personal images', function(err, imageFiles){
-        res.render('./layouts/design9', {
-            imageFiles: imageFiles
-        });
-    });
-});
-
-router.get('/design10', function(req, res){
-    fs.readdir('personal images', function(err, imageFiles){
-        res.render('./layouts/design10', {
+        res.render('./layouts/' + req.params.id, {
             imageFiles: imageFiles
         });
     });

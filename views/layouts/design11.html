@@ -40,7 +40,7 @@
         <form action="/imageUpload" method="post" enctype="multipart/form-data" style="display: none">
             <input type="file" name="file" id="imageFile">
             <input type="text" name="fileName" id="imageFileName">
-            <input type="hidden" name="redirect" value="design8">
+            <input type="hidden" name="redirect" value="design11">
             <button id="imageUploadSubmit"></button>
         </form>
 
@@ -118,6 +118,7 @@
                 <!-- ----------------- Right side ------------------ -->
                 <!-- ---- Header ----- -->
                 <div id="rightSide">
+                    <img src="/images/map.png" id="map">
                     <div id="rightSideHeader">
                         <div id="nameAndTitle">
                             <h1 id="clientName" class="changable"></h1>
@@ -125,15 +126,15 @@
                         </div>
                         <div id="contactSection">
                             <div>
-                                <img src="/images/mobileIcon.png">
+                                <img src="/images/mobileIconGreen.png">
                                 <p id="clientNumber" class="changable">Mobile: 0725255471</p>
                             </div>
                             <div>
-                                <img src="/images/emailIcon.png">
+                                <img src="/images/emailIconGreen.png">
                                 <p id="clientEmail" class="changable">mustafaphoto111@gmail.com</p>
                             </div>
                             <div>
-                                <img src="/images/addressIcon.png">
+                                <img src="/images/addressIconGreen.png">
                                 <p id="clientAddress" class="changable">Kerstinbodagatan 16 Katrineholm</p>
                             </div>
                         </div>
@@ -177,15 +178,13 @@
         body{
             background: #aaa;
         }
-        b{
-            font-weight: bold;
-        }
-        h1{
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        h1, #nameAndTitle > h3{
+            font-family: 'Racing Sans One';
+            color: rgb(99, 146, 115);
         }
         h3{
-            font-weight: bold;
             margin-bottom: 2%;
+            padding: 1%;
         }
         #cvWrapper{
             display: flex;
@@ -194,7 +193,7 @@
         }
         #cv{
             display: flex;
-            background: rgb(40, 40, 40);
+            background: rgb(45, 45, 45);
         }
         #cv > a{
             color: #fff;
@@ -202,8 +201,16 @@
         #imageWrapper:hover > a, #experiencesSection:hover > a, #educationsSection:hover > a, #referenceSection:hover > a, #languageSection:hover > a, #cv:hover > a, #skillsSection:hover > a, #hobbySection:hover > a, #mySocialMediaSection:hover > a{
             display: block;
         }
-        #cvWrapper, #experiencesSection, #educationsSection, #referenceSection, #languageSection, #cv, #skillsSection, #hobbySection, #leftSide, #profile, #mySocialMediaSection, .expDiv2, .educDiv2, #imageWrapper{
+        #cvWrapper, #experiencesSection, #educationsSection, #referenceSection, #languageSection, #cv, #skillsSection, #hobbySection, #leftSide, #profile, #mySocialMediaSection, .expDiv2, .educDiv2, #imageWrapper, #rightSide{
             position: relative;
+        }
+        #rightSide > #map{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(90deg);
+            opacity: 0.1;
+            pointer-events: none;
         }
 
         /* ------------ Left side ------------ */
@@ -229,10 +236,13 @@
         /* Profile contact reference languages */
         #profile, #mySocialMediaSection, #referenceSection{
             width: 100%;
-            padding: 12% 0;
+            padding: 10% 0;
         }
         #profile > h3, #mySocialMediaSection > p, #mySocialMediaSection > h3{
             margin-bottom: 7%;
+        }
+        #profile > h3, #mySocialMediaSection > h3, #mySocialMediaSection b, #referenceSection > h3, #referenceSection b, #languageSection > h3{
+            color: rgb(99, 146, 115);
         }
         #languageSection{
             display: flex;
@@ -257,6 +267,7 @@
         .languageSectionPoint{
             width: 15px;
             height: 15px;
+            background: rgb(54, 111, 73);
         }
         #referenceSection > div{
             margin: 7% 0;
@@ -283,7 +294,6 @@
         #contactSection > div > img{
             width: 50px;
             height: 50px;
-            opacity: 0.5;
         }
         #contactSection > div{
             display: flex;
@@ -293,13 +303,19 @@
         }
         /* -- Experience and Education -- */
         #experiencesSection, #educationsSection{
-            padding: 4% 5%;
+            padding: 2% 5%;
         }
         .experiencePoint, .educationPoint{
             position: absolute;
             left: -1px;
             transform: translateX(-57%);
             background: #555;
+        }
+        #experiencesSection > h3, #experiencesSection b{
+            color: rgb(141, 178, 195);
+        }
+        #educationsSection > h3, #educationsSection b{
+            color: rgb(211, 194, 160);
         }
         #experiencesSection > div, #educationsSection > div{
             display: flex;
@@ -314,7 +330,10 @@
         }
         /* -- Skills -- */
         #skillsSection{
-            padding: 4% 5%;
+            padding: 2% 5%;
+        }
+        #skillsSection > h3{
+            color: rgb(188, 151, 192);
         }
         #mainSkillWrapper{
             display: flex;
@@ -334,11 +353,15 @@
         .clientSkill{
             height: 100%;
             cursor: pointer;
+            background: rgb(147, 120, 149);
         }
 
         /* -- Hobbies -- */
         #hobbySection{
-            padding: 4% 5%;
+            padding: 2% 5%;
+        }
+        #hobbySection > h3{
+            color: rgb(122, 168, 137);
         }
         #mainHobbyWrapper{
             display: flex;
@@ -357,6 +380,7 @@
         .hobbyPoint{
             min-width: 15px;
             min-height: 15px;
+            background: rgb(99, 146, 115);
         }
     </style>
 
@@ -370,7 +394,7 @@
                     return Canvas2Image.saveAsJPEG(canvas);
                 }
             });
-            window.location.href = '/cvCreated/' + localStorage.clientName + '/' + new Date().toJSON() + '/design8';
+            window.location.href = '/cvCreated/' + localStorage.clientName + '/' + new Date().toJSON() + '/design11';
         }
 
         // --------------- Get CV size from localStorage -------------//
@@ -428,9 +452,12 @@
             for(i = 0; i < document.querySelectorAll('p').length; i++)
             document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
             for(i = 0; i < document.querySelectorAll('b').length; i++)
-            document.getElementsByTagName('b')[i].style.fontSize = cv.offsetWidth/50.68965517241379 + 'px';
-            for(i = 0; i < document.querySelectorAll('h3').length; i++)
-            document.getElementsByTagName('h3')[i].style.fontSize = cv.offsetWidth/42 + 'px';
+            document.getElementsByTagName('b')[i].style.fontSize = cv.offsetWidth/45 + 'px';
+            for(i = 0; i < document.querySelectorAll('h3').length; i++){
+                document.getElementsByTagName('h3')[i].style.fontSize = cv.offsetWidth/42 + 'px';
+                document.getElementsByTagName('h3')[i].style.border = 'solid ' + cv.offsetWidth/cv.offsetWidth + 'px';
+                document.getElementsByTagName('h3')[i].style.borderLeft = 'none';
+            }
             for(i = 0; i < document.querySelectorAll('h1').length; i++)
             document.getElementsByTagName('h1')[i].style.fontSize = cv.offsetWidth/21 + 'px';
             for(i = 0; i < document.querySelectorAll('a').length; i++)
@@ -463,56 +490,23 @@
                 document.getElementsByClassName('hobbyPoint')[i].style.minWidth = cv.offsetWidth/98 + 'px';
                 document.getElementsByClassName('hobbyPoint')[i].style.minHeight = cv.offsetWidth/98 + 'px';
             }
-            profile.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.1)';
-            mySocialMediaSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.1)';
-            referenceSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.1)';
-            rightSideHeader.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.1)';
-            experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.1)';
-            educationsSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.1)';
             if(document.getElementsByClassName('expDiv2').length > 0)
             for(i = 0; i < document.getElementsByClassName('expDiv2').length; i++)
             document.getElementsByClassName('expDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
             if(document.getElementsByClassName('educDiv2').length > 0)
             for(i = 0; i < document.getElementsByClassName('educDiv2').length; i++)
             document.getElementsByClassName('educDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
-            skillsSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.1)';
             if(localStorage.imageName != undefined)
-            imageWrapper.style.border = 'solid ' + cv.offsetWidth/cv.offsetWidth + 'px' + ' rgba(255, 255, 255, 0.3)';
+            imageWrapper.style.border = 'solid ' + cv.offsetWidth/200 + 'px' + ' rgb(99, 146, 115)';
             for(i = 0; i < document.getElementsByClassName('allSettingsMenuOption').length; i++)
             document.getElementsByClassName('allSettingsMenuOption')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
+            map.style.width = cv.offsetWidth + 'px';
+            leftSide.style.borderRight = 'solid ' + cv.offsetWidth/300 + 'px' + ' rgb(99, 146, 115)';
         }
         setTimeout(function(){
             sizingAllCv(cvSizeRange.value);
         }, 0);
 
-        //--------------- Get background color from localStorage -------------//
-
-        if(localStorage.cvColor8 != '' || localStorage.cvColor8 != undefined)
-        setInterval(function(){
-            changeColor(localStorage.cvColor8);
-        }, 1);
-
-        // --------------- Change background color -------------//
-
-        colorSettings.addEventListener('click', function(evt){
-            if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings')
-            changeColor(evt.target.id);
-            localStorage.cvColor8 = evt.target.id;
-        });
-
-        function changeColor(n){
-            for(i = 0; i < document.getElementsByTagName('b').length; i++)
-            document.getElementsByTagName('b')[i].style.color = n;
-            for(i = 0; i < document.getElementsByTagName('h3').length; i++)
-            document.getElementsByTagName('h3')[i].style.color = n;
-            document.getElementsByTagName('h1')[0].style.color = n;
-            for(i = 0; i < document.getElementsByClassName('languageSectionPoint').length; i++)
-            document.getElementsByClassName('languageSectionPoint')[i].style.background = n;
-            for(i = 0; i < document.getElementsByClassName('clientSkill').length; i++)
-            document.getElementsByClassName('clientSkill')[i].style.background = n;
-            for(i = 0; i < document.getElementsByClassName('hobbyPoint').length; i++)
-            document.getElementsByClassName('hobbyPoint')[i].style.background = n;
-        }
 
 
         //--------- Show edit settings ---------//
@@ -759,7 +753,7 @@
         }
 
         document.getElementById('removeImage').onclick = function(){
-            window.location.href = '/deleteImage/' + localStorage.imageName + '/design8';
+            window.location.href = '/deleteImage/' + localStorage.imageName + '/design11';
             delete localStorage.imageName;
         }
 

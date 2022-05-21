@@ -9,6 +9,9 @@
     body #cvSizeRange{
         top: 450px;
     }
+    body #mainSettings{
+        width: 40%;
+    }
 }
 #allSettingsMenu{
     z-index: 200;
@@ -84,7 +87,7 @@
 }
 
 #mainSettings{
-    z-index: 100;
+    z-index: 150;
     position: absolute;
     top: 0;
     right: 0;
@@ -97,6 +100,8 @@
 #colorSettings{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     gap: 50px;
 }
 #colorSettings > div{
