@@ -409,6 +409,10 @@
             localStorage.cvSize = cvSizeRange.value;
         }
 
+        document.getElementById('cvSizeRange').onchange = function(){
+            window.location.reload();
+        }
+
 
         // --------------- Change P size via range -------------//
 

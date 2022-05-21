@@ -196,6 +196,9 @@
             box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
             overflow: hidden;
         }
+        #cv > a{
+            color: #fff;
+        }
         /* -----------------Header section---------------- */
         #headerSection{
             color: #ddd;
@@ -407,6 +410,10 @@
         document.getElementById('cvSizeRange').oninput = function(){
             sizingAllCv(cvSizeRange.value);
             localStorage.cvSize = cvSizeRange.value;
+        }
+
+        document.getElementById('cvSizeRange').onchange = function(){
+            window.location.reload();
         }
 
 

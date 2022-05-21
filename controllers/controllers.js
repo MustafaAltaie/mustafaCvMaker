@@ -70,9 +70,18 @@ router.get('/design8', function(req, res){
     });
 });
 
+
 router.get('/design9', function(req, res){
     fs.readdir('personal images', function(err, imageFiles){
         res.render('./layouts/design9', {
+            imageFiles: imageFiles
+        });
+    });
+});
+
+router.get('/design10', function(req, res){
+    fs.readdir('personal images', function(err, imageFiles){
+        res.render('./layouts/design10', {
             imageFiles: imageFiles
         });
     });

@@ -487,6 +487,10 @@
             document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSizeRange.value + 'px';
         }
 
+        document.getElementById('cvSizeRange').onchange = function(){
+            window.location.reload();
+        }
+
 
         // --------------- CV properties function -------------//
 
