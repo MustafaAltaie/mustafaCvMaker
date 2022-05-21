@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="../mutualStyle.css">
     </head>
     <body>
-        <input type="range" id="colorRange" min="30" max="100">
+        <input type="range" id="colorRange" min="40" max="80">
 
         <input type="hidden" value="{{imageFiles}}" id="allImageNames">
 
@@ -536,7 +536,7 @@
             educationsSection.getElementsByTagName('h3')[0].style.color = 'hsl(40, 50%, ' + n + '%)';
             for(i = 0; i < educationsSection.getElementsByTagName('b').length; i++)
             educationsSection.getElementsByTagName('b')[i].style.color = 'hsl(40, 50%, ' + n + '%)';
-            skillsSection.getElementsByTagName('h3')[0].style.color = 'hsl(290, 45%, ' + n*1.2 + '%)';
+            skillsSection.getElementsByTagName('h3')[0].style.color = 'hsl(290, 45%, ' + n*1.1 + '%)';
             for(i = 0; i < document.getElementsByClassName('clientSkill').length; i++)
             document.getElementsByClassName('clientSkill')[i].style.background = 'hsl(290, 25%, ' + n*0.8 + '%)';
             hobbySection.getElementsByTagName('h3')[0].style.color = 'hsl(140, 35%, ' + n + '%)';
