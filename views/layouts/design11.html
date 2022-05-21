@@ -9,31 +9,7 @@
         <link rel="stylesheet" href="../mutualStyle.css">
     </head>
     <body>
-        <div id="mainSettings" class="mainSettings">
-            <div id="colorSettings" class="mainSettings">
-                <div id="#ddd" class="colorSettingDivs" style="background:#ddd"></div>
-                <div id="#bbb" class="colorSettingDivs" style="background:#bbb"></div>
-                <div id="#888" class="colorSettingDivs" style="background:#888"></div>
-                <div id="#555" class="colorSettingDivs" style="background:#555"></div>
-                <div id="#a94" class="colorSettingDivs" style="background:#a94"></div>
-                <div id="#c1b26b" class="colorSettingDivs" style="background:#c1b26b"></div>
-                <div id="#877724" class="colorSettingDivs" style="background:#877724"></div>
-                <div id="#a98135" class="colorSettingDivs" style="background:#a98135"></div>
-                <div id="#55ae53" class="colorSettingDivs" style="background:#55ae53"></div>
-                <div id="#6a8a69" class="colorSettingDivs" style="background:#6a8a69"></div>
-                <div id="#41863f" class="colorSettingDivs" style="background:#41863f"></div>
-                <div id="#4a6f49" class="colorSettingDivs" style="background:#4a6f49"></div>
-                <div id="#6ca6be" class="colorSettingDivs" style="background:#6ca6be"></div>
-                <div id="#488199" class="colorSettingDivs" style="background:#488199"></div>
-                <div id="#49626d" class="colorSettingDivs" style="background:#49626d"></div>
-                <div id="#9180ca" class="colorSettingDivs" style="background:#9180ca"></div>
-                <div id="#857ba6" class="colorSettingDivs" style="background:#857ba6"></div>
-                <div id="#746a94" class="colorSettingDivs" style="background:#746a94"></div>
-                <div id="#d4a1c1" class="colorSettingDivs" style="background:#d4a1c1"></div>
-                <div id="#bb85b4" class="colorSettingDivs" style="background:#bb85b4"></div>
-                <div id="#aa6ba2" class="colorSettingDivs" style="background:#aa6ba2"></div>
-            </div>
-        </div>
+        <input type="range" id="colorRange" min="0" max="100">
 
         <input type="hidden" value="{{imageFiles}}" id="allImageNames">
 
@@ -54,7 +30,7 @@
                     <textarea id="editText"></textarea>
                     <p id="actionButton">Update</p>
                 </div>
-                <a id="mainSettingButton" class="secSetting" onclick="mainSettings.style.display='block'">...</a>
+                <a id="mainSettingButton" class="secSetting" onclick="colorRange.style.display='block'">...</a>
                 <div id="allSettingsMenu">
                     <p id="changeImage" class="allSettingsMenuOption" onclick="imageFile.click()">Change image</p>
                     <p id="removeImage" class="allSettingsMenuOption">Remove image</p>
@@ -180,7 +156,7 @@
         }
         h1, #nameAndTitle > h3{
             font-family: 'Racing Sans One';
-            color: rgb(99, 146, 115);
+            color: hsl(140, 70%, 70%);
         }
         h3{
             margin-bottom: 2%;
@@ -212,6 +188,24 @@
             opacity: 0.1;
             pointer-events: none;
         }
+        #colorRange{
+            z-index: 100;
+            position: fixed;
+            top: 250px;
+            right: 10px;
+            height: 30px;
+            width: 30%;
+            -webkit-appearance: none;
+            display: none;
+        }
+        #colorRange::-webkit-slider-thumb{
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            background: #000;
+            cursor: pointer;
+            -webkit-appearance: none;
+        }
 
         /* ------------ Left side ------------ */
         #leftSide{
@@ -241,9 +235,6 @@
         #profile > h3, #mySocialMediaSection > p, #mySocialMediaSection > h3{
             margin-bottom: 7%;
         }
-        #profile > h3, #mySocialMediaSection > h3, #mySocialMediaSection b, #referenceSection > h3, #referenceSection b, #languageSection > h3{
-            color: rgb(99, 146, 115);
-        }
         #languageSection{
             display: flex;
             flex-wrap: wrap;
@@ -267,7 +258,6 @@
         .languageSectionPoint{
             width: 15px;
             height: 15px;
-            background: rgb(54, 111, 73);
         }
         #referenceSection > div{
             margin: 7% 0;
@@ -311,12 +301,6 @@
             transform: translateX(-57%);
             background: #555;
         }
-        #experiencesSection > h3, #experiencesSection b{
-            color: rgb(136, 186, 208);
-        }
-        #educationsSection > h3, #educationsSection b{
-            color: rgb(211, 194, 160);
-        }
         #experiencesSection > div, #educationsSection > div{
             display: flex;
         }
@@ -333,7 +317,7 @@
             padding: 2% 5%;
         }
         #skillsSection > h3{
-            color: rgb(188, 151, 192);
+            color: hsl(294, 70%, 70%);
         }
         #mainSkillWrapper{
             display: flex;
@@ -353,15 +337,11 @@
         .clientSkill{
             height: 100%;
             cursor: pointer;
-            background: rgb(147, 120, 149);
         }
 
         /* -- Hobbies -- */
         #hobbySection{
             padding: 2% 5%;
-        }
-        #hobbySection > h3{
-            color: rgb(122, 168, 137);
         }
         #mainHobbyWrapper{
             display: flex;
@@ -380,7 +360,6 @@
         .hobbyPoint{
             min-width: 15px;
             min-height: 15px;
-            background: rgb(99, 146, 115);
         }
     </style>
 
@@ -497,15 +476,68 @@
             for(i = 0; i < document.getElementsByClassName('educDiv2').length; i++)
             document.getElementsByClassName('educDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
             if(localStorage.imageName != undefined)
-            imageWrapper.style.border = 'solid ' + cv.offsetWidth/200 + 'px' + ' rgb(99, 146, 115)';
+            imageWrapper.style.border = 'solid ' + cv.offsetWidth/200 + 'px';
             for(i = 0; i < document.getElementsByClassName('allSettingsMenuOption').length; i++)
             document.getElementsByClassName('allSettingsMenuOption')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
             map.style.width = cv.offsetWidth + 'px';
-            leftSide.style.borderRight = 'solid ' + cv.offsetWidth/300 + 'px' + ' rgb(99, 146, 115)';
+            leftSide.style.borderRight = 'solid ' + cv.offsetWidth/300 + 'px';
         }
         setTimeout(function(){
             sizingAllCv(cvSizeRange.value);
         }, 0);
+
+
+        //--------------- Get background color from localStorage -------------//
+
+        if(localStorage.cvColor11 == '' || localStorage.cvColor11 == undefined){
+            localStorage.cvColor11 = 50;
+            setInterval(function(){
+                changeColor(50);
+            }, 1);
+        }
+        else{
+            colorRange.value = localStorage.cvColor11;
+            setInterval(function(){
+                changeColor(localStorage.cvColor11);
+            }, 1);
+        }
+
+        // --------------- Change background color -------------//
+
+
+        document.getElementById('colorRange').oninput = function(){
+            localStorage.cvColor11 = colorRange.value;
+            changeColor(colorRange.value);
+        }
+
+        function changeColor(n){
+            imageWrapper.style.border = 'solid ' + cv.offsetWidth/200 + 'px ' + 'hsl(140, 25%, ' + n + '%)';
+            leftSide.style.borderRight = 'solid ' + cv.offsetWidth/300 + 'px ' + 'hsl(140, 25%, ' + n + '%)';
+            document.getElementsByTagName('h1')[0].style.color = 'hsl(140, 25%, ' + n + '%)';
+            nameAndTitle.getElementsByTagName('h3')[0].style.color = 'hsl(140, 25%, ' + n + '%)';
+            profile.getElementsByTagName('h3')[0].style.color = 'hsl(140, 25%, ' + n + '%)';
+            mySocialMediaSection.getElementsByTagName('h3')[0].style.color = 'hsl(140, 25%, ' + n + '%)';
+            for(i = 0; i < mySocialMediaSection.getElementsByTagName('b').length; i++)
+            mySocialMediaSection.getElementsByTagName('b')[i].style.color = 'hsl(140, 25%, ' + n + '%)';
+            referenceSection.getElementsByTagName('h3')[0].style.color = 'hsl(140, 25%, ' + n + '%)';
+            for(i = 0; i < referenceSection.getElementsByTagName('b').length; i++)
+            referenceSection.getElementsByTagName('b')[i].style.color = 'hsl(140, 25%, ' + n + '%)';
+            languageSection.getElementsByTagName('h3')[0].style.color = 'hsl(140, 25%, ' + n + '%)';
+            for(i = 0; i < document.getElementsByClassName('languageSectionPoint').length; i++)
+            document.getElementsByClassName('languageSectionPoint')[i].style.background = 'hsl(140, 25%, ' + n + '%)';
+            experiencesSection.getElementsByTagName('h3')[0].style.color = 'hsl(198, 35%, ' + n + '%)';
+            for(i = 0; i < experiencesSection.getElementsByTagName('b').length; i++)
+            experiencesSection.getElementsByTagName('b')[i].style.color = 'hsl(198, 35%, ' + n + '%)';
+            educationsSection.getElementsByTagName('h3')[0].style.color = 'hsl(40, 30%, ' + n + '%)';
+            for(i = 0; i < educationsSection.getElementsByTagName('b').length; i++)
+            educationsSection.getElementsByTagName('b')[i].style.color = 'hsl(40, 30%, ' + n + '%)';
+            skillsSection.getElementsByTagName('h3')[0].style.color = 'hsl(294, 25%, ' + n + '%)';
+            for(i = 0; i < document.getElementsByClassName('clientSkill').length; i++)
+            document.getElementsByClassName('clientSkill')[i].style.background = 'hsl(294, 25%, ' + n + '%)';
+            hobbySection.getElementsByTagName('h3')[0].style.color = 'hsl(140, 25%, ' + n + '%)';
+            for(i = 0; i < document.getElementsByClassName('hobbyPoint').length; i++)
+            document.getElementsByClassName('hobbyPoint')[i].style.background = 'hsl(140, 25%, ' + n + '%)';
+        }
 
 
 
@@ -515,10 +547,9 @@
         var currentSection;
 
         document.addEventListener('click', function(evt){
-            if(evt.target.id != 'mainSettingButton'
-            && evt.target.parentNode.className != 'mainSettings'
-            && evt.target.id != 'mainSettings')
-            mainSettings.style.display = 'none';
+            if(evt.target.id != 'colorRange'
+            && evt.target.id != 'mainSettingButton')
+            colorRange.style.display = 'none';
 
             if(evt.target.className == 'changable' || evt.target.className == 'clientSkill'){
                 editText.style.width = cv.offsetWidth/2 + 'px';

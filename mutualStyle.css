@@ -111,6 +111,7 @@
 }
 
 .secSetting{
+    z-index: 100;
     position: absolute;
     right: 20px;
     top: 0;
