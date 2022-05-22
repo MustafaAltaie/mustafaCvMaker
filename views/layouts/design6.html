@@ -699,25 +699,33 @@
 
         //--------- Remove or update a record ---------//
         document.getElementById('actionButton').onclick = function(){
+            if(editText.value == ''){
+                document.getElementById(currentElement + 'Div').remove();
+                setLocalStorageSections();
+                settings.style.display = 'none';
+            }
             document.getElementById(currentElement).innerHTML = editText.value;
             settings.style.display = 'none';
             // Profile localStorage
             localStorage.profileWord = profileTitle.innerHTML;
             localStorage.clientProfile = clientProfile.innerHTML;
-            // Header
-            setLocalStorageHeader();
             // Experience
             localStorage.experienceWord = experienceWord.innerHTML;
-            setLocalStorageExperience();
             // Education
             localStorage.educationWord = educationWord.innerHTML;
-            setLocalStorageEducation();
             // Skills
             localStorage.skillWord = skillWord.innerHTML;
             document.getElementById(currentElement).style.width = document.getElementById(currentElement).innerHTML*10 + '%';
-            setLocalStorageSkill();
             // Hobbies
             localStorage.hobbyWord = hobbyWord.innerHTML;
+            setLocalStorageSections();
+        }
+
+        function setLocalStorageSections(){
+            setLocalStorageHeader();
+            setLocalStorageExperience();
+            setLocalStorageEducation();
+            setLocalStorageSkill();
             setLocalStorageHobby();
         }
 
@@ -902,6 +910,8 @@
             clientSkill.innerHTML = level;
             clientSkill.style.width = level*10 + '%';
 
+            skillMainBlock.id = skillTitle.id + 'Div';
+
             clientSkillWrapper.appendChild(clientSkill);
 
             skillMainBlock.appendChild(skillTitle);
@@ -947,6 +957,8 @@
             hobbyTitle.id = hobby.id + 'Title';
             hobbyTitle.className = 'changable';
             hobbyTitle.innerHTML = title;
+
+            hobby.id = hobbyTitle.id + 'Div';
 
             hobby.appendChild(hobbyPoint);
             hobby.appendChild(hobbyTitle);
@@ -998,6 +1010,8 @@
             educationText.id = education.id + 'educationText';
             educationText.className = 'changable';
             educationText.innerHTML = text;
+
+            education.id = educationTitle.id + 'Div';
 
             education.appendChild(educationTitle);
             education.appendChild(educationDate);
@@ -1066,6 +1080,8 @@
             jobText.id = experience.id + 'JobText';
             jobText.className = 'changable';
             jobText.innerHTML = text;
+
+            experience.id = jobTitle.id + 'Div';
 
             expDiv2.appendChild(point);
             expDiv2.appendChild(jobType);

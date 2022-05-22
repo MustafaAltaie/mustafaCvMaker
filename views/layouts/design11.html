@@ -516,6 +516,7 @@
         }
 
         function changeColor(n){
+            if(localStorage.imageName != undefined)
             imageWrapper.style.border = 'solid ' + cv.offsetWidth/200 + 'px ' + 'hsl(140, 30%, ' + n*0.7 + '%)';
             leftSide.style.borderRight = 'solid ' + cv.offsetWidth/300 + 'px ' + 'hsl(140, 30%, ' + n*0.7 + '%)';
             document.getElementsByTagName('h1')[0].style.color = 'hsl(140, 30%, ' + n*0.7 + '%)';
@@ -676,6 +677,11 @@
         //--------- Remove or update and recorde ---------//
 
         document.getElementById('actionButton').onclick = function(){
+            if(editText.value == ''){
+                document.getElementById(currentElement + 'Div').remove();
+                setLocalStorageSections();
+                settings.style.display = 'none';
+            }
             document.getElementById(currentElement).innerHTML = editText.value;
             settings.style.display = 'none';
             // Profile localStorage
@@ -683,27 +689,30 @@
             localStorage.clientProfile = clientProfile.innerHTML;
             // Social media localStorage
             localStorage.mySocialMediaWord = socialMediaWord.innerHTML;
-            setLocalStorageSocialMedia();
             // Reference localStorage
             localStorage.referenceWord = referenceWord.innerHTML;
-            setLocalStorageReference();
             // Language localStorage
             localStorage.languageWord = languageWord.innerHTML;
-            setLocalStorageLanguage();
-            // Header
-            setLocalStorageHeader();
             // Experience
             localStorage.experienceWord = experienceWord.innerHTML;
-            setLocalStorageExperience();
             // Education
             localStorage.educationWord = educationWord.innerHTML;
-            setLocalStorageEducation();
             // Skills
             localStorage.skillWord = skillWord.innerHTML;
             document.getElementById(currentElement).style.width = document.getElementById(currentElement).innerHTML*10 + '%';
-            setLocalStorageSkill();
             // Hobbies
             localStorage.hobbyWord = hobbyWord.innerHTML;
+            setLocalStorageSections();
+        }
+
+        function setLocalStorageSections(){
+            setLocalStorageSocialMedia();
+            setLocalStorageReference();
+            setLocalStorageLanguage();
+            setLocalStorageHeader();
+            setLocalStorageExperience();
+            setLocalStorageEducation();
+            setLocalStorageSkill();
             setLocalStorageHobby();
         }
 
@@ -882,6 +891,8 @@
             number.className = 'changable';
             number.innerHTML = numbr;
 
+            reference.id = name.id + 'Div';
+
             reference.appendChild(name);
             reference.appendChild(info);
             reference.appendChild(email);
@@ -928,6 +939,8 @@
             title.id = language.id + 'Title';
             title.className = 'changable';
             title.innerHTML = n;
+
+            language.id = title.id + 'Div';
 
             div.appendChild(div2);
             div.appendChild(title);
@@ -1033,6 +1046,8 @@
             jobText.className = 'changable';
             jobText.innerHTML = text;
 
+            experience.id = jobTitle.id + 'Div';
+
             expDiv2.appendChild(point);
             expDiv2.appendChild(jobType);
             expDiv2.appendChild(jobText);
@@ -1102,6 +1117,8 @@
             educationText.id = education.id + 'educationText';
             educationText.className = 'changable';
             educationText.innerHTML = text;
+
+            education.id = educationTitle.id + 'Div';
 
             educDiv2.appendChild(point);
             educDiv2.appendChild(educationType);
@@ -1183,16 +1200,17 @@
 
         function addHobby(title){
             var hobby = document.createElement('div');
-            hobby.id = 'hobby' + parseInt(Math.ceil(Math.random()*9999)+10000);
             hobby.className = 'hobby';
 
             var hobbyPoint = document.createElement('div');
             hobbyPoint.className = 'hobbyPoint';
 
             var hobbyTitle = document.createElement('p');
-            hobbyTitle.id = hobby.id + 'Title';
+            hobbyTitle.id = 'hobby' + parseInt(Math.ceil(Math.random()*9999)+10000) + 'Title';
             hobbyTitle.className = 'changable';
             hobbyTitle.innerHTML = title;
+
+            hobby.id = hobbyTitle.id + 'Div';
 
             hobby.appendChild(hobbyPoint);
             hobby.appendChild(hobbyTitle);
