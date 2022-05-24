@@ -103,6 +103,21 @@ router.get('/design12', function(req, res){
     });
 });
 
+router.get('/register', function(req, res){
+    res.render('./layouts/register');
+});
+
+router.get('/authorization/:id', function(req, res){
+    if(req.params.id == '4435966mustafa')
+    res.redirect('/authorizationSucceeded');
+    else
+    res.redirect('/register');
+});
+
+router.get('/authorizationSucceeded', function(req, res){
+    res.render('./layouts/getAuthorizedPage');
+});
+
 router.post('/imageUpload', function(req, res){
     var file = req.files.file;
     file.mv('personal images/' + req.body.fileName + '.jpg', function(){});

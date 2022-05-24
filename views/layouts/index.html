@@ -56,4 +56,7 @@
         if(evt.target.tagName == 'IMG')
         window.location.href = evt.target.id;
     });
+
+    if(localStorage.CVAuthorization == '' || localStorage.CVAuthorization == undefined)
+    window.location.href = '/register';
 </script>

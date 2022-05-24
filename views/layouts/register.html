@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Regiteration</title>
+    </head>
+    <body>
+        <div>
+            <h2>Get authorized to use the app!</h2>
+            <input id="code" placeholder="Authorization code" autocomplete="off" spellcheck="false">
+            <button onclick="authorize()">OK</button>
+        </div>
+    </body>
+    <style>
+        body{
+            background: #111;
+            color: #aaa;
+        }
+        div{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: solid 1px #444;
+            padding: 3%;
+            text-align: center;
+        }
+        input, button{
+            outline: none;
+            padding: 10px;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        function authorize(){
+            window.location.href = '/authorization/' + code.value;
+        }
+        if(localStorage.authorizeFailTimes == '' || localStorage.authorizeFailTimes == undefined)
+        localStorage.authorizeFailTimes = 1;
+        else
+        localStorage.authorizeFailTimes ++;
+        if(localStorage.authorizeFailTimes > 5){
+            document.getElementsByTagName('button')[0].style.pointerEvents = 'none';
+            document.getElementsByTagName('h2')[0].innerHTML = 'too many failed attempts!<br>Contact us on the number 0725255471 to solve the problem';
+            document.getElementsByTagName('h2')[0].style.color = '#f00';
+        }
+    </script>
+</html>
