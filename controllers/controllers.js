@@ -107,15 +107,33 @@ router.get('/register', function(req, res){
     res.render('./layouts/register');
 });
 
+
 router.get('/authorization/:id', function(req, res){
-    if(req.params.id == '4435966mustafa')
-    res.redirect('/authorizationSucceeded');
-    else
-    res.redirect('/register');
+    fs.readFile('passcode.txt', 'utf8' , (err, passCode) => {
+        if(req.params.id == passCode){
+            var newPassCode = Math.ceil(Math.random()*9999) + 10000;
+            fs.writeFile('passcode.txt', newPassCode.toString(), function(err){
+                if(!err)
+                res.redirect('/authorizationSucceeded');
+                else
+                console.log(err)
+            });
+        }
+        else
+        res.redirect('/register');
+    });
 });
 
 router.get('/authorizationSucceeded', function(req, res){
     res.render('./layouts/getAuthorizedPage');
+});
+
+router.get('/4435966mustafa', function(req, res){
+    fs.readFile('passcode.txt', 'utf8' , (err, passCodeData) => {
+        res.render('./layouts/passcodePage', {
+            passcode: passCodeData
+        });
+    });
 });
 
 router.post('/imageUpload', function(req, res){

@@ -57,6 +57,6 @@
         window.location.href = evt.target.id;
     });
 
-    if(localStorage.CVAuthorization == '' || localStorage.CVAuthorization == undefined)
+    if(localStorage.CVAuthorization != 'authorizated')
     window.location.href = '/register';
 </script>
