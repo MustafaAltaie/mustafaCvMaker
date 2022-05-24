@@ -10,6 +10,15 @@
         </div>
     </body>
     <style>
+        @media only screen and (max-width: 1024px){
+            body input, body button{
+                padding: 20px;
+                font-size: 50px;
+            }
+            body h2{
+                font-size: 50px;
+            }
+        }
         body{
             background: #111;
             color: #aaa;
@@ -27,20 +36,24 @@
             outline: none;
             padding: 10px;
             font-size: 20px;
+            margin: 10px;
         }
     </style>
     <script>
         function authorize(){
-            window.location.href = '/authorization/' + code.value;
+            if(code.value != ''){
+               window.location.href = '/authorization/' + code.value;
+                if(localStorage.authorizeFailTimes == '' || localStorage.authorizeFailTimes == undefined)
+                localStorage.authorizeFailTimes = 1;
+                else
+                localStorage.authorizeFailTimes ++; 
+            }
         }
-        if(localStorage.authorizeFailTimes == '' || localStorage.authorizeFailTimes == undefined)
-        localStorage.authorizeFailTimes = 1;
-        else
-        localStorage.authorizeFailTimes ++;
         if(localStorage.authorizeFailTimes > 5){
-            document.getElementsByTagName('button')[0].style.pointerEvents = 'none';
-            document.getElementsByTagName('h2')[0].innerHTML = 'too many failed attempts!<br>Contact us on the number 0725255471 to solve the problem';
-            document.getElementsByTagName('h2')[0].style.color = '#f00';
+            document.getElementsByTagName('button')[0].style.display = 'none';
+            code.style.display = 'none';
+            document.getElementsByTagName('h2')[0].innerHTML = 'Too many failed attempts!<br>Contact us to solve the problem<br>Mobile: 0725255471';
+            document.getElementsByTagName('h2')[0].style.color = '#f22';
         }
     </script>
 </html>
