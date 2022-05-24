@@ -95,7 +95,7 @@
                     <!-- Profile -->
                     <div id="profile">
                         <h3 id="profileTitle" class="changable">My profile</h3>
-                        <p id="clientProfile" class="changable"></p>
+                        <b id="clientProfile" class="changable"></b>
                     </div>
                     <!-- ---- SKILLS AND KNOWLEDGE ----- -->
                     <div id="skillsSection">
@@ -117,15 +117,15 @@
                         <div id="contactSection">
                             <div>
                                 <img src="/images/mobileIconWhite.png">
-                                <p id="clientNumber" class="changable">Mobile: 0725255471</p>
+                                <b id="clientNumber" class="changable">Mobile: 0725255471</b>
                             </div>
                             <div>
                                 <img src="/images/emailIconWhite.png">
-                                <p id="clientEmail" class="changable">mustafaphoto111@gmail.com</p>
+                                <b id="clientEmail" class="changable">mustafaphoto111@gmail.com</b>
                             </div>
                             <div>
                                 <img src="/images/addressIconWhite.png">
-                                <p id="clientAddress" class="changable">Kerstinbodagatan 16 Katrineholm</p>
+                                <b id="clientAddress" class="changable">Kerstinbodagatan 16 Katrineholm</b>
                             </div>
                         </div>
                     </div>
@@ -155,22 +155,25 @@
             margin: 0;
             padding: 0;
             font-family: 'Barlow Semi Condensed', sans-serif;
-            /*font-family: 'Racing Sans One', cursive;*/
             font-weight: normal;
             outline: none;
         }
         body{
             background: #aaa;
         }
-        b{
+        b, u{
             font-weight: bold;
+            font-family: 'Advent Pro', sans-serif;
         }
         h1{
-            font-family: 'Racing Sans One';
+            font-family: 'Bubbler One', sans-serif;
         }
         h3{
             margin-bottom: 2%;
             font-family: 'Racing Sans One';
+        }
+        u{
+            text-decoration: none;
         }
         #cvWrapper{
             display: flex;
@@ -197,7 +200,7 @@
             width: 35%;
             align-items: center;
             background: #111;
-            color: #888;
+            color: #aaa;
         }
         /* Image */
         #imageWrapper{
@@ -211,7 +214,7 @@
         }
         /* Profile contact languages */
         #profile, #languageSection{
-            padding: 12%;
+            padding: 7%;
         }
         #languageSection{
             display: flex;
@@ -238,7 +241,10 @@
         }
         /* -- Skills -- */
         #skillsSection{
-            padding: 12%;
+            padding: 7%;
+        }
+        #skillsSection b, #profile b, #languageSection b, #contactSection b, #hobbySection b{
+            font-weight: normal;
         }
         #mainSkillWrapper{
             display: flex;
@@ -269,13 +275,13 @@
             justify-content: space-between;
             padding: 5%;
             background: #111;
-            color: #888;
+            color: #aaa;
         }
         #map{
+            z-index: 500;
             position: absolute;
-            top: 65%;
-            left: 40%;
-            transform: translate(-50%, -50%) rotate(90deg);
+            top: 30%;
+            left: 0;
             opacity: 0.2;
             pointer-events: none;
         }
@@ -322,8 +328,8 @@
         /* -- Hobbies -- */
         #hobbySection{
             padding: 5%;
-            background: #111;
-            color: #777;
+            background: #151515;
+            color: #aaa;
         }
         #mainHobbyWrapper{
             display: flex;
@@ -336,7 +342,7 @@
             gap: 5%;
             margin: 1% 0;
         }
-        #mainHobbyWrapper > div > p{
+        #mainHobbyWrapper > div > b{
             white-space: nowrap;
         }
         .hobbyPoint{
@@ -413,7 +419,7 @@
             for(i = 0; i < document.querySelectorAll('p').length; i++)
             document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
             for(i = 0; i < document.querySelectorAll('b').length; i++)
-            document.getElementsByTagName('b')[i].style.fontSize = cv.offsetWidth/50.68965517241379 + 'px';
+            document.getElementsByTagName('b')[i].style.fontSize = cv.offsetWidth/45 + 'px';
             for(i = 0; i < document.querySelectorAll('h3').length; i++)
             document.getElementsByTagName('h3')[i].style.fontSize = cv.offsetWidth/42 + 'px';
             for(i = 0; i < document.querySelectorAll('h1').length; i++)
@@ -457,9 +463,10 @@
             if(document.getElementsByClassName('educDiv2').length > 0)
             for(i = 0; i < document.getElementsByClassName('educDiv2').length; i++)
             document.getElementsByClassName('educDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
-            if(localStorage.imageName != undefined)
-            imageWrapper.style.borderTop = 'solid ' + cv.offsetWidth/cv.offsetWidth + 'px' + ' rgba(255, 255, 255, 0.3)';
-            imageWrapper.style.borderBottom = 'solid ' + cv.offsetWidth/cv.offsetWidth + 'px' + ' rgba(255, 255, 255, 0.3)';
+            if(localStorage.imageName != undefined){
+                imageWrapper.style.borderTop = 'solid ' + cv.offsetWidth/cv.offsetWidth + 'px' + ' rgba(255, 255, 255, 0.3)';
+                imageWrapper.style.borderBottom = 'solid ' + cv.offsetWidth/cv.offsetWidth + 'px' + ' rgba(255, 255, 255, 0.3)';
+            }
             for(i = 0; i < document.getElementsByClassName('allSettingsMenuOption').length; i++)
             document.getElementsByClassName('allSettingsMenuOption')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
             leftSide.style.borderRight = 'solid ' + cv.offsetWidth/cv.offsetWidth + 'px' + ' rgba(255, 255, 255, 0.3)';
@@ -493,6 +500,8 @@
             document.getElementsByClassName('clientSkill')[i].style.background = n;
             for(i = 0; i < document.getElementsByClassName('hobbyPoint').length; i++)
             document.getElementsByClassName('hobbyPoint')[i].style.background = n;
+            for(i = 0; i < document.getElementsByTagName('u').length; i++)
+            document.getElementsByTagName('u')[i].style.color = n;
             languageWord.style.color = n;
             profileTitle.style.color = n;
             skillWord.style.color = n;
@@ -767,7 +776,7 @@
             var div2 = document.createElement('div');
             div2.className = 'languageSectionPoint';
 
-            var title = document.createElement('p');
+            var title = document.createElement('b');
             title.id = language.id + 'Title';
             title.className = 'changable';
             title.innerHTML = n;
@@ -786,7 +795,7 @@
             localStorage.languageTitle = '';
             var lang = document.getElementsByClassName('languageDiv');
             for(i = 0; i < lang.length; i++)
-            localStorage.languageTitle += lang[i].getElementsByTagName('p')[0].innerHTML + '|||';
+            localStorage.languageTitle += lang[i].getElementsByTagName('b')[0].innerHTML + '|||';
         }
         setLocalStorageLanguage();
 
@@ -987,7 +996,7 @@
             var skillMainBlock = document.createElement('div');
             skillMainBlock.className = 'skillMainBlock';
 
-            var skillTitle = document.createElement('p');
+            var skillTitle = document.createElement('b');
             skillTitle.id = parseInt(Math.ceil(Math.random()*9999)+10000) + 'Title';
             skillTitle.className = 'changable';
             skillTitle.innerHTML = title;
@@ -1015,7 +1024,7 @@
             localStorage.skills = '';
             var skl = document.getElementsByClassName('skillMainBlock');
             for(i = 0; i < skl.length; i++)
-            localStorage.skills += skl[i].getElementsByTagName('p')[0].innerHTML + '|||' + skl[i].getElementsByClassName('clientSkill')[0].innerHTML + '|||' + '***';
+            localStorage.skills += skl[i].getElementsByTagName('b')[0].innerHTML + '|||' + skl[i].getElementsByClassName('clientSkill')[0].innerHTML + '|||' + '***';
         }
         setLocalStorageSkill();
 
@@ -1040,7 +1049,7 @@
             var hobbyPoint = document.createElement('div');
             hobbyPoint.className = 'hobbyPoint';
 
-            var hobbyTitle = document.createElement('p');
+            var hobbyTitle = document.createElement('b');
             hobbyTitle.id = hobby.id + 'Title';
             hobbyTitle.className = 'changable';
             hobbyTitle.innerHTML = title;
@@ -1057,7 +1066,7 @@
             localStorage.hobby = '';
             var hby = document.getElementsByClassName('hobby');
             for(i = 0; i < hby.length; i++)
-            localStorage.hobby += hby[i].getElementsByTagName('p')[0].innerHTML + '|||';
+            localStorage.hobby += hby[i].getElementsByTagName('b')[0].innerHTML + '|||';
         }
         setLocalStorageHobby();
 
