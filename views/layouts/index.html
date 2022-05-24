@@ -56,7 +56,7 @@
         if(evt.target.tagName == 'IMG')
         window.location.href = evt.target.id;
     });
-
+delete localStorage.CVAuthorization
     if(localStorage.CVAuthorization != 'authorizated')
     window.location.href = '/register';
 </script>
