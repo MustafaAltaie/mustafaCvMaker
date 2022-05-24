@@ -53,10 +53,12 @@
 
 <script>
     document.addEventListener('click', function(evt){
-        if(evt.target.tagName == 'IMG')
-        window.location.href = evt.target.id;
+        if(evt.target.tagName == 'IMG'){
+            if(localStorage.CVAuthorization != 'authorizated')
+            window.location.href = '/register';
+            else
+            window.location.href = evt.target.id;
+        }
     });
 
-    if(localStorage.CVAuthorization != 'authorizated')
-    window.location.href = '/register';
 </script>
