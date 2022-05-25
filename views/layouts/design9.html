@@ -756,14 +756,14 @@
             var sectionName = currentSection.substr(0, currentSection.length-14) + 'Section';
             document.getElementById(sectionName).style.display = 'none';
             allSettingsMenu.style.display = 'none';
-            if(sessionStorage.hiddenSection == undefined)
-            sessionStorage.hiddenSection = '';
-            sessionStorage.hiddenSection += sectionName + '|||';
+            if(sessionStorage.hiddenSection9 == undefined)
+            sessionStorage.hiddenSection9 = '';
+            sessionStorage.hiddenSection9 += sectionName + '|||';
         }
 
-        if(sessionStorage.hiddenSection != '' && sessionStorage.hiddenSection != undefined)
-        for(i = 0; i < sessionStorage.hiddenSection.split('|||').length-1; i++)
-        document.getElementById(sessionStorage.hiddenSection.split('|||')[i]).style.display = 'none';
+        if(sessionStorage.hiddenSection9 != '' && sessionStorage.hiddenSection9 != undefined)
+        for(i = 0; i < sessionStorage.hiddenSection9.split('|||').length-1; i++)
+        document.getElementById(sessionStorage.hiddenSection9.split('|||')[i]).style.display = 'none';
 
         document.getElementById('clearLocalStorage').onclick = function(){
             if(currentSection == 'experiencesSectionSetting')

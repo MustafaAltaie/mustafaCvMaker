@@ -274,10 +274,7 @@
         #headerRight{
             width: 48%;
             padding-left: 6%;
-        }
-        #profileTitle, #profile, #middleLeft p, #middleLeft h2, #middleLeft h3{
-            text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.7);
-        }
+        } 
         /* --------------Header2--------------- */
         #header2{
             color: #fff;
@@ -292,7 +289,7 @@
         #contactMeSection{
             display: flex;
             flex-direction: column;
-            padding: 10% 10% 0 10%;
+            padding: 3% 10% 0 10%;
         }
         #contactMeSection > div{
             color: #ccc;
@@ -311,7 +308,7 @@
             align-items: center;
             gap: 2%;
             padding-bottom: 7%;
-            margin-top: 5%;
+            margin-top: 3%;
         }
         /* Client image */
         #header2Left{
@@ -358,6 +355,7 @@
         }
         .clientSkillWrapper{
             width: 100%;
+            background: rgba(255, 255, 255, 0.1);
         }
         .clientSkill{
             height: 100%;
@@ -392,7 +390,7 @@
         #mainHobbyWrapper > div{
             display: flex;
             align-items: center;
-            gap: 5%;
+            gap: 10%;
             margin: 2% 3%;
         }
         #mainHobbyWrapper > div > p{
@@ -568,8 +566,6 @@
             document.getElementById('editText').style.fontSize = cv.offsetWidth/pSize + 'px';
             for(i = 0; i < document.getElementsByClassName('allSettingsMenuOption').length; i++)
             document.getElementsByClassName('allSettingsMenuOption')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
-            for(i = 0; i < document.querySelectorAll('.clientSkillWrapper').length; i++)
-                document.getElementsByClassName('clientSkillWrapper')[i].style.border = 'solid ' + cv.offsetWidth/cv.offsetWidth + 'px rgba(255, 255, 255, 0.5)';
         }
         setTimeout(function(){
             sizingAllCv(cvSizeRange.value);

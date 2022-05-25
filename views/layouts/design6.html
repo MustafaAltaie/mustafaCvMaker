@@ -278,7 +278,7 @@
         #contactMeSection{
             display: flex;
             flex-direction: column;
-            padding: 10% 10% 0 10%;
+            padding: 3% 10% 0 10%;
         }
         #contactMeSection > div{
             color: #111;
@@ -296,7 +296,8 @@
             display: flex;
             align-items: center;
             gap: 2%;
-            margin-top: 5%;
+            padding-bottom: 7%;
+            margin-top: 3%;
         }
         /* Client image */
         #header2Left{
@@ -736,14 +737,14 @@
             var sectionName = currentSection.substr(0, currentSection.length-14) + 'Section';
             document.getElementById(sectionName).style.display = 'none';
             allSettingsMenu.style.display = 'none';
-            if(sessionStorage.hiddenSection == undefined)
-            sessionStorage.hiddenSection = '';
-            sessionStorage.hiddenSection += sectionName + '|||';
+            if(sessionStorage.hiddenSection6 == undefined)
+            sessionStorage.hiddenSection6 = '';
+            sessionStorage.hiddenSection6 += sectionName + '|||';
         }
 
-        if(sessionStorage.hiddenSection != '' && sessionStorage.hiddenSection != undefined)
-        for(i = 0; i < sessionStorage.hiddenSection.split('|||').length-1; i++)
-        document.getElementById(sessionStorage.hiddenSection.split('|||')[i]).style.display = 'none';
+        if(sessionStorage.hiddenSection6 != '' && sessionStorage.hiddenSection6 != undefined)
+        for(i = 0; i < sessionStorage.hiddenSection6.split('|||').length-1; i++)
+        document.getElementById(sessionStorage.hiddenSection6.split('|||')[i]).style.display = 'none';
 
         document.getElementById('clearLocalStorage').onclick = function(){
             if(currentSection == 'experiencesSectionSetting')
