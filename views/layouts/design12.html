@@ -11,25 +11,30 @@
     <body>
         <div id="mainSettings" class="mainSettings">
             <div id="colorSettings" class="mainSettings">
+                <div id="#aaa" class="colorSettingDivs" style="background:#aaa"></div>
                 <div id="#888" class="colorSettingDivs" style="background:#888"></div>
                 <div id="#656565" class="colorSettingDivs" style="background:#656565"></div>
                 <div id="#555" class="colorSettingDivs" style="background:#555"></div>
-                <div id="#7a6e33" class="colorSettingDivs" style="background:#7a6e33"></div>
+                <div id="#b9a644" class="colorSettingDivs" style="background:#b9a644"></div>
                 <div id="#8b713f" class="colorSettingDivs" style="background:#8b713f"></div>
                 <div id="#64573f" class="colorSettingDivs" style="background:#64573f"></div>
                 <div id="#6a8a69" class="colorSettingDivs" style="background:#6a8a69"></div>
                 <div id="#41863f" class="colorSettingDivs" style="background:#41863f"></div>
                 <div id="#4a6f49" class="colorSettingDivs" style="background:#4a6f49"></div>
                 <div id="#385636" class="colorSettingDivs" style="background:#385636"></div>
+                <div id="#3497d0" class="colorSettingDivs" style="background:#3497d0"></div>
                 <div id="#3e789a" class="colorSettingDivs" style="background:#3e789a"></div>
                 <div id="#4e6e7c" class="colorSettingDivs" style="background:#4e6e7c"></div>
                 <div id="#31515f" class="colorSettingDivs" style="background:#31515f"></div>
+                <div id="#725abf" class="colorSettingDivs" style="background:#725abf"></div>
                 <div id="#746a94" class="colorSettingDivs" style="background:#746a94"></div>
                 <div id="#5a546d" class="colorSettingDivs" style="background:#5a546d"></div>
                 <div id="#3e3657" class="colorSettingDivs" style="background:#3e3657"></div>
+                <div id="#d276c6" class="colorSettingDivs" style="background:#d276c6"></div>
                 <div id="#aa6ba2" class="colorSettingDivs" style="background:#aa6ba2"></div>
                 <div id="#8d6588" class="colorSettingDivs" style="background:#8d6588"></div>
                 <div id="#674562" class="colorSettingDivs" style="background:#674562"></div>
+                <div id="#574654" class="colorSettingDivs" style="background:#574654"></div>
                 <div id="#f94474" class="colorSettingDivs" style="background:#f94474"></div>
                 <div id="#f7255d" class="colorSettingDivs" style="background:#f7255d"></div>
                 <div id="#ff0044" class="colorSettingDivs" style="background:#ff0044"></div>
@@ -95,7 +100,7 @@
                     <!-- Profile -->
                     <div id="profile">
                         <h3 id="profileTitle" class="changable">My profile</h3>
-                        <b id="clientProfile" class="changable"></b>
+                        <P id="clientProfile" class="changable"></P>
                     </div>
                     <!-- ---- SKILLS AND KNOWLEDGE ----- -->
                     <div id="skillsSection">
@@ -273,6 +278,7 @@
         #rightSideHeader{
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 5%;
             background: #111;
             color: #aaa;
@@ -280,7 +286,7 @@
         #map{
             z-index: 500;
             position: absolute;
-            top: 30%;
+            top: 40%;
             left: 0;
             opacity: 0.2;
             pointer-events: none;
@@ -339,7 +345,7 @@
         #mainHobbyWrapper > div{
             display: flex;
             align-items: center;
-            gap: 5%;
+            gap: 10%;
             margin: 1% 0;
         }
         #mainHobbyWrapper > div > b{
@@ -353,7 +359,10 @@
 
     <script>
 
+        if(window.matchMedia('(min-width: 1024px)').matches)
         document.body.style.zoom = "15%";
+        else
+        document.body.style.zoom = "5%";
 
         function screenShot(){
             html2canvas(document.getElementById('cv'), {
