@@ -1,6 +1,6 @@
 @media only screen and (max-width: 1024px){
     body #cvWrapper{
-        padding: 600px 0 50px 0;
+        padding: 800px 0 50px 0;
     }
     body #cvSizeRange, body .fontPSize{
         width: 99%;
@@ -11,6 +11,13 @@
     }
     body #mainSettings{
         width: 40%;
+    }
+    body #colorSettings{
+        gap: 150px;
+    }
+    body #colorSettings > div{
+        width: 400px;
+        height: 400px;
     }
 }
 #allSettingsMenu{
