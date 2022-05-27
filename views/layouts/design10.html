@@ -356,8 +356,10 @@
 
         if(window.matchMedia('(min-width: 1024px)').matches)
         document.body.style.zoom = "15%";
-        else
-        document.body.style.zoom = "5%";
+        else{
+            document.body.style.zoom = "5%";
+            cvSizeRange.max = 7000
+        }
 
         function screenShot(){
             html2canvas(document.getElementById('cv'), {

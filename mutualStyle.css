@@ -4,10 +4,10 @@
     }
     body #cvSizeRange, body .fontPSize{
         width: 99%;
-        top: 300px;
+        top: 250px;
     }
     body #cvSizeRange{
-        top: 450px;
+        top: 550px;
     }
     body #mainSettings{
         width: 40%;
