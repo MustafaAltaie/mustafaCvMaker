@@ -120,11 +120,8 @@ router.get('/authorization/:id', function(req, res){
     fs.readFile('passcode.txt', 'utf8' , (err, passCode) => {
         if(req.params.id == passCode){
             var newPassCode = Math.ceil(Math.random()*9999) + 10000;
-            fs.writeFile('passcode.txt', newPassCode.toString(), function(err){
-                if(!err)
+            fs.writeFile('passcode.txt', newPassCode.toString(), function(){
                 res.redirect('/authorizationSucceeded');
-                else
-                console.log(err)
             });
         }
         else
