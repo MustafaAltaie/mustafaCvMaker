@@ -3,8 +3,9 @@
         padding: 800px 0 50px 0;
     }
     body #cvSizeRange, body .fontPSize{
-        width: 99%;
+        width: 70%;
         top: 250px;
+        left: 100px;
     }
     body #cvSizeRange{
         top: 550px;
@@ -18,6 +19,10 @@
     body #colorSettings > div{
         width: 400px;
         height: 400px;
+    }
+    body #screenShott{
+        padding: 200px 100px;
+        font-size: 250px;
     }
 }
 #allSettingsMenu{
@@ -74,7 +79,7 @@
 #screenShott, #toPdf{
     z-index: 10;
     position: absolute;
-    right: 10px;
+    right: 0;
     top: 0;
     padding: 50px;
     font-size: 100px;
