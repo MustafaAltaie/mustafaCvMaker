@@ -352,15 +352,8 @@
         }
     </style>
 
+    <script src="/cvScript.js"></script>
     <script>
-
-        if(window.matchMedia('(min-width: 1024px)').matches)
-        document.body.style.zoom = "15%";
-        else{
-            document.body.style.zoom = "5%";
-            cvSizeRange.max = 7000
-        }
-
         function screenShot(){
             html2canvas(document.getElementById('cv'), {
                 onrendered: function(canvas){
@@ -369,13 +362,6 @@
             });
             window.location.href = '/cvCreated/' + localStorage.clientName + '/' + new Date().toJSON() + '/design10';
         }
-
-        // --------------- Get CV size from localStorage -------------//
-
-        if(localStorage.cvSize != '' || localStorage.cvSize != undefined)
-        cvSizeRange.value = localStorage.cvSize;
-        else
-        cvSizeRange.value = 3000;
 
 
         // --------------- Get P size from localStorage -------------//
