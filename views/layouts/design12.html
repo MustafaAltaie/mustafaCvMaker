@@ -224,16 +224,13 @@
         #languageSection{
             display: flex;
             flex-wrap: wrap;
+            gap: 10%;
         }
         #languageSection > div{
-            width: 50%;
             margin: 2% 0;
         }
         #languageSection > h3{
             width: 100%;
-        }
-        #languageSection > div{
-            width: 50%;
         }
         #languageSection > div > div{
             display: flex;
@@ -425,7 +422,7 @@
             document.getElementsByTagName('a')[i].style.fontSize = cv.offsetWidth/24.5 + 'px';
             if(document.querySelectorAll('.languageSectionPoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.languageSectionPoint').length; i++){
-                document.getElementsByClassName('languageSectionPoint')[i].style.width = cv.offsetWidth/98 + 'px';
+                document.getElementsByClassName('languageSectionPoint')[i].style.minWidth = cv.offsetWidth/98 + 'px';
                 document.getElementsByClassName('languageSectionPoint')[i].style.height = cv.offsetWidth/98 + 'px';
             }
             for(i = 0; i < contactSection.querySelectorAll('IMG').length; i++){

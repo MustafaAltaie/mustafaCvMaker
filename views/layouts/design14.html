@@ -40,7 +40,7 @@
         <form action="/imageUpload" method="post" enctype="multipart/form-data" style="display: none">
             <input type="file" name="file" id="imageFile">
             <input type="text" name="fileName" id="imageFileName">
-            <input type="hidden" name="redirect" value="design8">
+            <input type="hidden" name="redirect" value="design14">
             <button id="imageUploadSubmit"></button>
         </form>
 
@@ -150,6 +150,7 @@
                     </div>
                     <!-- ---- SKILLS AND KNOWLEDGE ----- -->
                     <div id="skillsSection">
+                        <input type="range" min="5" max="50" id="skillRange">
                         <a id="skillsSectionSetting" class="secSetting" onclick="allSettingsMenuF('addSkill', 'clearLocalStorage', 'hideSection')">...</a>
                         <h3 id="skillWord" class="changable">SKILLS AND KNOWLEDGE</h3>
                         <div id="mainSkillWrapper"></div>
@@ -194,7 +195,7 @@
         }
         #cv{
             display: flex;
-            background-image: url('/images/beehave2.png');
+            background: #333;
             background-size: cover;
             background-position: center;
         }
@@ -221,7 +222,9 @@
         /* Image */
         #imageWrapper{
             width: 100%;
+            border-radius: 100px;
             min-height: 20%;
+            overflow: hidden;
         }
         #imageWrapper > img{
             width: 100%;
@@ -302,6 +305,7 @@
             left: -1px;
             transform: translateX(-57%);
             background: #555;
+            border-radius: 50px;
         }
         #experiencesSection > div, #educationsSection > div{
             display: flex;
@@ -324,18 +328,36 @@
             justify-content: space-between;
             padding: 0 5% 0 0;
         }
-        .skillMainBlock{
-            width: 40%;
+        .skillBlock{
+            position: relative;
             margin: 1% 0;
+            transform: rotate(90deg);
         }
-        .clientSkillWrapper{
-            margin: 1% 0;
+        .skillLineMain{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
             width: 100%;
-            background: #444;
+            pointer-events: none;
         }
-        .clientSkill{
+        .skillLine{
             height: 100%;
+            border-radius: 15px;
+            background: #0f0;
             cursor: pointer;
+            pointer-events: all;
+        }
+        #skillRange{
+            width: 50%;
+            -webkit-appearance: none;
+            height: 50px;
+        }
+        #skillRange::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            width: 200px;
+            height: 200px;
+            background: #a00;
+            border-radius: 50%;
         }
 
         /* -- Hobbies -- */
@@ -359,6 +381,7 @@
         .hobbyPoint{
             min-width: 15px;
             min-height: 15px;
+            border-radius: 30%;
         }
     </style>
 
@@ -371,7 +394,7 @@
                     return Canvas2Image.saveAsJPEG(canvas);
                 }
             });
-            window.location.href = '/cvCreated/' + localStorage.clientName + '/' + new Date().toJSON() + '/design8';
+            window.location.href = '/cvCreated/' + localStorage.clientName + '/' + new Date().toJSON() + '/design14';
         }
 
         // --------------- Get P size from localStorage -------------//
@@ -447,9 +470,16 @@
                 document.getElementsByClassName('educationPoint')[i].style.width = cv.offsetWidth/150 + 'px';
                 document.getElementsByClassName('educationPoint')[i].style.height = cv.offsetWidth/38 + 'px';
             }
-            if(document.querySelectorAll('.clientSkillWrapper').length > 0)
-            for(i = 0; i < document.querySelectorAll('.clientSkillWrapper').length; i++)
-            document.getElementsByClassName('clientSkillWrapper')[i].style.height = cv.offsetWidth/200 + 'px';
+            if(document.querySelectorAll('.skillBlock').length > 0)
+            for(i = 0; i < document.querySelectorAll('.skillBlock').length; i++){
+                document.getElementsByClassName('skillBlock')[i].style.height = cv.offsetWidth/10 + 'px';
+                document.getElementsByClassName('skillBlock')[i].style.width = cv.offsetWidth/10 + 'px';
+            }
+            for(i = 0; i < document.querySelectorAll('.skillLine').length; i++){
+                document.getElementsByClassName('skillLineMain')[i].style.height = cv.offsetWidth/300 + 'px';
+                document.getElementsByClassName('skillLine')[i].style.width = cv.offsetWidth/300 + 'px';
+                document.getElementsByClassName('skillLine')[i].style.borderRadius = cv.offsetWidth/600 + 'px';
+            }
             document.getElementById('editText').style.fontSize = cv.offsetWidth/pSize + 'px';
             if(document.querySelectorAll('.hobbyPoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.hobbyPoint').length; i++){
@@ -760,7 +790,7 @@
         }
 
         document.getElementById('removeImage').onclick = function(){
-            window.location.href = '/deleteImage/' + localStorage.imageName + '/design8';
+            window.location.href = '/deleteImage/' + localStorage.imageName + '/design14';
             delete localStorage.imageName;
         }
 
@@ -1102,52 +1132,93 @@
 
 
         //----- Skills ----//
-        if(localStorage.skillWord == '' || localStorage.skillWord == undefined)
-        skillWord.innerHTML = 'SKILLS AND KNOWLEDGE';
-        else
-        skillWord.innerHTML = localStorage.skillWord;
+        // if(localStorage.skillWord == '' || localStorage.skillWord == undefined)
+        // skillWord.innerHTML = 'SKILLS AND KNOWLEDGE';
+        // else
+        // skillWord.innerHTML = localStorage.skillWord;
 
-        if(localStorage.skills == '' || localStorage.skills == undefined)
-        addSkill('Skill title', 5);
-        else
-        for(i = 0; i < localStorage.skills.split('***').length-1; i++)
-        addSkill(localStorage.skills.split('***')[i].split('|||')[0], localStorage.skills.split('***')[i].split('|||')[1]);
+        // if(localStorage.skills == '' || localStorage.skills == undefined)
+        // addSkill('Skill title', 5);
+        // else
+        // for(i = 0; i < localStorage.skills.split('***').length-1; i++)
+        // addSkill(localStorage.skills.split('***')[i].split('|||')[0], localStorage.skills.split('***')[i].split('|||')[1]);
 
-        function addSkill(title, level){
-            var skillMainBlock = document.createElement('div');
-            skillMainBlock.className = 'skillMainBlock';
+        // function addSkill(title, level){
+        //     var skillMainBlock = document.createElement('div');
+        //     skillMainBlock.className = 'skillMainBlock';
 
-            var skillTitle = document.createElement('p');
-            skillTitle.id = parseInt(Math.ceil(Math.random()*9999)+10000) + 'Title';
-            skillTitle.className = 'changable';
-            skillTitle.innerHTML = title;
+        //     var skillTitle = document.createElement('p');
+        //     skillTitle.id = parseInt(Math.ceil(Math.random()*9999)+10000) + 'Title';
+        //     skillTitle.className = 'changable';
+        //     skillTitle.innerHTML = title;
 
-            var clientSkillWrapper = document.createElement('div');
-            clientSkillWrapper.className = 'clientSkillWrapper';
+        //     var clientSkillWrapper = document.createElement('div');
+        //     clientSkillWrapper.className = 'clientSkillWrapper';
 
-            var clientSkill = document.createElement('div');
-            clientSkill.id = parseInt(Math.ceil(Math.random()*9999)+10000) + 'Skill';
-            clientSkill.className = 'clientSkill';
-            clientSkill.innerHTML = level;
-            clientSkill.style.width = level*10 + '%';
+        //     var clientSkill = document.createElement('div');
+        //     clientSkill.id = parseInt(Math.ceil(Math.random()*9999)+10000) + 'Skill';
+        //     clientSkill.className = 'clientSkill';
+        //     clientSkill.innerHTML = level;
+        //     clientSkill.style.width = level*10 + '%';
 
-            skillMainBlock.id = skillTitle.id + 'Div';
+        //     skillMainBlock.id = skillTitle.id + 'Div';
 
-            clientSkillWrapper.appendChild(clientSkill);
+        //     clientSkillWrapper.appendChild(clientSkill);
 
-            skillMainBlock.appendChild(skillTitle);
-            skillMainBlock.appendChild(clientSkillWrapper);
+        //     skillMainBlock.appendChild(skillTitle);
+        //     skillMainBlock.appendChild(clientSkillWrapper);
 
-            mainSkillWrapper.appendChild(skillMainBlock);
+        //     mainSkillWrapper.appendChild(skillMainBlock);
+        // }
+
+        // function setLocalStorageSkill(){
+        //     localStorage.skills = '';
+        //     var skl = document.getElementsByClassName('skillMainBlock');
+        //     for(i = 0; i < skl.length; i++)
+        //     localStorage.skills += skl[i].getElementsByTagName('p')[0].innerHTML + '|||' + skl[i].getElementsByClassName('clientSkill')[0].innerHTML + '|||' + '***';
+        // }
+        // setLocalStorageSkill();
+
+
+        var skillId;
+        function createSkill(n){
+            var skill = document.createElement('div');
+            skill.id = 'skill' + parseInt(Math.ceil(Math.random()*9999) + 10000);
+            skillId = skill.id;
+            skill.className = 'skillBlock';
+            for(i = 0; i < n*5; i++){
+                var skillLineMain = document.createElement('span');
+                skillLineMain.className = 'skillLineMain';
+                skillLineMain.style.transform = 'rotate(' + i*7.2 + 'deg)';
+
+                var skillLine = document.createElement('div');
+                skillLine.className = 'skillLine';
+
+                skillLineMain.appendChild(skillLine);
+                skill.appendChild(skillLineMain);
+            }
+            mainSkillWrapper.appendChild(skill);
         }
+        createSkill(2.5);
+        createSkill(5);
+        createSkill(7.5);
+        createSkill(10);
 
-        function setLocalStorageSkill(){
-            localStorage.skills = '';
-            var skl = document.getElementsByClassName('skillMainBlock');
-            for(i = 0; i < skl.length; i++)
-            localStorage.skills += skl[i].getElementsByTagName('p')[0].innerHTML + '|||' + skl[i].getElementsByClassName('clientSkill')[0].innerHTML + '|||' + '***';
+        document.getElementById('skillRange').oninput = function(){
+            for(i = 0; i < document.getElementById(skillId).getElementsByClassName('skillLineMain').length; i++)
+            document.getElementById(skillId).getElementsByClassName('skillLineMain')[0].remove();
+            for(i = 0; i < skillRange.value; i++){
+                var skillLineMain = document.createElement('div');
+                skillLineMain.className = 'skillLineMain';
+                skillLineMain.style.transform = 'rotate(' + i*7.2 + 'deg)';
+
+                var skillLine = document.createElement('div');
+                skillLine.className = 'skillLine';
+
+                skillLineMain.appendChild(skillLine);
+                document.getElementById(skillId).appendChild(skillLineMain);
+            }
         }
-        setLocalStorageSkill();
 
 
         //----- Hobbies ----//
