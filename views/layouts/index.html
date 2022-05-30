@@ -1,18 +1,18 @@
 <body>
     <div>
-        <span><img src="/designs/design1.jpeg" id="design1"></span>
-        <span><img src="/designs/design2.jpeg" id="design2"></span>
-        <span><img src="/designs/design3.jpeg" id="design3"></span>
-        <span><img src="/designs/design4.jpeg" id="design4"></span>
-        <span><img src="/designs/design5.jpeg" id="design5"></span>
-        <span><img src="/designs/design6.jpg" id="design6"></span>
-        <span><img src="/designs/design7.jpg" id="design7"></span>
-        <span><img src="/designs/design8.jpeg" id="design8"></span>
-        <span><img src="/designs/design9.jpeg" id="design9"></span>
-        <span><img src="/designs/design10.jpeg" id="design10"></span>
-        <span><img src="/designs/design11.jpeg" id="design11"></span>
-        <span><img src="/designs/design12.jpeg" id="design12"></span>
-        <span><img src="/designs/design13.jpeg" id="design13"></span>
+        <span id="design1"><img src="/designs/design1.jpeg"></span>
+        <span id="design2"><img src="/designs/design2.jpeg"></span>
+        <span id="design3"><img src="/designs/design3.jpeg"></span>
+        <span id="design4"><img src="/designs/design4.jpeg"></span>
+        <span id="design5"><img src="/designs/design5.jpeg"></span>
+        <span id="design6"><img src="/designs/design6.jpg"></span>
+        <span id="design7"><img src="/designs/design7.jpg"></span>
+        <span id="design8"><img src="/designs/design8.jpeg"></span>
+        <span id="design9"><img src="/designs/design9.jpeg"></span>
+        <span id="design10"><img src="/designs/design10.jpeg"></span>
+        <span id="design11"><img src="/designs/design11.jpeg"></span>
+        <span id="design12"><img src="/designs/design12.jpeg"></span>
+        <span id="design13"><img src="/designs/design13.jpeg"></span>
     </div>
 </body>
 
@@ -30,10 +30,18 @@
             margin-bottom: 10%;
         }
     }
+    *{
+        user-select: none;
+        margin: 0;
+    }
     body{
-        background: #aaa;
+        background: #131313;
     }
     div{
+        background-image: url('/images/beehave2.png');
+        background-size: 100%;
+        background-position: center;
+        background-attachment: fixed;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -44,50 +52,37 @@
     span:before{
         content: "";
         position: absolute;
-        width: 30px;
+        width: 10px;
         height: 99%;
         background: #252525;
         border-right: solid 1px rgba(255, 255, 255, 0.2);
-        left: -30px;
+        left: -10px;
         top: 0;
         transform-origin: right;
         transform: skewY(45deg);
-        transition: 0.1s;
     }
     span:after{
         content: "";
         position: absolute;
         width: 100%;
-        height: 30px;
+        height: 10px;
         background: #444;
         border-left: solid 1px rgba(255, 255, 255, 0.1);
-        top: -30px;
+        top: -10px;
         left: 0;
         transform-origin: bottom;
         transform: skewX(45deg);
-        transition: 0.1s;
     }
     span{
         width: 20%;
         cursor: pointer;
         margin-bottom: 5%;
         transform: skewY(-10deg);
-        transition: 0.1s;
+        box-shadow: -30px -10px 10px rgba(0, 0, 0, 0.5);
     }
     img{
         width: 100%;
-        height: 100%;
-    }
-    span:hover{
-        transform: skewY(-5deg);
-    }
-    span:hover:before{
-        width: 25px;
-        left: -25px;
-    }
-    span:hover:after{
-        height: 25px;
-        top: -25px;
+        pointer-events: none;
     }
 </style>
 

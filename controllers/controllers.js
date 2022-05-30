@@ -111,13 +111,13 @@ router.get('/design13', function(req, res){
     });
 });
 
-// router.get('/design14', function(req, res){
-//     fs.readdir('personal images', function(err, imageFiles){
-//         res.render('./layouts/design14', {
-//             imageFiles: imageFiles
-//         });
-//     });
-// });
+router.get('/design14', function(req, res){
+    fs.readdir('personal images', function(err, imageFiles){
+        res.render('./layouts/design14', {
+            imageFiles: imageFiles
+        });
+    });
+});
 
 router.get('/register', function(req, res){
     res.render('./layouts/register');
