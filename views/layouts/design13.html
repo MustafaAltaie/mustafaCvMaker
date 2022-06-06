@@ -119,7 +119,7 @@
                 </div>
                 <a id="mainSettingButton" class="secSetting" onclick="mainSettings.style.display='block'">...</a>
                 <div id="allSettingsMenu">
-                    <p id="changeImage" class="allSettingsMenuOption" onclick="imageFile.click()">Change image</p>
+                    <p id="changeImage" class="allSettingsMenuOption">Change image</p>
                     <p id="removeImage" class="allSettingsMenuOption">Remove image</p>
                     <p id="addEducation" class="allSettingsMenuOption" onclick="allSettingsMenuF('addEducationDate', 'addEducationTitle', 'addEducationText', 'addEducationType'); allSettingsMenuSubmit.style.display='block'">Add education</p>
                     <textarea id="addEducationDate" class="allSettingsMenuOption" placeholder="Education data"></textarea>
@@ -253,6 +253,9 @@
         #imageWrapper{
             width: 100%;
             min-height: 20%;
+        }
+        #imageWrapper > a{
+            transform: translateX(-200%);
         }
         #imageWrapper > img{
             width: 100%;
@@ -512,9 +515,13 @@
 
         //--------------- Get background color from localStorage -------------//
 
-        if(localStorage.cvColor12 != '' || localStorage.cvColor12 != undefined)
+        if(localStorage.cvColor13 == '' || localStorage.cvColor13 == undefined)
         setInterval(function(){
-            changeColor(localStorage.cvColor12);
+            changeColor('#23719e');
+        }, 1);
+        else
+        setInterval(function(){
+            changeColor(localStorage.cvColor13);
         }, 1);
 
         // --------------- Change background color -------------//
@@ -522,7 +529,7 @@
         colorSettings.addEventListener('click', function(evt){
             if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings')
             changeColor(evt.target.id);
-            localStorage.cvColor12 = evt.target.id;
+            localStorage.cvColor13 = evt.target.id;
         });
 
         function changeColor(n){
@@ -721,46 +728,6 @@
             imageWrapper.style.top = 0;
         }
 
-        var imageExt = '.jpg,.JPG,jpeg,JPEG,.bmp,.BMP,.gif,.GIF,.png,.PNG';
-
-        var uploadPerm = 0;
-        var rndNumber;
-
-        document.getElementById('imageFile').onchange = function(){
-            if(imageFile.value != ''){
-                for(i = 0; i < imageExt.split(',').length; i++){
-                    if(imageFile.value.substr(imageFile.value.length-4, imageFile.value.length) == imageExt.split(',')[i]){
-                        uploadPerm = 1;
-                        break;
-                    }
-                    else uploadPerm = 0;
-                }
-                if(uploadPerm == 0) alert('File is not image');
-                else{
-                    if(changeImage.innerHTML == 'Add image')
-                    for(i = 0; i != -1; i++){   //-- Checking if the random number is already used --//
-                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
-                        if(allImageNames.value.includes(rndNumber))
-                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
-                        else{
-                            localStorage.imageName = rndNumber;
-                            imageFileName.value = rndNumber;
-                            imageUploadSubmit.click();
-                            break;
-                        }
-                    }
-                    else{
-                        imageFileName.value = localStorage.imageName;
-                        imageUploadSubmit.click();
-                    }
-                }
-            }
-        }
-
-        document.getElementById('removeImage').onclick = function(){
-            window.location.href = '/deleteImage/' + localStorage.imageName + '/design13';
-            delete localStorage.imageName;
-        }
 
         //----- Profile ----//
         if(localStorage.profileWord == '' || localStorage.profileWord == undefined)
@@ -839,10 +806,10 @@
         else
         clientNumber.innerHTML = localStorage.clientNumber;
 
-        if(localStorage.clientEmail == '' || localStorage.clientEmail == undefined)
-        clientEmail.innerHTML = 'Email address';
+        if(sessionStorage.clientEmail == '' || sessionStorage.clientEmail == undefined)
+        clientEmail.innerHTML = 'emailaddress@example.com';
         else
-        clientEmail.innerHTML = localStorage.clientEmail;
+        clientEmail.innerHTML = sessionStorage.clientEmail;
 
         if(localStorage.clientAddress == '' || localStorage.clientAddress == undefined)
         clientAddress.innerHTML = 'Address information';
@@ -853,7 +820,8 @@
             localStorage.clientName = clientName.innerHTML;
             localStorage.clientTitle = clientTitle.innerHTML;
             localStorage.clientNumber = clientNumber.innerHTML;
-            localStorage.clientEmail = clientEmail.innerHTML;
+            if(clientEmail.innerHTML != 'emailaddress@example.com')
+            sessionStorage.clientEmail = clientEmail.innerHTML;
             localStorage.clientAddress = clientAddress.innerHTML;
         }
 

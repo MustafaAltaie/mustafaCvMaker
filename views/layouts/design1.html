@@ -110,7 +110,7 @@
                 </div>
                 <a id="mainSettingButton" class="secSetting" onclick="mainSettings.style.display='block'">...</a>
                 <div id="allSettingsMenu">
-                    <p id="changeImage" class="allSettingsMenuOption" onclick="imageFile.click()">Change image</p>
+                    <p id="changeImage" class="allSettingsMenuOption">Change image</p>
                     <p id="removeImage" class="allSettingsMenuOption">Remove image</p>
                     <p id="addEducation" class="allSettingsMenuOption" onclick="allSettingsMenuF('addEducationDate', 'addEducationTitle', 'addEducationText', 'addEducationType'); allSettingsMenuSubmit.style.display='block'">Add education</p>
                     <textarea id="addEducationDate" class="allSettingsMenuOption" placeholder="Education data"></textarea>
@@ -183,7 +183,7 @@
                     <div id="rightSideHeader">
                         <h1 id="clientName" class="changable">Mustafa Altaie</h1>
                         <h5 id="clientTitle" class="changable">Software Developer</h5>
-                        <p id="profileWord" class="changable"></p>
+                        <h3 id="profileWord" class="changable"></h3>
                     </div>
                     <div id="rightSideFooter">
                         <!-- ---- Experience ----- -->
@@ -337,7 +337,7 @@
         #floatText{
             z-index: 90;
             position: absolute;
-            top: 17%;
+            top: 18%;
             right: 0;
             width: 55%;
             color: #fff;
@@ -489,30 +489,25 @@
                 contactSection.getElementsByClassName('contactIcon')[i].style.height = cv.offsetWidth/29.4 + 'px';
             }
             contactSection.getElementsByClassName('bigImage')[0].style.width = cv.offsetWidth/8 + 'px';
-            experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.3)';
-            if(document.querySelectorAll('.experiencePoint').length > 0)
+            experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px';
             for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++){
                 document.getElementsByClassName('experiencePoint')[i].style.width = cv.offsetWidth/150 + 'px';
                 document.getElementsByClassName('experiencePoint')[i].style.height = cv.offsetWidth/38 + 'px';
             }
-            if(document.querySelectorAll('.educationPoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++){
                 document.getElementsByClassName('educationPoint')[i].style.width = cv.offsetWidth/150 + 'px';
                 document.getElementsByClassName('educationPoint')[i].style.height = cv.offsetWidth/38 + 'px';
             }
-            if(document.getElementsByClassName('expDiv2').length > 0)
             for(i = 0; i < document.getElementsByClassName('expDiv2').length; i++)
-            document.getElementsByClassName('expDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
-            if(document.getElementsByClassName('educDiv2').length > 0)
+            document.getElementsByClassName('expDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px';
             for(i = 0; i < document.getElementsByClassName('educDiv2').length; i++)
-            document.getElementsByClassName('educDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
+            document.getElementsByClassName('educDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px';
             for(i = 0; i < document.querySelectorAll('.levelDiv').length; i++)
             document.getElementsByClassName('levelDiv')[i].style.height = cv.offsetWidth/250 + 'px';
             document.getElementById('editText').style.fontSize = cv.offsetWidth/ppSize + 'px';
             for(i = 0; i < allSettingsMenu.querySelectorAll('textarea').length; i++)
             allSettingsMenu.getElementsByTagName('textarea')[i].style.fontSize = cv.offsetWidth/36.75 + 'px';
             addSkillLevel.style.fontSize = cv.offsetWidth/ppSize + 'px';
-            if(document.querySelectorAll('.languageSectionPoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.languageSectionPoint').length; i++){
                 document.getElementsByClassName('languageSectionPoint')[i].style.minWidth = cv.offsetWidth/98 + 'px';
                 document.getElementsByClassName('languageSectionPoint')[i].style.height = cv.offsetWidth/98 + 'px';
@@ -529,6 +524,7 @@
         setInterval(function(){
             changeColor(localStorage.cvColor1);
         }, 1);
+        changeColor('#09c');
 
         // --------------- Change background color -------------//
 
@@ -548,11 +544,19 @@
             floatText.style.background = n;
             for(i = 0; i < document.querySelectorAll('h1').length; i++)
             document.getElementsByTagName('h1')[i].style.color = n;
-            if(document.querySelectorAll('.languageSectionPoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.languageSectionPoint').length; i++)
             document.getElementsByClassName('languageSectionPoint')[i].style.background = n;
             for(i = 0; i < rightSide.querySelectorAll('b').length; i++)
             rightSide.getElementsByTagName('b')[i].style.color = n;
+            for(i = 0; i < document.getElementsByClassName('expDiv2').length; i++)
+            document.getElementsByClassName('expDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + n;
+            for(i = 0; i < document.getElementsByClassName('educDiv2').length; i++)
+            document.getElementsByClassName('educDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + n;
+            for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++)
+            document.getElementsByClassName('experiencePoint')[i].style.background = n;
+            for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++)
+            document.getElementsByClassName('educationPoint')[i].style.background = n;
+            experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px ' + n;
         }
 
 
@@ -677,46 +681,6 @@
             imageWrapper.style.height = '15%';
         }
 
-        var imageExt = '.jpg,.JPG,jpeg,JPEG,.bmp,.BMP,.gif,.GIF,.png,.PNG';
-
-        var uploadPerm = 0;
-        var rndNumber;
-
-        document.getElementById('imageFile').onchange = function(){
-            if(imageFile.value != ''){
-                for(i = 0; i < imageExt.split(',').length; i++){
-                    if(imageFile.value.substr(imageFile.value.length-4, imageFile.value.length) == imageExt.split(',')[i]){
-                        uploadPerm = 1;
-                        break;
-                    }
-                    else uploadPerm = 0;
-                }
-                if(uploadPerm == 0) alert('File is not image');
-                else{
-                    if(changeImage.innerHTML == 'Add image')
-                    for(i = 0; i != -1; i++){   //-- Checking if the random number is already used --//
-                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
-                        if(allImageNames.value.includes(rndNumber))
-                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
-                        else{
-                            localStorage.imageName = rndNumber;
-                            imageFileName.value = rndNumber;
-                            imageUploadSubmit.click();
-                            break;
-                        }
-                    }
-                    else{
-                        imageFileName.value = localStorage.imageName;
-                        imageUploadSubmit.click();
-                    }
-                }
-            }
-        }
-
-        document.getElementById('removeImage').onclick = function(){
-            window.location.href = '/deleteImage/' + localStorage.imageName + '/design1';
-            delete localStorage.imageName;
-        }
 
 
         //--------- Contact section ---------//
@@ -724,7 +688,8 @@
         function contactInfoToLocalS(){
             localStorage.contactWord = contactTitle.innerHTML;
             localStorage.clientNumber = clientNumber.innerHTML;
-            localStorage.clientEmail = clientEmail.innerHTML;
+            if(clientEmail.innerHTML != 'emailaddress@example.com')
+            sessionStorage.clientEmail = clientEmail.innerHTML;
             localStorage.clientAddress = clientAddress.innerHTML;
         }
 
@@ -738,10 +703,10 @@
         else
         clientNumber.innerHTML = localStorage.clientNumber;
 
-        if(localStorage.clientEmail == '' || localStorage.clientEmail == undefined)
+        if(sessionStorage.clientEmail == '' || sessionStorage.clientEmail == undefined)
         clientEmail.innerHTML = 'emailaddress@example.com';
         else
-        clientEmail.innerHTML = localStorage.clientEmail;
+        clientEmail.innerHTML = sessionStorage.clientEmail;
 
         if(localStorage.clientAddress == '' || localStorage.clientAddress == undefined)
         clientAddress.innerHTML = 'Here you add your address';
@@ -1069,6 +1034,5 @@
             localStorage.experiences += exp[i].getElementsByTagName('b')[0].innerHTML + '|||' + exp[i].getElementsByTagName('p')[0].innerHTML + '|||' + exp[i].getElementsByTagName('b')[1].innerHTML + '|||' + exp[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
         }
         setLocalStorageExperience();
-
     </script>
 </html>

@@ -103,7 +103,7 @@
                 </div>
                 <a id="mainSettingButton" class="secSetting" onclick="mainSettings.style.display='block'">...</a>
                 <div id="allSettingsMenu">
-                    <p id="changeImage" class="allSettingsMenuOption" onclick="imageFile.click()">Change image</p>
+                    <p id="changeImage" class="allSettingsMenuOption">Change image</p>
                     <p id="removeImage" class="allSettingsMenuOption">Remove image</p>
                     <p id="addEducation" class="allSettingsMenuOption" onclick="allSettingsMenuF('addEducationDate', 'addEducationTitle', 'addEducationText'); allSettingsMenuSubmit.style.display='block'">Add education</p>
                     <textarea id="addEducationDate" class="allSettingsMenuOption" placeholder="Education date"></textarea>
@@ -456,7 +456,7 @@
             document.getElementsByTagName('u')[i].style.fontSize = cv.offsetWidth/pSize*1.25 + 'px';
             for(i = 0; i < document.querySelectorAll('a').length; i++)
             document.getElementsByTagName('a')[i].style.fontSize = cv.offsetWidth/24.5 + 'px';
-            if(localStorage.cvColor1 == '' || localStorage.cvColor1 == undefined){
+            if(localStorage.cvColor3 == '' || localStorage.cvColor3 == undefined){
                 headerRightSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px #bea462';
                 headerRightSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px #bea462';
                 headerLeftSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px #bea462';
@@ -502,17 +502,17 @@
 
         // --------------- Get background color from localStorage -------------//
         setTimeout(function(){
-            if(localStorage.cvColor1 != '' || localStorage.cvColor1 != undefined){
-                document.getElementById(localStorage.cvColor1).style.transform = 'rotate(10deg)';
-                skillEducationContainer.style.background = localStorage.cvColor1;
-                profileTitleWrapper.style.background = localStorage.cvColor1;
+            if(localStorage.cvColor3 != '' || localStorage.cvColor3 != undefined){
+                document.getElementById(localStorage.cvColor3).style.transform = 'rotate(10deg)';
+                skillEducationContainer.style.background = localStorage.cvColor3;
+                profileTitleWrapper.style.background = localStorage.cvColor3;
                 for(i = 0; i < document.getElementsByClassName('hobbyPoint').length; i++)
-                document.getElementsByClassName('hobbyPoint')[i].style.background = localStorage.cvColor1;
-                headerRightSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor1;
-                headerRightSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor1;
-                headerLeftSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor1;
-                headerLeftSection.style.borderLeft = 'solid ' + cv.offsetWidth/60 + 'px '  + localStorage.cvColor1;
-                profile.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor1;
+                document.getElementsByClassName('hobbyPoint')[i].style.background = localStorage.cvColor3;
+                headerRightSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor3;
+                headerRightSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor3;
+                headerLeftSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor3;
+                headerLeftSection.style.borderLeft = 'solid ' + cv.offsetWidth/60 + 'px '  + localStorage.cvColor3;
+                profile.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor3;
                 for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
                 document.getElementsByClassName('colorSettingDivs')[i].style.border = 'none';
             }
@@ -534,7 +534,7 @@
                 document.getElementsByClassName('colorSettingDivs')[i].style.transform = 'rotate(0deg)';
                 document.getElementById(evt.target.id).style.transform = 'rotate(10deg)';
             }
-            localStorage.cvColor1 = evt.target.id;
+            localStorage.cvColor3 = evt.target.id;
         });
 
 
@@ -715,47 +715,6 @@
             clientPhoto.src = '/images/personalImageIcon.png';
         }
 
-        var imageExt = '.jpg,.JPG,jpeg,JPEG,.bmp,.BMP,.gif,.GIF,.png,.PNG';
-
-        var uploadPerm = 0;
-        var rndNumber;
-
-        document.getElementById('imageFile').onchange = function(){
-            if(imageFile.value != ''){
-                for(i = 0; i < imageExt.split(',').length; i++){
-                    if(imageFile.value.substr(imageFile.value.length-4, imageFile.value.length) == imageExt.split(',')[i]){
-                        uploadPerm = 1;
-                        break;
-                    }
-                    else uploadPerm = 0;
-                }
-                if(uploadPerm == 0) alert('File is not image');
-                else{
-                    if(changeImage.innerHTML == 'Add image')
-                    for(i = 0; i != -1; i++){   //-- Checking if the random number is already used --//
-                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
-                        if(allImageNames.value.includes(rndNumber))
-                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
-                        else{
-                            localStorage.imageName = rndNumber;
-                            imageFileName.value = rndNumber;
-                            imageUploadSubmit.click();
-                            break;
-                        }
-                    }
-                    else{
-                        imageFileName.value = localStorage.imageName;
-                        imageUploadSubmit.click();
-                    }
-                }
-            }
-        }
-
-        document.getElementById('removeImage').onclick = function(){
-            window.location.href = '/deleteImage/' + localStorage.imageName + '/design3';
-            delete localStorage.imageName;
-        }
-
 
 
         //-------------------Contact------------------//
@@ -789,10 +748,10 @@
         else
         emailWord.innerHTML = localStorage.emailWord;
 
-        if(localStorage.clientEmail == '' || localStorage.clientEmail == undefined)
-        clientEmail.innerHTML = 'Email address';
+        if(sessionStorage.clientEmail == '' || sessionStorage.clientEmail == undefined)
+        clientEmail.innerHTML = 'emailaddress@example.com';
         else
-        clientEmail.innerHTML = localStorage.clientEmail;
+        clientEmail.innerHTML = sessionStorage.clientEmail;
 
         if(localStorage.addressWord == '' || localStorage.addressWord == undefined)
         addressWord.innerHTML = 'Address';
@@ -811,7 +770,8 @@
             localStorage.mobileWord = mobileWord.innerHTML;
             localStorage.clientNumber = clientNumber.innerHTML;
             localStorage.emailWord = emailWord.innerHTML;
-            localStorage.clientEmail = clientEmail.innerHTML;
+            if(clientEmail.innerHTML != 'emailaddress@example.com')
+            sessionStorage.clientEmail = clientEmail.innerHTML;
             localStorage.addressWord = addressWord.innerHTML;
             localStorage.clientAddress = clientAddress.innerHTML;
         }

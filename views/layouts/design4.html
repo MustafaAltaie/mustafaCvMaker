@@ -103,7 +103,7 @@
                 </div>
                 <a id="mainSettingButton" class="secSetting" onclick="mainSettings.style.display='block'">...</a>
                 <div id="allSettingsMenu">
-                    <p id="changeImage" class="allSettingsMenuOption" onclick="imageFile.click()">Change image</p>
+                    <p id="changeImage" class="allSettingsMenuOption">Change image</p>
                     <p id="removeImage" class="allSettingsMenuOption">Remove image</p>
                     <p id="addEducation" class="allSettingsMenuOption" onclick="allSettingsMenuF('addEducationDate', 'addEducationTitle', 'addEducationText'); allSettingsMenuSubmit.style.display='block'">Add education</p>
                     <textarea id="addEducationDate" class="allSettingsMenuOption" placeholder="Education date"></textarea>
@@ -452,12 +452,12 @@
             for(i = 0; i < document.querySelectorAll('h6').length; i++)
             document.getElementsByTagName('h6')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
             document.getElementsByTagName('h1')[0].style.fontSize = cv.offsetWidth/20 + 'px';
-            document.getElementsByTagName('h1')[0].style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px ' + localStorage.cvColor1;
+            document.getElementsByTagName('h1')[0].style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px ' + localStorage.cvColor4;
             for(i = 0; i < document.querySelectorAll('u').length; i++)
             document.getElementsByTagName('u')[i].style.fontSize = cv.offsetWidth/40 + 'px';
             for(i = 0; i < document.querySelectorAll('a').length; i++)
             document.getElementsByTagName('a')[i].style.fontSize = cv.offsetWidth/24.5 + 'px';
-            clientPhoto.style.border = 'solid ' + cv.offsetWidth/cv.offsetWidth + 'px ' + localStorage.cvColor1;
+            clientPhoto.style.border = 'solid ' + cv.offsetWidth/cv.offsetWidth + 'px ' + localStorage.cvColor4;
             profile.style.borderTop = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
             for(i = 0; i < document.querySelectorAll('.icons').length; i++){
                 document.querySelectorAll('.icons')[i].style.width = cv.offsetWidth/25 + 'px';
@@ -481,7 +481,7 @@
                 document.getElementsByClassName('hobbyPoint')[i].style.minWidth = cv.offsetWidth/98 + 'px';
                 document.getElementsByClassName('hobbyPoint')[i].style.minHeight = cv.offsetWidth/98 + 'px';
             }
-            skillWord.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px ' + localStorage.cvColor1;
+            skillWord.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px ' + localStorage.cvColor4;
             educationWord.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
             document.getElementById('editText').style.fontSize = cv.offsetWidth/pSize + 'px';
         }
@@ -493,9 +493,10 @@
 
         // --------------- Get background color from localStorage -------------//
         setTimeout(function(){
-            if(localStorage.cvColor1 != '' || localStorage.cvColor1 != undefined){
-                selectColor(localStorage.cvColor1);
-            }
+            if(localStorage.cvColor4 == '' || localStorage.cvColor4 == undefined)
+            selectColor('rgb(162, 147, 105)');
+            else
+            selectColor(localStorage.cvColor4);
         }, 1);
 
         // --------------- Change background color -------------//
@@ -503,7 +504,7 @@
             if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings'){
                 selectColor(evt.target.id);
             }
-            localStorage.cvColor1 = evt.target.id;
+            localStorage.cvColor4 = evt.target.id;
         });
 
 
@@ -705,47 +706,6 @@
             clientPhoto.src = '/images/personalImageIcon.png';
         }
 
-        var imageExt = '.jpg,.JPG,jpeg,JPEG,.bmp,.BMP,.gif,.GIF,.png,.PNG';
-
-        var uploadPerm = 0;
-        var rndNumber;
-
-        document.getElementById('imageFile').onchange = function(){
-            if(imageFile.value != ''){
-                for(i = 0; i < imageExt.split(',').length; i++){
-                    if(imageFile.value.substr(imageFile.value.length-4, imageFile.value.length) == imageExt.split(',')[i]){
-                        uploadPerm = 1;
-                        break;
-                    }
-                    else uploadPerm = 0;
-                }
-                if(uploadPerm == 0) alert('File is not image');
-                else{
-                    if(changeImage.innerHTML == 'Add image')
-                    for(i = 0; i != -1; i++){   //-- Checking if the random number is already used --//
-                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
-                        if(allImageNames.value.includes(rndNumber))
-                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
-                        else{
-                            localStorage.imageName = rndNumber;
-                            imageFileName.value = rndNumber;
-                            imageUploadSubmit.click();
-                            break;
-                        }
-                    }
-                    else{
-                        imageFileName.value = localStorage.imageName;
-                        imageUploadSubmit.click();
-                    }
-                }
-            }
-        }
-
-        document.getElementById('removeImage').onclick = function(){
-            window.location.href = '/deleteImage/' + localStorage.imageName + '/design4';
-            delete localStorage.imageName;
-        }
-
 
 
         //-------------------Contact------------------//
@@ -779,10 +739,10 @@
         else
         emailWord.innerHTML = localStorage.emailWord;
 
-        if(localStorage.clientEmail == '' || localStorage.clientEmail == undefined)
-        clientEmail.innerHTML = 'Email address';
+        if(sessionStorage.clientEmail == '' || sessionStorage.clientEmail == undefined)
+        clientEmail.innerHTML = 'emailaddress@example.com';
         else
-        clientEmail.innerHTML = localStorage.clientEmail;
+        clientEmail.innerHTML = sessionStorage.clientEmail;
 
         if(localStorage.addressWord == '' || localStorage.addressWord == undefined)
         addressWord.innerHTML = 'Address';
@@ -801,7 +761,8 @@
             localStorage.mobileWord = mobileWord.innerHTML;
             localStorage.clientNumber = clientNumber.innerHTML;
             localStorage.emailWord = emailWord.innerHTML;
-            localStorage.clientEmail = clientEmail.innerHTML;
+            if(clientEmail.innerHTML != 'emailaddress@example.com')
+            sessionStorage.clientEmail = clientEmail.innerHTML;
             localStorage.addressWord = addressWord.innerHTML;
             localStorage.clientAddress = clientAddress.innerHTML;
         }

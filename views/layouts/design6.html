@@ -101,7 +101,7 @@
                 <div id="header2LeftShadow"></div>
                 <a id="mainSettingButton" class="secSetting" onclick="mainSettings.style.display='block'">...</a>
                 <div id="allSettingsMenu">
-                    <p id="changeImage" class="allSettingsMenuOption" onclick="imageFile.click()">Change image</p>
+                    <p id="changeImage" class="allSettingsMenuOption">Change image</p>
                     <p id="removeImage" class="allSettingsMenuOption">Remove image</p>
                     <p id="addEducation" class="allSettingsMenuOption" onclick="allSettingsMenuF('addEducationDate', 'addEducationTitle', 'addEducationText'); allSettingsMenuSubmit.style.display='block'">Add education</p>
                     <textarea id="addEducationDate" class="allSettingsMenuOption" placeholder="Education date"></textarea>
@@ -785,47 +785,6 @@
             clientPhoto.src = '/images/personalImageIcon.png';
         }
 
-        var imageExt = '.jpg,.JPG,jpeg,JPEG,.bmp,.BMP,.gif,.GIF,.png,.PNG';
-
-        var uploadPerm = 0;
-        var rndNumber;
-
-        document.getElementById('imageFile').onchange = function(){
-            if(imageFile.value != ''){
-                for(i = 0; i < imageExt.split(',').length; i++){
-                    if(imageFile.value.substr(imageFile.value.length-4, imageFile.value.length) == imageExt.split(',')[i]){
-                        uploadPerm = 1;
-                        break;
-                    }
-                    else uploadPerm = 0;
-                }
-                if(uploadPerm == 0) alert('File is not image');
-                else{
-                    if(changeImage.innerHTML == 'Add image')
-                    for(i = 0; i != -1; i++){   //-- Checking if the random number is already used --//
-                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
-                        if(allImageNames.value.includes(rndNumber))
-                        rndNumber = Math.ceil(Math.random()*9999 + 10000);
-                        else{
-                            localStorage.imageName = rndNumber;
-                            imageFileName.value = rndNumber;
-                            imageUploadSubmit.click();
-                            break;
-                        }
-                    }
-                    else{
-                        imageFileName.value = localStorage.imageName;
-                        imageUploadSubmit.click();
-                    }
-                }
-            }
-        }
-
-        document.getElementById('removeImage').onclick = function(){
-            window.location.href = '/deleteImage/' + localStorage.imageName + '/design6';
-            delete localStorage.imageName;
-        }
-
 
 
         //-------------------Contact------------------//
@@ -854,10 +813,10 @@
         else
         emailWord.innerHTML = localStorage.emailWord;
 
-        if(localStorage.clientEmail == '' || localStorage.clientEmail == undefined)
-        clientEmail.innerHTML = 'Email address';
+        if(sessionStorage.clientEmail == '' || sessionStorage.clientEmail == undefined)
+        clientEmail.innerHTML = 'emailaddress@example.com';
         else
-        clientEmail.innerHTML = localStorage.clientEmail;
+        clientEmail.innerHTML = sessionStorage.clientEmail;
 
         if(localStorage.addressWord == '' || localStorage.addressWord == undefined)
         addressWord.innerHTML = 'Address';
@@ -875,7 +834,8 @@
             localStorage.mobileWord = mobileWord.innerHTML;
             localStorage.clientNumber = clientNumber.innerHTML;
             localStorage.emailWord = emailWord.innerHTML;
-            localStorage.clientEmail = clientEmail.innerHTML;
+            if(clientEmail.innerHTML != 'emailaddress@example.com')
+            sessionStorage.clientEmail = clientEmail.innerHTML;
             localStorage.addressWord = addressWord.innerHTML;
             localStorage.clientAddress = clientAddress.innerHTML;
         }
