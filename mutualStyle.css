@@ -1,14 +1,18 @@
 @media only screen and (max-width: 1024px){
     body #cvWrapper{
-        padding: 800px 0 50px 0;
+        padding: 1200px 0 50px 0;
+    }
+    body #nav > h9{
+        font-size: 15em;
+        padding: 0.5em;
+    }
+    body #login, body #home, body #deleteUser{
+        width: 30em;
     }
     body #cvSizeRange, body .fontPSize{
-        width: 70%;
-        top: 250px;
-        left: 100px;
-    }
-    body #cvSizeRange{
-        top: 550px;
+        width: 95%;
+        top: 800px;
+        left: 2.5%;
     }
     body #mainSettings{
         width: 40%;
@@ -20,11 +24,71 @@
         width: 400px;
         height: 400px;
     }
-    body #screenShott{
-        padding: 200px 100px;
-        font-size: 250px;
+    body #loginText, body #loginButton{
+        left: 1%;
+        transform: translateY(125%);
+        padding: 100px;
+        font-size: 15em;
+        border-radius: 200px;
+        border: none;
+    }
+    body #loginText{
+        width: 80%;
+    }
+    body #loginButton{
+        border-radius: 200px 0 0 200px;
+        padding: 100px 200px;
     }
 }
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-weight: normal;
+    outline: none;
+}
+body{
+    background: #aaa;
+}
+#cvWrapper{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 500px 0 50px 0;
+}
+#nav{
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+}
+#nav > h9{
+    padding: 0.5em 1em;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    white-space: nowrap;
+    background: #111;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    font-weight: normal;
+    font-size: 7em;
+    transition: 0.1s;
+}
+#nav > h9:hover{
+    padding: 0.1em 1em 0.9em 1em;
+}
+#login, #home, #deleteUser{
+    width: 17em;
+    background: #111;
+    cursor: pointer;
+    transition: 0.1s;
+}
+#login:hover, #deleteUser:hover{
+    margin-top: -2em;
+    padding-bottom: 2em;
+}
+
 #allSettingsMenu{
     z-index: 200;
     position: absolute;
@@ -57,11 +121,14 @@
 #cvSizeRange, .fontPSize{
     z-index: 100;
     position: fixed;
-    top: 250px;
+    top: 400px;
     left: 10px;
     height: 30px;
     width: 30%;
+    background: linear-gradient(to right, rgb(255, 242, 0), #a50);
+    border-radius: 30px;
     -webkit-appearance: none;
+    display: none;
 }
 #cvSizeRange::-webkit-slider-thumb, .fontPSize::-webkit-slider-thumb{
     height: 150px;
@@ -72,22 +139,38 @@
     -webkit-appearance: none;
 }
 .fontPSize{
-    top: 70px;
+    background: linear-gradient(to right, rgb(0, 93, 101), rgb(0, 255, 76));
     transform: rotate(180deg);
 }
 
-#screenShott, #toPdf{
+#loginText, #loginButton{
     z-index: 10;
-    position: absolute;
-    right: 0;
+    position: fixed;
+    left: 20px;
     top: 0;
+    transform: translateY(0%);
     padding: 50px;
-    font-size: 100px;
+    font-size: 120px;
     background: #fff;
-    cursor: pointer;
+    text-align: center;
+    border-radius: 100px;
+    font-weight: bold;
+    transition: 0.1s;
 }
-#toPdf{
-    right: 1000px;
+#loginButton{
+    cursor: pointer;
+    background: #111;
+    color: #fff;
+    border-radius: 100px 0 0 100px;
+    padding: 50px 100px;
+    font-weight: normal;
+}
+#loginButton:hover{
+    background: #a70;
+}
+
+#loginText{
+    width: 26.5%;
 }
 
 #imageSizeLabel{
@@ -100,7 +183,7 @@
 
 #mainSettings{
     z-index: 150;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     background: #111;
@@ -134,9 +217,6 @@
     cursor: pointer;
     display: none;
 }
-.secSetting:hover{
-    color: #999;
-}
 
 .changable{
     cursor: pointer;
@@ -162,4 +242,25 @@
 }
 #settings > p:hover{
     background: #333;
+}
+
+
+#mongoData{
+    position: absolute;
+    z-index: 500;
+    top: 500px;
+}
+#mongoData > input{
+    font-size: 100px;
+    padding: 20px;
+}
+#newCVForm{
+    position: absolute;
+    z-index: 500;
+    top: 1000px;
+    width: 0;
+}
+#newCVForm > input{
+    font-size: 100px;
+    padding: 20px;
 }

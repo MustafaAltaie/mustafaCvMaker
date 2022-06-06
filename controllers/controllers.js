@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
+const mongoose = require('mongoose');
+require('../models/connection');
+
+var NewClient = mongoose.model('clients');
 
 router.get('/', function(req, res){
     res.render('./layouts/index');
@@ -119,30 +123,42 @@ router.get('/design14', function(req, res){
     });
 });
 
-router.get('/register', function(req, res){
-    res.render('./layouts/register');
+router.get('/allCvs', function(req, res){
+    NewClient.find(function(err, data){
+        res.render('./layouts/allCvs', {
+            cvList: data
+        });
+    }).lean();
 });
 
-
-router.get('/authorization/:id', function(req, res){
-    fs.readFile('passcode.txt', 'utf8' , (err, passCode) => {
-        if(req.params.id == passCode){
-            var newPassCode = Math.ceil(Math.random()*9999) + 10000;
-            fs.writeFile('passcode.txt', newPassCode.toString(), function(){
-                res.redirect('/authorizationSucceeded');
-            });
-        }
-        else
-        res.redirect('/register');
+router.get('/register/:id', function(req, res){
+    res.render('./layouts/register', {
+        design: req.params.id
     });
 });
 
-router.get('/authorizationSucceeded', function(req, res){
-    res.render('./layouts/getAuthorizedPage');
+
+router.get('/authorization/:id/:design', function(req, res){
+    fs.readFile('passcode.txt', 'utf8' , function(err, passCode){
+        if(req.params.id == passCode){
+            var newPassCode = Math.ceil(Math.random()*9999) + 10000;
+            fs.writeFile('passcode.txt', newPassCode.toString(), function(){
+                res.redirect('/authorizationSucceeded/' + req.params.design);
+            });
+        }
+        else
+        res.redirect('/register/' + req.params.design);
+    });
+});
+
+router.get('/authorizationSucceeded/:design', function(req, res){
+    res.render('./layouts/getAuthorizedPage', {
+        design: req.params.design
+    });
 });
 
 router.get('/4435966mustafa', function(req, res){
-    fs.readFile('passcode.txt', 'utf8' , (err, passCodeData) => {
+    fs.readFile('passcode.txt', 'utf8' , function(err, passCodeData){
         res.render('./layouts/passcodePage', {
             passcode: passCodeData
         });
@@ -163,19 +179,56 @@ router.get('/deleteImage/:id/:redirect', function(req, res){
     res.redirect('/');
 });
 
-router.get('/cvCreated/:name/:date/:redirect', function(req, res){
-    fs.writeFileSync('cvs/' + req.params.name + '.txt', req.params.date, function(){});
-    if(req.params.redirect == 'home')
-    res.redirect('/');
-    else
-    res.redirect('/' + req.params.redirect);
+router.post('/newCV', async function(req, res){
+    var email = await NewClient.find({clientEmail: req.body.clientEmail}).exec();
+    function createNewCvFunction(){
+        var newClient = new NewClient();
+        newClient.clientName = req.body.clientName;
+        newClient.clientEmail = req.body.clientEmail;
+        newClient.clientNumber = req.body.clientNumber;
+        newClient.clientTitle = req.body.clientTitle;
+        newClient.clientAddress = req.body.clientAddress;
+        newClient.clientProfile = req.body.clientProfile;
+        newClient.mySocialMediaTitle = req.body.mySocialMediaTitle;
+        newClient.mySocialMediaText = req.body.mySocialMediaText;
+        newClient.referenceTitle = req.body.referenceTitle;
+        newClient.languageTitle = req.body.languageTitle;
+        newClient.experiences = req.body.experiences;
+        newClient.educations = req.body.educations;
+        newClient.skills = req.body.skills;
+        newClient.hobby = req.body.hobby;
+        newClient.save(function(){
+            res.redirect('/' + req.body.designNumber);
+        });
+    }
+    if(req.body._id == ''){
+        if(email.length == 0){
+            createNewCvFunction();
+        }
+        else{
+            NewClient.findOneAndRemove({clientEmail: req.body.clientEmail}, function(){
+                createNewCvFunction();
+            });
+        }
+    }
+    else{
+        NewClient.findByIdAndUpdate({_id: req.body._id}, req.body, {new: true}, function(){
+            res.redirect('/' + req.body.designNumber);
+        });
+    }
 });
 
-router.get('/allCvs', function(req, res){
-    fs.readdir('cvs', function(err, files){
-        res.render('./layouts/allCvc', {
-            fileList: files
+router.get('/:clientEmail/:designNumber', function(req, res){
+    NewClient.find({clientEmail: req.params.clientEmail}, function(err, data){
+        res.render('./layouts/' + req.params.designNumber, {
+            dataDBList: data
         });
+    }).lean();
+});
+
+router.get('/deleteUser/:id/:designNumber', function(req, res){
+    NewClient.findByIdAndRemove(req.params.id, function(){
+        res.redirect('/' + req.params.designNumber);
     });
 });
 

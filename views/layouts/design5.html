@@ -8,6 +8,53 @@
         <link rel="stylesheet" href="../mutualStyle.css">
     </head>
     <body>
+        <div id="nav">
+            <img src="/images/logo.png" id="home">
+            <img src="/images/personalImageIcon.png" id="login">
+            <h9 id="saveCv" style="color: #fc0">Save CV</h9>
+            <h9 id="changeText">Change text size</h9>
+            <h9 id="changeCvSize">Change CV size</h9>
+            <h9 id="updateAllInfo" style="display: none">Update and logout</h9>
+            <img src="/images/deleteUser.png" id="deleteUser" style="display: none">
+        </div>
+        <div id="mongoData">
+            {{#each dataDBList}}
+            <input type="hidden" value="{{this._id}}" id="_IdDB">
+            <input type="hidden" value="{{this.clientName}}" id="clientNameDB">
+            <input type="hidden" value="{{this.clientEmail}}" id="clientEmailDB">
+            <input type="hidden" value="{{this.clientNumber}}" id="clientNumberDB">
+            <input type="hidden" value="{{this.clientTitle}}" id="clientTitleDB">
+            <input type="hidden" value="{{this.clientAddress}}" id="clientAddressDB">
+            <input type="hidden" value="{{this.clientProfile}}" id="clientProfileDB">
+            <input type="hidden" value="{{this.mySocialMediaTitle}}" id="mySocialMediaTitleDB">
+            <input type="hidden" value="{{this.mySocialMediaText}}" id="mySocialMediaTextDB">
+            <input type="hidden" value="{{this.referenceTitle}}" id="referenceTitleDB">
+            <input type="hidden" value="{{this.languageTitle}}" id="languageTitleDB">
+            <input type="hidden" value="{{this.experiences}}" id="experiencesDB">
+            <input type="hidden" value="{{this.educations}}" id="educationsDB">
+            <input type="hidden" value="{{this.skills}}" id="skillsDB">
+            <input type="hidden" value="{{this.hobby}}" id="hobbyDB">
+            {{/each}}
+        </div>
+        <form action="/newCV" method="post" id="newCVForm">
+            <input type="hidden" name="_id" id="_idText">
+            <input type="hidden" name="clientName" id="clientNameText">
+            <input type="hidden" name="clientEmail" id="clientEmailText">
+            <input type="hidden" name="clientNumber" id="clientNumberText">
+            <input type="hidden" name="clientTitle" id="clientTitleText">
+            <input type="hidden" name="clientAddress" id="clientAddressText">
+            <input type="hidden" name="clientProfile" id="clientProfileText">
+            <input type="hidden" name="mySocialMediaTitle" id="mySocialMediaTitleText">
+            <input type="hidden" name="mySocialMediaText" id="mySocialMediaTextText">
+            <input type="hidden" name="referenceTitle" id="referenceTitleText">
+            <input type="hidden" name="languageTitle" id="languageTitleText">
+            <input type="hidden" name="experiences" id="experiencesText">
+            <input type="hidden" name="educations" id="educationsText">
+            <input type="hidden" name="skills" id="skillsText">
+            <input type="hidden" name="hobby" id="hobbyText">
+            <input type="hidden" name="designNumber" value="design5" id="cvName">
+            <button id="newCVSubmit">OK</button>
+        </form>
         <input type="hidden" value="{{imageFiles}}" id="allImageNames">
 
         <form action="/imageUpload" method="post" enctype="multipart/form-data" style="display: none">
@@ -18,7 +65,9 @@
         </form>
 
         <div id="cvWrapper">
-            <button id="screenShott" onclick="screenShot()">Take a screenshot</button>
+            <input id="loginText" placeholder="Email Address">
+            <button id="loginButton">OK</button>
+
             <input type="range" id="cvSizeRange" min="1000" max="10000">
             <input type="range" id="pSizeRange" min="10" max="100" class="fontPSize">
             <div id="cv">
@@ -131,14 +180,7 @@
     </body>
     <style>
         *{
-            margin: 0;
-            padding: 0;
             font-family: 'Comfortaa', cursive;
-            font-weight: normal;
-            outline: none;
-        }
-        body{
-            background: #aaa;
         }
         b{
             font-weight: bold;
@@ -151,11 +193,6 @@
         }
         h1, #clientTitle{
             color: #079;
-        }
-        #cvWrapper{
-            display: flex;
-            justify-content: center;
-            padding: 200px 0 50px 0;
         }
         #cv, #headerLeftSection, #skillsSection, #educationsSection, #experiencesSection, #hobbySectionMainSection{
             position: relative;
@@ -303,12 +340,14 @@
             background: #333;
         }
         .expDiv1, .educDiv1{
-            width: 35%;
+            width: 22%;
+            padding-right: 3%;
         }
         .expDiv2, .educDiv2{
             position: relative;
-            width: 60%;
-            padding: 0 0 5% 5%;
+            width: 72%;
+            padding-left: 3%;
+            padding-bottom: 3%;
         }
         .expDiv2 > p, .educDiv2 > p{
             margin: 2% 0;
@@ -341,23 +380,9 @@
     </style>
 
     <script src="/cvScript.js"></script>
+    <script src="/mutualScript.js"></script>
+
     <script>
-
-        function screenShot(){
-            //sizingAllCv(10000);
-            html2canvas(document.getElementById('cv'), {
-                onrendered: function(canvas){
-                    return Canvas2Image.saveAsJPEG(canvas);
-                }
-            });
-            // setTimeout(function(){
-            //     sizingAllCv(cvSizeRange.value);
-            // }, 10);
-            window.location.href = '/cvCreated/' + localStorage.clientName + '/' + new Date().toJSON() + '/design5';
-        }
-
-
-
         // --------------- Get P size from localStorage -------------//
 
         if(localStorage.pSize5 == '' || localStorage.pSize5 == undefined){

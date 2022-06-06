@@ -1,0 +1,8 @@
+<body>
+    {{#each cvList}}
+    <a href="/deleteUser/{{this._id}}/allCvs" style="color: #f00">delete</a>
+    <h2>{{this.clientName}}</h2>
+    <h2>{{this.clientNumber}}</h2>
+    <h2 style="border-bottom: solid 1px #000; padding-bottom: 10px">{{this.clientEmail}}</h2>
+    {{/each}}
+</body>

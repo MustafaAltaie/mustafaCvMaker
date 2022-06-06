@@ -1,38 +1,134 @@
-function sizingAllCv(n){
-    cv.style.width = n + 'px';
-    cv.style.height = n * 1.414285714285714 + 'px';
-    for(i = 0; i < document.querySelectorAll('p').length; i++)
-    document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/50.68965517241379 + 'px';
-    for(i = 0; i < document.querySelectorAll('b').length; i++)
-    document.getElementsByTagName('b')[i].style.fontSize = cv.offsetWidth/50.68965517241379 + 'px';
-    for(i = 0; i < document.querySelectorAll('h3').length; i++){
-        document.getElementsByTagName('h3')[i].style.fontSize = cv.offsetWidth/42 + 'px';
-    }
-    for(i = 0; i < document.querySelectorAll('h1').length; i++)
-    document.getElementsByTagName('h1')[i].style.fontSize = cv.offsetWidth/21 + 'px';
-    for(i = 0; i < document.querySelectorAll('a').length; i++)
-    document.getElementsByTagName('a')[i].style.fontSize = cv.offsetWidth/24.5 + 'px';
-    for(i = 0; i < document.querySelectorAll('.clientLanguagePoint').length; i++){
-        document.getElementsByClassName('clientLanguagePoint')[i].style.width = cv.offsetWidth/98 + 'px';
-        document.getElementsByClassName('clientLanguagePoint')[i].style.height = cv.offsetWidth/98 + 'px';
-    }
-    for(i = 0; i < contactSection.querySelectorAll('IMG').length; i++){
-        contactSection.getElementsByTagName('img')[i].style.width = cv.offsetWidth/29.4 + 'px';
-        contactSection.getElementsByTagName('img')[i].style.height = cv.offsetWidth/29.4 + 'px';
-    }
-    for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++){
-        document.getElementsByClassName('experiencePoint')[i].style.width = cv.offsetWidth/98 + 'px';
-        document.getElementsByClassName('experiencePoint')[i].style.height = cv.offsetWidth/98 + 'px';
-    }
-    for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++){
-        document.getElementsByClassName('educationPoint')[i].style.width = cv.offsetWidth/98 + 'px';
-        document.getElementsByClassName('educationPoint')[i].style.height = cv.offsetWidth/98 + 'px';
-    }
-    for(i = 0; i < document.querySelectorAll('.skillDivWrapper').length; i++)
-    document.getElementsByClassName('skillDivWrapper')[i].style.height = cv.offsetWidth/147 + 'px';
-    for(i = 0; i < document.querySelectorAll('.hobbyPoint').length; i++){
-        document.getElementsByClassName('hobbyPoint')[i].style.minWidth = cv.offsetWidth/98 + 'px';
-        document.getElementsByClassName('hobbyPoint')[i].style.minHeight = cv.offsetWidth/98 + 'px';
-    }
+function screenShot(){
+    html2canvas(document.getElementById('cv'), {
+        onrendered: function(canvas){
+            return Canvas2Image.saveAsJPEG(canvas);
+        }
+    });
+    db();
 }
 
+function db(){
+    clientNameText.value = localStorage.clientName;
+    clientEmailText.value = localStorage.clientEmail;
+    clientNumberText.value = localStorage.clientNumber;
+    clientTitleText.value = localStorage.clientTitle;
+    clientAddressText.value = localStorage.clientAddress.replace('/', ' ');
+    clientProfileText.value = localStorage.clientProfile;
+    mySocialMediaTitleText.value = localStorage.mySocialMediaTitle;
+    mySocialMediaTextText.value = localStorage.mySocialMediaText;
+    referenceTitleText.value = localStorage.referenceTitle;
+    languageTitleText.value = localStorage.languageTitle;
+    experiencesText.value = localStorage.experiences;
+    educationsText.value = localStorage.educations;
+    skillsText.value = localStorage.skills;
+    hobbyText.value = localStorage.hobby;
+    newCVSubmit.click();
+}
+
+if(document.querySelectorAll('#_IdDB').length != 0){
+    _idText.value = _IdDB.value;
+    localStorage.clientName = clientNameDB.value;
+    localStorage.clientEmail = clientEmailDB.value;
+    localStorage.clientNumber = clientNumberDB.value;
+    localStorage.clientTitle = clientTitleDB.value;
+    localStorage.clientAddress = clientAddressDB.value.replace(' ', ' /');
+    localStorage.clientProfile = clientProfileDB.value;
+    localStorage.mySocialMediaTitle = mySocialMediaTitleDB.value;
+    localStorage.mySocialMediaText = mySocialMediaTextDB.value;
+    localStorage.referenceTitle = referenceTitleDB.value;
+    localStorage.languageTitle = languageTitleDB.value;
+    localStorage.experiences = experiencesDB.value;
+    localStorage.educations = educationsDB.value;
+    localStorage.skills = skillsDB.value;
+    localStorage.hobby = hobbyDB.value;
+    login.style.display = 'none';
+    updateAllInfo.style.display = 'block';
+    deleteUser.style.display = 'block';
+}
+else{
+    if(window.location.href.includes('@'))
+    window.history.back();
+}
+
+
+document.getElementById('loginButton').onclick = function(){
+    if(loginText.value != '')
+    getData();
+}
+
+function getData(){
+    window.location.href = '/' + loginText.value + '/' + cvName.value;
+}
+
+document.addEventListener('click', function(evt){
+    if(evt.target.id != 'login' && evt.target.id != 'loginText' && evt.target.id != 'loginButton'){
+        loginText.style.transform = 'translateY(0%)';
+            loginButton.style.transform = 'translateY(0%)';
+    }
+});
+
+nav.addEventListener('click', function(evt){
+    if(evt.target.tagName == 'H9' || evt.target.tagName == 'IMG'){
+        if(evt.target.id == 'saveCv')
+        screenShot();
+
+        if(evt.target.id == 'login'){
+            loginText.style.transform = 'translateY(130%)';
+            loginButton.style.transform = 'translateY(130%)';
+            loginText.focus();
+        }
+
+        if(evt.target.id == 'changeText')
+        pSizeRange.style.display = 'block';
+        else
+        pSizeRange.style.display = 'none';
+
+        if(evt.target.id == 'changeCvSize')
+        cvSizeRange.style.display = 'block';
+        else
+        cvSizeRange.style.display = 'none';
+
+        if(evt.target.id == 'deleteUser'){
+            if(confirm('Are you sure you want to delete all user data?') == true)
+            window.location.href = '/deleteUser/' + _idText.value + '/' + cvName.value;
+        }
+
+        if(evt.target.id == 'updateAllInfo')
+        db();
+    }
+
+    if(evt.target.id == 'home')
+    window.location.href = '/';
+});
+
+document.addEventListener('click', function(evt){
+    if(evt.target.parentNode.id != 'nav'){
+        cvSizeRange.style.display = 'none';
+        pSizeRange.style.display = 'none';
+    }
+
+    if(evt.target.id == 'actionButton')
+    if(currentElement == 'clientEmail')
+    if(editText.value.includes('@')){
+        if(editText.value.includes('gmail')
+        || editText.value.includes('yahoo')
+        || editText.value.includes('hubSpo')
+        || editText.value.includes('sendinblue')
+        || editText.value.includes('aweber')
+        || editText.value.includes('protonMail')
+        || editText.value.includes('outlook')
+        || editText.value.includes('zoho')
+        || editText.value.includes('aol')
+        || editText.value.includes('gmx')
+        || editText.value.includes('icloud'))
+        document.getElementById(currentElement).innerHTML = editText.value;
+        else{
+            alert('Email is not valid');
+            document.getElementById(currentElement).innerHTML = 'example@gmail.com';
+        }
+    }
+    else{
+        alert('Email is not valid');
+        document.getElementById(currentElement).innerHTML = 'example@gmail.com';
+    }
+});

@@ -9,6 +9,84 @@
         <link rel="stylesheet" href="../mutualStyle.css">
     </head>
     <body>
+        <div id="nav">
+            <img src="/images/logo.png" id="home">
+            <img src="/images/personalImageIcon.png" id="login">
+            <h9 id="saveCv" style="color: #fc0">Save CV</h9>
+            <h9 id="changeText">Change text size</h9>
+            <h9 id="changeCvSize">Change CV size</h9>
+            <h9 id="updateAllInfo" style="display: none">Update and logout</h9>
+            <img src="/images/deleteUser.png" id="deleteUser" style="display: none">
+        </div>
+        <div id="mongoData">
+            {{#each dataDBList}}
+            <input type="hidden" value="{{this._id}}" id="_IdDB">
+            <input type="hidden" value="{{this.clientName}}" id="clientNameDB">
+            <input type="hidden" value="{{this.clientEmail}}" id="clientEmailDB">
+            <input type="hidden" value="{{this.clientNumber}}" id="clientNumberDB">
+            <input type="hidden" value="{{this.clientTitle}}" id="clientTitleDB">
+            <input type="hidden" value="{{this.clientAddress}}" id="clientAddressDB">
+            <input type="hidden" value="{{this.clientProfile}}" id="clientProfileDB">
+            <input type="hidden" value="{{this.mySocialMediaTitle}}" id="mySocialMediaTitleDB">
+            <input type="hidden" value="{{this.mySocialMediaText}}" id="mySocialMediaTextDB">
+            <input type="hidden" value="{{this.referenceTitle}}" id="referenceTitleDB">
+            <input type="hidden" value="{{this.languageTitle}}" id="languageTitleDB">
+            <input type="hidden" value="{{this.experiences}}" id="experiencesDB">
+            <input type="hidden" value="{{this.educations}}" id="educationsDB">
+            <input type="hidden" value="{{this.skills}}" id="skillsDB">
+            <input type="hidden" value="{{this.hobby}}" id="hobbyDB">
+            {{/each}}
+        </div>
+        <form action="/newCV" method="post" id="newCVForm">
+            <input type="hidden" name="_id" id="_idText">
+            <input type="hidden" name="clientName" id="clientNameText">
+            <input type="hidden" name="clientEmail" id="clientEmailText">
+            <input type="hidden" name="clientNumber" id="clientNumberText">
+            <input type="hidden" name="clientTitle" id="clientTitleText">
+            <input type="hidden" name="clientAddress" id="clientAddressText">
+            <input type="hidden" name="clientProfile" id="clientProfileText">
+            <input type="hidden" name="mySocialMediaTitle" id="mySocialMediaTitleText">
+            <input type="hidden" name="mySocialMediaText" id="mySocialMediaTextText">
+            <input type="hidden" name="referenceTitle" id="referenceTitleText">
+            <input type="hidden" name="languageTitle" id="languageTitleText">
+            <input type="hidden" name="experiences" id="experiencesText">
+            <input type="hidden" name="educations" id="educationsText">
+            <input type="hidden" name="skills" id="skillsText">
+            <input type="hidden" name="hobby" id="hobbyText">
+            <input type="hidden" name="designNumber" value="design1" id="cvName">
+            <button id="newCVSubmit">OK</button>
+        </form>
+        <div id="mainSettings" class="mainSettings">
+            <div id="colorSettings" class="mainSettings">
+                <div id="#aaa" class="colorSettingDivs" style="background:#aaa"></div>
+                <div id="#999" class="colorSettingDivs" style="background:#999"></div>
+                <div id="#777" class="colorSettingDivs" style="background:#777"></div>
+                <div id="#9e9a6b" class="colorSettingDivs" style="background:#9e9a6b"></div>
+                <div id="#ada445" class="colorSettingDivs" style="background:#ada445"></div>
+                <div id="#999248" class="colorSettingDivs" style="background:#999248"></div>
+                <div id="#d4ad52" class="colorSettingDivs" style="background:#d4ad52"></div>
+                <div id="#c1942c" class="colorSettingDivs" style="background:#c1942c"></div>
+                <div id="#b18212" class="colorSettingDivs" style="background:#b18212"></div>
+                <div id="#aa8734" class="colorSettingDivs" style="background:#aa8734"></div>
+                <div id="#a78f58" class="colorSettingDivs" style="background:#a78f58"></div>
+                <div id="#8db68c" class="colorSettingDivs" style="background:#8db68c"></div>
+                <div id="#6d8a6c" class="colorSettingDivs" style="background:#6d8a6c"></div>
+                <div id="#69a767" class="colorSettingDivs" style="background:#69a767"></div>
+                <div id="#5b9559" class="colorSettingDivs" style="background:#5b9559"></div>
+                <div id="#6caed4" class="colorSettingDivs" style="background:#6caed4"></div>
+                <div id="#22b7d9" class="colorSettingDivs" style="background:#22b7d9"></div>
+                <div id="#09b" class="colorSettingDivs" style="background:#09b"></div>
+                <div id="#4897fe" class="colorSettingDivs" style="background:#4897fe"></div>
+                <div id="#a797de" class="colorSettingDivs" style="background:#a797de"></div>
+                <div id="#8873cd" class="colorSettingDivs" style="background:#8873cd"></div>
+                <div id="#af88c1" class="colorSettingDivs" style="background:#af88c1"></div>
+                <div id="#b479cd" class="colorSettingDivs" style="background:#b479cd"></div>
+                <div id="#a153c3" class="colorSettingDivs" style="background:#a153c3"></div>
+                <div id="#ffa0b9" class="colorSettingDivs" style="background:#ffa0b9"></div>
+                <div id="#ff7197" class="colorSettingDivs" style="background:#ff7197"></div>
+                <div id="#f94474" class="colorSettingDivs" style="background:#f94474"></div>
+            </div>
+        </div>
         <input type="hidden" value="{{imageFiles}}" id="allImageNames">
 
         <form action="/imageUpload" method="post" enctype="multipart/form-data" style="display: none">
@@ -20,7 +98,9 @@
 
         <div id="cvWrapper">
             <h7 id="imageSizeLabel"></h7>
-            <button id="screenShott" onclick="screenShot()">Take a screenshot</button>
+            <input id="loginText" placeholder="Email Address">
+            <button id="loginButton">OK</button>
+
             <input type="range" id="cvSizeRange" min="1000" max="10000">
             <input type="range" id="pSizeRange" min="10" max="100" class="fontPSize">
             <div id="cv">
@@ -28,75 +108,74 @@
                     <textarea id="editText"></textarea>
                     <p id="actionButton">Update</p>
                 </div>
+                <a id="mainSettingButton" class="secSetting" onclick="mainSettings.style.display='block'">...</a>
                 <div id="allSettingsMenu">
                     <p id="changeImage" class="allSettingsMenuOption" onclick="imageFile.click()">Change image</p>
                     <p id="removeImage" class="allSettingsMenuOption">Remove image</p>
-                    <p id="addEducation" class="allSettingsMenuOption" onclick="allSettingsMenuF('addEducationText')">Add education</p>
-                    <textarea id="addEducationText" class="allSettingsMenuOption" placeholder="Add education"></textarea>
-                    <p id="addSkill" class="allSettingsMenuOption" onclick="allSettingsMenuF('addSkillText', 'addSkillLevel')">Add skill</p>
-                    <textarea id="addSkillText" placeholder="Title" class="allSettingsMenuOption"></textarea>
-                    <input type="number" id="addSkillLevel" min="1" max="10" placeholder="Level" class="allSettingsMenuOption">
-                    <p id="addExperience" class="allSettingsMenuOption" onclick="allSettingsMenuF('addExperienceTitle', 'addExperienceText')">Add experience</p>
+                    <p id="addEducation" class="allSettingsMenuOption" onclick="allSettingsMenuF('addEducationDate', 'addEducationTitle', 'addEducationText', 'addEducationType'); allSettingsMenuSubmit.style.display='block'">Add education</p>
+                    <textarea id="addEducationDate" class="allSettingsMenuOption" placeholder="Education data"></textarea>
+                    <textarea id="addEducationTitle" class="allSettingsMenuOption" placeholder="Education title"></textarea>
+                    <textarea id="addEducationText" class="allSettingsMenuOption" placeholder="Education description"></textarea>
+                    <textarea id="addEducationType" class="allSettingsMenuOption" placeholder="Education type"></textarea>
+                    <p id="addSkill" class="allSettingsMenuOption" onclick="allSettingsMenuF('addSkillText', 'addSkillLevel'); allSettingsMenuSubmit.style.display='block'">Add skill</p>
+                    <textarea id="addSkillText" placeholder="Skill title" class="allSettingsMenuOption"></textarea>
+                    <input type="number" id="addSkillLevel" min="1" max="10" placeholder="Skill level" class="allSettingsMenuOption">
+                    <p id="addExperience" class="allSettingsMenuOption" onclick="allSettingsMenuF('addExperienceDate', 'addExperienceTitle', 'addExperienceText', 'addExperienceType'); allSettingsMenuSubmit.style.display='block'">Add experience</p>
+                    <textarea id="addExperienceDate" placeholder="Experience date" class="allSettingsMenuOption"></textarea>
                     <textarea id="addExperienceTitle" placeholder="Experience title" class="allSettingsMenuOption"></textarea>
                     <textarea id="addExperienceText" placeholder="Experience text" class="allSettingsMenuOption"></textarea>
+                    <textarea id="addExperienceType" placeholder="Type of experience" class="allSettingsMenuOption"></textarea>
+                    <p id="addHobby" class="allSettingsMenuOption" onclick="allSettingsMenuF('addhobbyName'); allSettingsMenuSubmit.style.display='block'">Add hobby</p>
+                    <textarea id="addhobbyName" placeholder="Hobby name" class="allSettingsMenuOption"></textarea>
+                    <p id="addLanguage" class="allSettingsMenuOption" onclick="allSettingsMenuF('addLanguageName'); allSettingsMenuSubmit.style.display='block'">Add language</p>
+                    <textarea id="addLanguageName" placeholder="Language name" class="allSettingsMenuOption"></textarea>
                     <p id="allSettingsMenuSubmit">OK</p>
+                    <p id="clearLocalStorage" class="allSettingsMenuOption">Clear</p>
+                    <p id="hideSection" class="allSettingsMenuOption">Delete section</p>
                 </div>
                 <!--------------------------left side Starts-------------------------->
                 <div id="leftSide">
                     <div id="imageWrapper">
                         <img src="" id="clientPhoto">
                         <a id="imageSetting" class="secSetting" onclick="allSettingsMenuF('changeImage', 'removeImage')">...</a>
-                        <div id="imageAlignment">
-                            <p id="top">/\</p>
-                            <div>
-                                <p id="left"><</p>
-                                <p id="center">Center</p>
-                                <p id="right">></p>
-                            </div>
-                            <p id="bottom">\/</p>
-                        </div>
                     </div>
 
                     <!--Contact Info-->
-
                     <div id="contactSection">
                         <img src="/images/mobileIcon.png" class="bigImage">
                         <h4 id="contactTitle" class="changable">Contact</h4>
                         <div>
-                            <img src="/images/mobileIcon.png" class="contactIcon">
+                            <img src="/images/mobileIconWhite.png" class="contactIcon">
                             <p id="clientNumber" class="changable"></p>
                         </div>
                         <div>
-                            <img src="/images/emailIcon.png" class="contactIcon">
+                            <img src="/images/emailIconWhite.png" class="contactIcon">
                             <p id="clientEmail" class="changable"></p>
                         </div>
                         <div>
-                            <img src="/images/addressIcon.png" class="contactIcon">
+                            <img src="/images/addressIconWhite.png" class="contactIcon">
                             <p id="clientAddress" class="changable"></p>
                         </div>
                     </div>
 
-                    <!--Education-->
-
-                    <div id="educationSection">
-                        <a id="educationSetting" class="secSetting" onclick="allSettingsMenuF('addEducation')">...</a>
-                        <img src="/images/educationImage.png" class="bigImage">
-                        <h3 id="educationTitle" class="changable">Education</h3>
+                    <!--Skills-->
+                    <div id="skillsSection">
+                        <a id="skillsSectionSetting" class="secSetting" onclick="allSettingsMenuF('addSkill', 'clearLocalStorage', 'hideSection')">...</a>
+                        <h4 id="skillsTitle" class="changable"></h4>
                     </div>
 
-                    <!--Skills-->
-
-                    <div id="skillsSection">
-                        <a id="skillSetting" class="secSetting" onclick="allSettingsMenuF('addSkill')">...</a>
-                        <h4 id="skillsTitle" class="changable"></h4>
+                    <!-- Languages -->
+                    <div id="languageSection">
+                        <a id="languageSectionSetting" class="secSetting" onclick="allSettingsMenuF('addLanguage', 'clearLocalStorage', 'hideSection')">...</a>
+                        <h4 id="languageWord" class="changable"></h4>
                     </div>
                 </div>
                 <!--------------------------left side Ends-------------------------->
 
 
-                <!--------------------------Yellow Rectangle-------------------------->
+                <!--------------------------Floating Text-------------------------->
                 <div id="floatText">
-                    <p id="FloatingText" class="changable"></p>
+                    <p id="clientProfile" class="changable"></p>
                 </div>
 
                 <!--------------------------Right side Starts-------------------------->
@@ -104,17 +183,18 @@
                     <div id="rightSideHeader">
                         <h1 id="clientName" class="changable">Mustafa Altaie</h1>
                         <h5 id="clientTitle" class="changable">Software Developer</h5>
-                        <p id="clientEmail2" class="changable"></p>
+                        <p id="profileWord" class="changable"></p>
                     </div>
                     <div id="rightSideFooter">
-                        <div id="rightSideFooterProfile">
-                            <h4 id="profileTitle" class="changable"></h4>
-                            <p id="clientProfile" class="changable"></p>
+                        <!-- ---- Experience ----- -->
+                        <div id="experiencesSection">
+                            <a id="experiencesSectionSetting" class="secSetting" onclick="allSettingsMenuF('addExperience', 'clearLocalStorage', 'hideSection')">...</a>
+                            <h3 id="experienceWord" class="changable"></h3>
                         </div>
-                        <div id="rightSideFooterExperience">
-                            <a id="experienceSetting" class="secSetting" onclick="allSettingsMenuF('addExperience')">...</a>
-                            <img src="/images/experienceImage.png" class="bigImage">
-                            <h4 id="experienceTitle" class="changable"></h4>
+                        <!-- ---- Education ----- -->
+                        <div id="educationsSection">
+                            <a id="educationsSectionSetting" class="secSetting" onclick="allSettingsMenuF('addEducation', 'clearLocalStorage', 'hideSection')">...</a>
+                            <h3 id="educationWord" class="changable"></h3>
                         </div>
                     </div>
                 </div>
@@ -122,30 +202,22 @@
         </div>
     </body>
     <style>
-        *{
-            margin: 0;
-            padding: 0;
-            font-family: 'Barlow Semi Condensed', sans-serif;
-            /*font-family: 'Racing Sans One', cursive;*/
-            font-weight: normal;
-            outline: none;
-        }
-        body{
-            background: #aaa;
-        }
-        #cvWrapper{
-            position: relative;
-            display: flex;
-            justify-content: center;
-            padding: 200px 0 50px 0;
-        }
         #cv{
             position: relative;
             background: #eee;
             display: flex;
         }
+        #cv > a, #rightSide a{
+            color: #000;
+            top: 0;
+        }
+        .secSetting{
+            transform: translateY(0%);
+        }
         #leftSide{
             position: relative;
+            display: flex;
+            flex-direction: column;
             width: 35%;
             background: #252525;
             color: #fff;
@@ -153,7 +225,7 @@
         #imageWrapper{
             position: relative;
             width: 100%;
-            height: 30%;
+            height: 32%;
         }
         #imageWrapper > img{
             position: absolute;
@@ -166,36 +238,11 @@
             z-index: 100;
             top: 0;
         }
-        #cv:hover > a, #imageWrapper:hover > a, #imageWrapper:hover > #imageAlignment{
+        #cv:hover > a, #imageWrapper:hover > a{
             display: block;
         }
-        #imageAlignment{
-            position: relative;
-            top: 50%;
-            left: 50%;
-            width: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-        }
-        #imageAlignment > div{
-            display: flex;
-            justify-content: space-between;
-        }
-        #imageAlignment p{
-            cursor: pointer;
-            user-select: none;
-        }
-        h4{
-            color: rgb(124, 190, 231);
-            border-bottom: solid 3px rgb(97, 143, 183);
-        }
-        h6{
+        b{
             font-weight: bold;
-        }
-        img{
-            pointer-events: none;
         }
         .bigImage{
             position: absolute;
@@ -219,7 +266,7 @@
             margin-top: 10%;
         }
         #contactSection > h4{
-            padding: 0 5%;
+            padding: 2% 10%;
         }
         #contactSection > img{
             top: 70%;
@@ -228,31 +275,8 @@
             display: flex;
             align-items: center;
             gap: 2%;
-            padding: 0 5%;
+            padding: 0 10%;
             margin-top: 4%;
-        }
-
-        /* ----------- Education Section------------- */
-
-        #educationSection{
-            position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            padding-bottom: 7%;
-            margin: 15% 0;
-        }
-        #educationSection:hover > #educationSetting{
-            display: block;
-        }
-        #educationSection > img{
-            top: 60%;
-        }
-        #educationSection > h3{
-            background: rgb(43, 119, 185);
-            color: #ddd;
-            padding: 2% 5%;
-        }
-        #educationSection > p{
-            padding: 5%;
         }
 
         /* ----------- Skills Section------------- */
@@ -264,25 +288,48 @@
             display: block;
         }
         #skillsSection > h4{
-            margin-bottom: 5%;
-            padding: 0 5%;
+            margin: 10% 0 3% 0;
+            padding: 2% 10%;
         }
         #skillsSection > div{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2% 7% 5px 5%;
+            padding: 2% 10% 5px 10%;
+        }
+        #skillsSection > div > p{
+            margin: 1% 0;
         }
         #skillsSection > div > div{
-            width: 40%;
-            height: 15px;
-            background: #444;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
             pointer-events: none;
         }
         #skillsSection > div > div > div{
             height: 100%;
-            background: rgb(70, 113, 139);
             pointer-events: all;
+        }
+
+        /* languages */
+        #languageSection{
+            position: relative;
+            padding: 7% 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10%;
+        }
+        #languageSection:hover > a{
+            display: block;
+        }
+        #languageSection > div{
+            margin: 2% 10%;
+        }
+        #languageSection > h4{
+            width: 100%;
+            padding: 2% 10%;
+            margin-bottom: 3%;
+        }
+        #languageSection > div > div{
+            display: flex;
+            align-items: center;
+            gap: 10%;
         }
 
         /* ----------- Floating colored Rectangle------------- */
@@ -290,13 +337,11 @@
         #floatText{
             z-index: 90;
             position: absolute;
-            top: 20%;
+            top: 17%;
             right: 0;
-            height: 10%;
             width: 55%;
-            background: rgb(51, 133, 204);
             color: #fff;
-            padding: 0 5%;
+            padding: 3% 5%;
             display: flex;
             align-items: center;
         }
@@ -318,7 +363,6 @@
         }
         #rightSideHeader > h1{
             font-family: 'Racing Sans One', cursive;
-            color:rgb(51, 133, 204);
         }
         #rightSideHeader > h5{
             background: #252525;
@@ -344,53 +388,42 @@
             padding: 1% 0;
         }
 
-        #rightSideFooterExperience{
+        /* -- Experience and Education -- */
+        #experiencesSection, #educationsSection{
             position: relative;
+            padding: 4% 5%;
         }
-        #rightSideFooterExperience > h4{
-            margin-bottom: 3%;
-        }
-        #rightSideFooterExperience:hover > a{
+        #experiencesSection:hover > a, #educationsSection:hover > a{
             display: block;
         }
-        #rightSideFooterExperience > img{
-            top: 60%;
+        #experienceWord, #educationWord{
+            margin-bottom: 3%;
         }
-        #rightSideFooterExperience > div{
-            padding: 0 2% 4% 2%;
-            border-left: solid 5px rgb(97, 143, 183);
+        .experiencePoint, .educationPoint{
+            position: absolute;
+            left: -1px;
+            transform: translateX(-57%);
+            background: #555;
         }
-        #rightSideFooterExperience > div > div{
+        #experiencesSection > div, #educationsSection > div{
             display: flex;
-            align-items: center;
-            gap: 4%;
-            transform: translateX(-3.2%);
         }
-        #rightSideFooterExperience > div > div > div{
-            background: rgb(97, 143, 183);
+        .expDiv1, .educDiv1{
+            width: 22%;
+            padding-right: 3%;
+        }
+        .expDiv2, .educDiv2{
+            position: relative;
+            width: 72%;
+            padding-left: 3%;
+            padding-bottom: 3%;
         }
     </style>
 
     <script src="/cvScript.js"></script>
+    <script src="/mutualScript.js"></script>
+
     <script>
-        function screenShot(){
-            html2canvas(document.getElementById('cv'), {
-                onrendered: function(canvas){
-                    return Canvas2Image.saveAsJPEG(canvas);
-                }
-            });
-            window.location.href = '/cvCreated/' + localStorage.clientName + '/' + new Date().toJSON() + '/design1';
-        }
-
-        function Topdf(){
-            var file = document.getElementById('cv');
-            html2pdf()
-            .from(file)
-            .save();
-        }
-
-
-
         // --------------- Get P size from localStorage -------------//
         
         if(localStorage.pSize1 == '' || localStorage.pSize1 == undefined){
@@ -439,10 +472,12 @@
             document.getElementsByTagName('a')[i].style.fontSize = cv.offsetWidth/30 + 'px';
             for(i = 0; i < document.querySelectorAll('p').length; i++)
             document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/ppSize + 'px';
-            for(i = 0; i < document.querySelectorAll('h4').length; i++)
-            document.getElementsByTagName('h4')[i].style.fontSize = cv.offsetWidth/30.625 + 'px';
-            for(i = 0; i < document.querySelectorAll('h6').length; i++)
-            document.getElementsByTagName('h6')[i].style.fontSize = cv.offsetWidth/36.75 + 'px';
+            for(i = 0; i < document.querySelectorAll('h4').length; i++){
+                document.getElementsByTagName('h4')[i].style.fontSize = cv.offsetWidth/30.625 + 'px';
+                document.getElementsByTagName('h4')[i].style.borderBottom = 'solid ' + cv.offsetWidth/500 + 'px';
+            }
+            for(i = 0; i < document.querySelectorAll('b').length; i++)
+            document.getElementsByTagName('b')[i].style.fontSize = cv.offsetWidth/50 + 'px';
             for(i = 0; i < document.querySelectorAll('h1').length; i++)
             document.getElementsByTagName('h1')[i].style.fontSize = cv.offsetWidth/14.7 + 'px';
             for(i = 0; i < document.querySelectorAll('h3').length; i++)
@@ -454,40 +489,118 @@
                 contactSection.getElementsByClassName('contactIcon')[i].style.height = cv.offsetWidth/29.4 + 'px';
             }
             contactSection.getElementsByClassName('bigImage')[0].style.width = cv.offsetWidth/8 + 'px';
-            educationSection.getElementsByClassName('bigImage')[0].style.width = cv.offsetWidth/6 + 'px';
-            rightSideFooterExperience.getElementsByClassName('bigImage')[0].style.width = cv.offsetWidth/3 + 'px';
+            experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.3)';
+            if(document.querySelectorAll('.experiencePoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++){
-                document.getElementsByClassName('experiencePoint')[i].style.width = cv.offsetWidth/100 + 'px';
-                document.getElementsByClassName('experiencePoint')[i].style.height = cv.offsetWidth/30 + 'px';
+                document.getElementsByClassName('experiencePoint')[i].style.width = cv.offsetWidth/150 + 'px';
+                document.getElementsByClassName('experiencePoint')[i].style.height = cv.offsetWidth/38 + 'px';
             }
-            for(i = 0; i < document.getElementsByClassName('experience').length; i++){
-                document.getElementsByClassName('experience')[i].style.borderLeft = 'solid ' + cv.offsetWidth/650 + 'px rgb(97, 143, 183)';
+            if(document.querySelectorAll('.educationPoint').length > 0)
+            for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++){
+                document.getElementsByClassName('educationPoint')[i].style.width = cv.offsetWidth/150 + 'px';
+                document.getElementsByClassName('educationPoint')[i].style.height = cv.offsetWidth/38 + 'px';
             }
+            if(document.getElementsByClassName('expDiv2').length > 0)
+            for(i = 0; i < document.getElementsByClassName('expDiv2').length; i++)
+            document.getElementsByClassName('expDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
+            if(document.getElementsByClassName('educDiv2').length > 0)
+            for(i = 0; i < document.getElementsByClassName('educDiv2').length; i++)
+            document.getElementsByClassName('educDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
             for(i = 0; i < document.querySelectorAll('.levelDiv').length; i++)
-            document.getElementsByClassName('levelDiv')[i].style.height = cv.offsetWidth/170 + 'px';
+            document.getElementsByClassName('levelDiv')[i].style.height = cv.offsetWidth/250 + 'px';
             document.getElementById('editText').style.fontSize = cv.offsetWidth/ppSize + 'px';
             for(i = 0; i < allSettingsMenu.querySelectorAll('textarea').length; i++)
             allSettingsMenu.getElementsByTagName('textarea')[i].style.fontSize = cv.offsetWidth/36.75 + 'px';
             addSkillLevel.style.fontSize = cv.offsetWidth/ppSize + 'px';
+            if(document.querySelectorAll('.languageSectionPoint').length > 0)
+            for(i = 0; i < document.querySelectorAll('.languageSectionPoint').length; i++){
+                document.getElementsByClassName('languageSectionPoint')[i].style.minWidth = cv.offsetWidth/98 + 'px';
+                document.getElementsByClassName('languageSectionPoint')[i].style.height = cv.offsetWidth/98 + 'px';
+            }
         }
         setTimeout(function(){
             sizingAllCv(cvSizeRange.value);
         }, 0);
 
 
+        //--------------- Get background color from localStorage -------------//
+
+        if(localStorage.cvColor1 != '' || localStorage.cvColor1 != undefined)
+        setInterval(function(){
+            changeColor(localStorage.cvColor1);
+        }, 1);
+
+        // --------------- Change background color -------------//
+
+        colorSettings.addEventListener('click', function(evt){
+            if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings')
+            changeColor(evt.target.id);
+            localStorage.cvColor1 = evt.target.id;
+        });
+
+        function changeColor(n){
+            for(i = 0; i < document.getElementsByTagName('h4').length; i++){
+                document.getElementsByTagName('h4')[i].style.color = n;
+                document.getElementsByTagName('h4')[i].style.borderBottom = 'solid ' + cv.offsetWidth/500 + 'px ' + n;
+            }
+            for(i = 0; i < document.querySelectorAll('.levelDiv').length; i++)
+            document.getElementsByClassName('levelDiv')[i].getElementsByTagName('div')[0].style.background = n;
+            floatText.style.background = n;
+            for(i = 0; i < document.querySelectorAll('h1').length; i++)
+            document.getElementsByTagName('h1')[i].style.color = n;
+            if(document.querySelectorAll('.languageSectionPoint').length > 0)
+            for(i = 0; i < document.querySelectorAll('.languageSectionPoint').length; i++)
+            document.getElementsByClassName('languageSectionPoint')[i].style.background = n;
+            for(i = 0; i < rightSide.querySelectorAll('b').length; i++)
+            rightSide.getElementsByTagName('b')[i].style.color = n;
+        }
+
+
         //--------- Show edit settings ---------//
 
         var currentElement;
+        var currentSection;
 
         document.addEventListener('click', function(evt){
-            if(evt.target.className == 'changable'){
-                editText.style.width = evt.target.offsetWidth*1.5 + 'px';
+            if(evt.target.id != 'mainSettingButton'
+            && evt.target.parentNode.className != 'mainSettings'
+            && evt.target.id != 'mainSettings')
+            mainSettings.style.display = 'none';
+
+            if(evt.target.className == 'changable' || evt.target.className == 'clientSkill'){
+                editText.style.width = cv.offsetWidth/2 + 'px';
                 editText.style.height = evt.target.offsetHeight + 'px';
                 editText.value = evt.target.innerHTML;
                 currentElement = evt.target.id;
                 settings.style.display = 'flex';
             }
+
+            if(evt.target.className == 'secSetting' && evt.target.id != 'mainSettingButton'){
+                currentSection = evt.target.id;
+                allSettingsMenuSubmit.style.display = 'none';
+                allSettingsMenu.style.top = evt.target.parentNode.offsetTop + 'px';
+                allSettingsMenu.style.left = evt.target.offsetLeft + 'px';
+                allSettingsMenu.style.display = "flex";
+            }
         });
+
+        //--------- All settings options to view ---------//
+
+        var allSettingSelectedOption;
+
+        function allSettingsMenuF(n, n2, n3, n4){
+            for(i = 0; i < allSettingsMenu.childElementCount-1; i++)
+            document.getElementsByClassName('allSettingsMenuOption')[i].style.display = "none";
+            allSettingSelectedOption = n;
+            document.getElementById(n).style.display = "block";
+            document.getElementById(n).focus();
+            if(n2)
+            document.getElementById(n2).style.display = "block";
+            if(n3)
+            document.getElementById(n3).style.display = "block";
+            if(n4)
+            document.getElementById(n4).style.display = "block";
+        }
 
 
         //--------- Hyde forms mouse down ---------//
@@ -518,14 +631,17 @@
                 lclStSkill();
             }
 
+            // Language localStorage
+            localStorage.languageWord = languageWord.innerHTML;
+
             if(editText.value == '' && currentElement.substr(0, 10) == 'experience'){
                 document.getElementById(currentElement.substr(0, currentElement.length-5)).remove();
-                lclStExperience();
+                setLocalStorageExperience();
                 window.location.reload();
             }
 
-            if(editText.value == '') document.getElementById(currentElement).remove();
-            lclStEducation();
+            // Education
+            localStorage.educationWord = educationWord.innerHTML;
 
             if(document.getElementById(currentElement).level != undefined){
                 document.getElementById(currentElement).innerHTML = '';
@@ -534,7 +650,9 @@
             }
             lclStSkill();
             headerInfoToLocalS();
-            lclStExperience();
+            setLocalStorageExperience();
+            setLocalStorageEducation();
+            setLocalStorageLanguage();
         }
 
 
@@ -548,23 +666,6 @@
         });
 
 
-        //--------- All settings options to view ---------//
-
-        var allSettingSelectedOption;
-
-        function allSettingsMenuF(n, n2){
-            allSettingsMenu.style.display = "flex";
-            for(i = 0; i < allSettingsMenu.childElementCount-1; i++){
-                document.getElementsByClassName('allSettingsMenuOption')[i].style.display = "none";
-            }
-            allSettingSelectedOption = n;
-            document.getElementById(n).style.display = "block";
-            document.getElementById(n).focus();
-            if(n2)
-            document.getElementById(n2).style.display = "block";
-        }
-
-
         //--------- Personal image section ---------//
         //--------- Upload personal image ---------//
 
@@ -574,7 +675,6 @@
             changeImage.innerHTML = 'Add image';
             clientPhoto.style.display = 'none';
             imageWrapper.style.height = '15%';
-            educationSection.style.margin = '30% 0';
         }
 
         var imageExt = '.jpg,.JPG,jpeg,JPEG,.bmp,.BMP,.gif,.GIF,.png,.PNG';
@@ -618,18 +718,6 @@
             delete localStorage.imageName;
         }
 
-        //Change image position//
-
-        imageAlignment.addEventListener('click', function(evt){
-            if(evt.target.tagName == 'P')
-            clientPhoto.style.objectPosition = evt.target.id;
-            localStorage.objectPosition = evt.target.id;
-        });
-
-        if(localStorage.objectPosition != undefined){
-            clientPhoto.style.objectPosition = localStorage.objectPosition;
-        }
-
 
         //--------- Contact section ---------//
 
@@ -661,19 +749,89 @@
         clientAddress.innerHTML = localStorage.clientAddress;
 
 
-        //--------- Education section ---------//
-
+        //----- Education ----//
         if(localStorage.educationWord == '' || localStorage.educationWord == undefined)
-        educationTitle.innerHTML = 'Education';
+        educationWord.innerHTML = 'EDUCATION';
         else
-        educationTitle.innerHTML = localStorage.educationWord;
+        educationWord.innerHTML = localStorage.educationWord;
+
+        if(localStorage.educations == '' || localStorage.educations == undefined){
+            addEducation('Education title', 'Education date', 'Type of the education', 'Lorem ipsum dolor sit amet con sec tetur adipis icing elit. Rat ione volu ptas et disti nctio numq uam quidem placeat');
+            addEducation('Education title', 'Education date', 'Type of the education', 'Lorem ipsum dolor sit amet con sec tetur adipis icing elit. Rat ione volu ptas et disti nctio numq uam quidem placeat');
+        }
+        else
+        for(i = 0; i < localStorage.educations.split('***').length-1; i++)
+        addEducation(localStorage.educations.split('***')[i].split('|||')[0], localStorage.educations.split('***')[i].split('|||')[1], localStorage.educations.split('***')[i].split('|||')[2], localStorage.educations.split('***')[i].split('|||')[3]);
+
+        function addEducation(title, date, type, text){
+            var education = document.createElement('div');
+            education.id = 'education' + parseInt(Math.ceil(Math.random()*9999)+10000);
+            education.className = 'education';
+
+            var educDiv1 = document.createElement('div');
+            educDiv1.className = 'educDiv1';
+
+            var educationTitle = document.createElement('b');
+            educationTitle.id = education.id + 'educationTitle';
+            educationTitle.className = 'changable';
+            educationTitle.innerHTML = title;
+
+            var educationDate = document.createElement('p');
+            educationDate.id = education.id + 'educationDate';
+            educationDate.className = 'changable';
+            educationDate.innerHTML = date;
+
+            educDiv1.appendChild(educationTitle);
+            educDiv1.appendChild(educationDate);
+
+            var educDiv2 = document.createElement('div');
+            educDiv2.className = 'educDiv2';
+
+            var point = document.createElement('div');
+            point.className = 'educationPoint';
+            
+            var educationType = document.createElement('b');
+            educationType.id = education.id + 'educationType';
+            educationType.className = 'changable';
+            educationType.innerHTML = type;
+
+            var educationText = document.createElement('p');
+            educationText.id = education.id + 'educationText';
+            educationText.className = 'changable';
+            educationText.innerHTML = text;
+
+            education.id = educationTitle.id + 'Div';
+
+            educDiv2.appendChild(point);
+            educDiv2.appendChild(educationType);
+            educDiv2.appendChild(educationText);
+
+            education.appendChild(educDiv1);
+            education.appendChild(educDiv2);
+
+            educationsSection.appendChild(education);
+        }
+
+        function setLocalStorageEducation(){
+            localStorage.educations = '';
+            var edu = document.getElementsByClassName('education');
+            for(i = 0; i < edu.length; i++)
+            localStorage.educations += edu[i].getElementsByTagName('b')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[0].innerHTML + '|||' + edu[i].getElementsByTagName('b')[1].innerHTML + '|||' + edu[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
+        }
+        setLocalStorageEducation();
+
+
+
+        //-------------- allSettingsMenuSubmit-----------------//
+
 
         document.getElementById('allSettingsMenuSubmit').onclick = function(){
             // Add education //
-            if(allSettingSelectedOption == 'addEducationText'){
-                if(addEducationText.value != ''){
-                    addEducationFromStorage(addEducationText.value);
-                    lclStEducation();
+            if(allSettingSelectedOption == 'addEducationDate'){
+                if(addEducationDate.value != '' && addEducationTitle.value != '' && addEducationText.value != '' && addEducationType.value != ''){
+                    addEducation(addEducationTitle.value, addEducationDate.value, addEducationType.value, addEducationText.value);
+                    setLocalStorageEducation();
+                    allSettingsMenu.style.display = 'none';
                 }
             }
             // Add skill //
@@ -684,39 +842,22 @@
                     lclStSkill();
                 }
             }
-            // Add experience //
-            if(allSettingSelectedOption == 'addExperienceTitle'){
-                if(addExperienceTitle.value != '' && addExperienceText.value != ''){
-                    addExperienceFromStorage(addExperienceTitle.value, addExperienceText.value);
+            // Add language //
+            if(allSettingSelectedOption == 'addLanguageName'){
+                if(addLanguageName.value != ''){
+                    addLanguage(addLanguageName.value);
+                    setLocalStorageLanguage();
                     allSettingsMenu.style.display = 'none';
-                    lclStExperience();
                 }
             }
-        }
-
-        function lclStEducation(){
-            localStorage.education = '';
-            for(i = 0; i < educationSection.getElementsByTagName('P').length; i++){
-                localStorage.education += educationSection.getElementsByTagName('P')[i].innerHTML + '/';
+            // Add experience //
+            if(allSettingSelectedOption == 'addExperienceDate'){
+                if(addExperienceDate.value != '' && addExperienceTitle.value != '' && addExperienceText.value != '' && addExperienceType.value != ''){
+                    addExperience(addExperienceTitle.value, addExperienceDate.value, addExperienceType.value, addExperienceText.value)
+                    setLocalStorageExperience();
+                    allSettingsMenu.style.display = 'none';
+                }
             }
-            localStorage.educationWord = educationTitle.innerHTML;
-        }
-
-        if(localStorage.education != undefined && localStorage.education != '')
-        for(i = 0; i < localStorage.education.split('/').length-1; i++){
-            addEducationFromStorage(localStorage.education.split('/')[i]);
-        }
-        else{
-            addEducationFromStorage('Lorem, ipsum dolor sit amet consectetur elit. Nesciunt nihil praesentium')
-        }
-
-        function addEducationFromStorage(n){
-            var newEducation = document.createElement('p');
-            newEducation.id = 'clientEducation' + parseInt(educationSection.getElementsByTagName('P').length + 1);
-            newEducation.className = 'changable';
-            newEducation.innerHTML = n;
-            educationSection.appendChild(newEducation);
-            allSettingsMenu.style.display = "none";
         }
 
 
@@ -773,6 +914,55 @@
             addSkillFromStorage(localStorage.skills.split('***')[i].split('|||')[0], localStorage.skills.split('***')[i].split('|||')[1]);
         }
 
+
+        //----- Language ----//
+        if(localStorage.languageWord == '' || localStorage.languageWord == undefined)
+        languageWord.innerHTML = '/// Languages';
+        else
+        languageWord.innerHTML = localStorage.languageWord;
+
+        if(localStorage.languageTitle == '' || localStorage.languageTitle == undefined){
+            addLanguage('language1');
+            addLanguage('language2');
+        }
+        else
+        for(i = 0; i < localStorage.languageTitle.split('|||').length-1; i++)
+        addLanguage(localStorage.languageTitle.split('|||')[i]);
+
+        function addLanguage(n){
+            var language = document.createElement('div');
+            language.id = 'language' + parseInt(Math.ceil(Math.random()*9999)+10000);
+            language.className = 'language';
+
+            var div = document.createElement('div');
+            div.className = 'languageDiv';
+
+            var div2 = document.createElement('div');
+            div2.className = 'languageSectionPoint';
+
+            var title = document.createElement('p');
+            title.id = language.id + 'Title';
+            title.className = 'changable';
+            title.innerHTML = n;
+
+            language.id = title.id + 'Div';
+
+            div.appendChild(div2);
+            div.appendChild(title);
+
+            language.appendChild(div);
+
+            languageSection.appendChild(language);
+        }
+
+        function setLocalStorageLanguage(){
+            localStorage.languageTitle = '';
+            var lang = document.getElementsByClassName('languageDiv');
+            for(i = 0; i < lang.length; i++)
+            localStorage.languageTitle += lang[i].getElementsByTagName('p')[0].innerHTML + '|||';
+        }
+        setLocalStorageLanguage();
+
         //--------- Right section ---------//
         //--------- Header info and profile ---------//
         
@@ -783,91 +973,102 @@
         if(localStorage.clientTitle == '' || localStorage.clientTitle == undefined)
         localStorage.clientTitle = 'Career title';
 
-        if(localStorage.clientTitle2 == '' || localStorage.clientTitle2 == undefined)
-        clientEmail2.innerHTML = 'Address: ' + clientAddress.innerHTML;
-        else
-        clientEmail2.innerHTML = localStorage.clientTitle2;
-
-        if(localStorage.FloatingText == '' || localStorage.FloatingText == undefined)
-        localStorage.FloatingText = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione voluptate ducimus est illum iusto animi';
+        if(localStorage.clientProfile == '' || localStorage.clientProfile == undefined)
+        localStorage.clientProfile = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione voluptate ducimus est illum iusto animi';
 
         if(localStorage.profileWord == '' || localStorage.profileWord == undefined)
-        profileTitle.innerHTML = '/// Profile';
+        profileWord.innerHTML = '/// Profile';
         else
-        profileTitle.innerHTML = localStorage.profileWord;
+        profileWord.innerHTML = localStorage.profileWord;
 
         if(localStorage.clientProfile == '' || localStorage.clientProfile == undefined)
         localStorage.clientProfile = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione voluptate ducimus est illum iusto animi vitae magnam, ea soluta quisquam, non praesentium amet perferendis, qui nulla optio! Quis, voluptate hic! Lorem ipsum dolor sit amet consectetur adipisicing elit.';
 
         clientName.innerHTML = localStorage.clientName;
         clientTitle.innerHTML = localStorage.clientTitle;
-        FloatingText.innerHTML = localStorage.FloatingText;
+        clientProfile.innerHTML = localStorage.clientProfile;
         clientProfile.innerHTML = localStorage.clientProfile;
 
         function headerInfoToLocalS(){
             localStorage.clientName = clientName.innerHTML;
             localStorage.clientTitle = clientTitle.innerHTML;
-            localStorage.clientTitle2 = clientEmail2.innerHTML;
-            localStorage.FloatingText = FloatingText.innerHTML;
-            localStorage.profileWord = profileTitle.innerHTML;
+            localStorage.clientProfile = clientProfile.innerHTML;
+            localStorage.profileWord = profileWord.innerHTML;
             localStorage.clientProfile = clientProfile.innerHTML;
         }
 
 
-        //--------- Experience section ---------//
-
-        if(localStorage.experience == '' || localStorage.experience == undefined)
-        addExperienceFromStorage('Lorem ipsum dolor sit', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione voluptate ducimus est illum');
-        else
-        for(i = 0; i < localStorage.experience.split('***').length-1; i++){
-            addExperienceFromStorage(localStorage.experience.split('***')[i].split('|||')[0], localStorage.experience.split('***')[i].split('|||')[1]);
-        }
-
+        //----- Experience ----//
         if(localStorage.experienceWord == '' || localStorage.experienceWord == undefined)
-        experienceTitle.innerHTML = '/// Experience';
+        experienceWord.innerHTML = 'WORK EXPERIENCE';
         else
-        experienceTitle.innerHTML = localStorage.experienceWord;
+        experienceWord.innerHTML = localStorage.experienceWord;
 
-        function addExperienceFromStorage(ttl, txt){
+        if(localStorage.experiences == '' || localStorage.experiences == undefined){
+            addExperience('Experience title', 'Experience date', 'Type of the experience', 'Lorem ipsum dolor sit amet con sec tetur adipis icing elit. Rat ione volu ptas et disti nctio numq uam quidem placeat');
+            addExperience('Experience title', 'Experience date', 'Type of the experience', 'Lorem ipsum dolor sit amet con sec tetur adipis icing elit. Rat ione volu ptas et disti nctio numq uam quidem placeat');
+            addExperience('Experience title', 'Experience date', 'Type of the experience', 'Lorem ipsum dolor sit amet con sec tetur adipis icing elit. Rat ione volu ptas et disti nctio numq uam quidem placeat');
+        }
+        else
+        for(i = 0; i < localStorage.experiences.split('***').length-1; i++)
+        addExperience(localStorage.experiences.split('***')[i].split('|||')[0], localStorage.experiences.split('***')[i].split('|||')[1], localStorage.experiences.split('***')[i].split('|||')[2], localStorage.experiences.split('***')[i].split('|||')[3]);
+
+        function addExperience(title, date, type, text){
             var experience = document.createElement('div');
-            var nmOfExprns = document.getElementsByClassName('experience').length;
-            experience.id = 'experience' + parseInt(nmOfExprns + 1);
+            experience.id = 'experience' + parseInt(Math.ceil(Math.random()*9999)+10000);
             experience.className = 'experience';
 
-            var divMain = document.createElement('div');
+            var expDiv1 = document.createElement('div');
+            expDiv1.className = 'expDiv1';
 
-            var div = document.createElement('div');
-            div.className = 'experiencePoint';
+            var jobTitle = document.createElement('b');
+            jobTitle.id = experience.id + 'JobTitle';
+            jobTitle.className = 'changable';
+            jobTitle.innerHTML = title;
 
-            var experienceTitle = document.createElement('h6');
-            experienceTitle.id = 'experience' + parseInt(nmOfExprns + 1) + 'Title';
-            experienceTitle.className = 'changable';
-            experienceTitle.innerHTML = ttl;
+            var jobDate = document.createElement('p');
+            jobDate.id = experience.id + 'JobDate';
+            jobDate.className = 'changable';
+            jobDate.innerHTML = date;
 
-            divMain.appendChild(div);
-            divMain.appendChild(experienceTitle);
+            expDiv1.appendChild(jobTitle);
+            expDiv1.appendChild(jobDate);
 
-            var experienceText = document.createElement('p');
-            experienceText.id = 'experience' + parseInt(nmOfExprns + 1) + 'Text';
-            experienceText.className = 'changable';
-            experienceText.innerHTML = txt;
+            var expDiv2 = document.createElement('div');
+            expDiv2.className = 'expDiv2';
 
-            experience.appendChild(divMain);
-            experience.appendChild(experienceText);
+            var point = document.createElement('div');
+            point.className = 'experiencePoint';
+            
+            var jobType = document.createElement('b');
+            jobType.id = experience.id + 'JobType';
+            jobType.className = 'changable';
+            jobType.innerHTML = type;
 
-            rightSideFooterExperience.appendChild(experience);
+            var jobText = document.createElement('p');
+            jobText.id = experience.id + 'JobText';
+            jobText.className = 'changable';
+            jobText.innerHTML = text;
+
+            experience.id = jobTitle.id + 'Div';
+
+            expDiv2.appendChild(point);
+            expDiv2.appendChild(jobType);
+            expDiv2.appendChild(jobText);
+
+            experience.appendChild(expDiv1);
+            experience.appendChild(expDiv2);
+
+            experiencesSection.appendChild(experience);
         }
 
-        function lclStExperience(){
-            localStorage.experience = '';
-            for(i = 0; i < document.getElementsByClassName('experience').length; i++){
-                document.getElementsByClassName('experience')[i].id = 'experience' + parseInt(i + 1);
-                document.getElementsByClassName('experience')[i].getElementsByClassName('changable')[0].id = 'experience' + parseInt(i + 1) + 'Title';
-                document.getElementsByClassName('experience')[i].getElementsByClassName('changable')[1].id = 'experience' + parseInt(i + 1) + 'Text';
-                localStorage.experience += document.getElementById('experience' + parseInt(i + 1) + 'Title').innerHTML + '|||' + document.getElementById('experience' + parseInt(i + 1) + 'Text').innerHTML + '|||' + '***';
-            }
-            localStorage.experienceWord = experienceTitle.innerHTML;
+        function setLocalStorageExperience(){
+            localStorage.experiences = '';
+            var exp = document.getElementsByClassName('experience');
+            for(i = 0; i < exp.length; i++)
+            localStorage.experiences += exp[i].getElementsByTagName('b')[0].innerHTML + '|||' + exp[i].getElementsByTagName('p')[0].innerHTML + '|||' + exp[i].getElementsByTagName('b')[1].innerHTML + '|||' + exp[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
         }
+        setLocalStorageExperience();
 
     </script>
 </html>

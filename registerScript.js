@@ -1,6 +1,6 @@
 function authorize(){
     if(code.value != ''){
-        window.location.href = '/authorization/' + code.value;
+        window.location.href = '/authorization/' + code.value + '/' + design.value;
         if(localStorage.authorizeFailTimes == '' || localStorage.authorizeFailTimes == undefined)
         localStorage.authorizeFailTimes = 1;
         else
