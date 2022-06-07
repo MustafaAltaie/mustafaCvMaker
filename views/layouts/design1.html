@@ -310,16 +310,15 @@
         /* languages */
         #languageSection{
             position: relative;
-            padding: 7% 0;
+            padding: 10% 5%;
             display: flex;
             flex-wrap: wrap;
-            gap: 10%;
         }
         #languageSection:hover > a{
             display: block;
         }
         #languageSection > div{
-            margin: 2% 10%;
+            margin: 2% 5%;
         }
         #languageSection > h4{
             width: 100%;
@@ -503,7 +502,7 @@
             for(i = 0; i < document.getElementsByClassName('educDiv2').length; i++)
             document.getElementsByClassName('educDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px';
             for(i = 0; i < document.querySelectorAll('.levelDiv').length; i++)
-            document.getElementsByClassName('levelDiv')[i].style.height = cv.offsetWidth/250 + 'px';
+            document.getElementsByClassName('levelDiv')[i].style.height = cv.offsetWidth/200 + 'px';
             document.getElementById('editText').style.fontSize = cv.offsetWidth/ppSize + 'px';
             for(i = 0; i < allSettingsMenu.querySelectorAll('textarea').length; i++)
             allSettingsMenu.getElementsByTagName('textarea')[i].style.fontSize = cv.offsetWidth/36.75 + 'px';
@@ -571,12 +570,17 @@
             && evt.target.id != 'mainSettings')
             mainSettings.style.display = 'none';
 
-            if(evt.target.className == 'changable' || evt.target.className == 'clientSkill'){
+            if(evt.target.className == 'changable'){
                 editText.style.width = cv.offsetWidth/2 + 'px';
                 editText.style.height = evt.target.offsetHeight + 'px';
                 editText.value = evt.target.innerHTML;
                 currentElement = evt.target.id;
                 settings.style.display = 'flex';
+            }
+
+            if(evt.target.id.includes('Skill')){
+                editText.style.height = evt.target.offsetHeight*5 + 'px';
+                editText.select();
             }
 
             if(evt.target.className == 'secSetting' && evt.target.id != 'mainSettingButton'){
@@ -621,42 +625,39 @@
         });
 
 
+        
         //--------- Remove or update and recorde ---------//
 
         document.getElementById('actionButton').onclick = function(){
+            if(editText.value == ''){
+                document.getElementById(currentElement + 'Div').remove();
+                setLocalStorageSections();
+                settings.style.display = 'none';
+            }
             document.getElementById(currentElement).innerHTML = editText.value;
             settings.style.display = 'none';
-
-            contactInfoToLocalS();
-
-            if(editText.value == '' && document.getElementById(currentElement).title != undefined && document.getElementById(currentElement).title != ''){
-                var skillDiv = document.getElementById(currentElement).id;
-                document.getElementById('clientSkill' + skillDiv.slice(11, skillDiv.length-5) + 'Div').remove();
-                lclStSkill();
-            }
-
+            // Profile localStorage
+            localStorage.profileWord = profileWord.innerHTML;
+            localStorage.clientProfile = clientProfile.innerHTML;
             // Language localStorage
             localStorage.languageWord = languageWord.innerHTML;
-
-            if(editText.value == '' && currentElement.substr(0, 10) == 'experience'){
-                document.getElementById(currentElement.substr(0, currentElement.length-5)).remove();
-                setLocalStorageExperience();
-                window.location.reload();
-            }
-
+            // Experience
+            localStorage.experienceWord = experienceWord.innerHTML;
             // Education
             localStorage.educationWord = educationWord.innerHTML;
+            // Skills
+            localStorage.skillWord = skillsTitle.innerHTML;
+            document.getElementById(currentElement).style.width = document.getElementById(currentElement).innerHTML*10 + '%';
+            setLocalStorageSections();
+        }
 
-            if(document.getElementById(currentElement).level != undefined){
-                document.getElementById(currentElement).innerHTML = '';
-                document.getElementById(currentElement).style.width = editText.value*10 + '%';
-                document.getElementById(currentElement).level = editText.value;
-            }
-            lclStSkill();
-            headerInfoToLocalS();
+        function setLocalStorageSections(){
+            setLocalStorageLanguage();
             setLocalStorageExperience();
             setLocalStorageEducation();
-            setLocalStorageLanguage();
+            lclStSkill();
+            contactInfoToLocalS();
+            headerInfoToLocalS();
         }
 
 
@@ -668,6 +669,40 @@
                 allSettingsMenu.style.left = evt.target.offsetLeft + 'px';
             }
         });
+
+
+        
+        //---- Clear localStorage and hide sections -----//
+        document.getElementById('hideSection').onclick = function(){
+            var sectionName = currentSection.substr(0, currentSection.length-14) + 'Section';
+            document.getElementById(sectionName).style.display = 'none';
+            allSettingsMenu.style.display = 'none';
+            if(sessionStorage.hiddenSection == undefined)
+            sessionStorage.hiddenSection = '';
+            sessionStorage.hiddenSection += sectionName + '|||';
+        }
+
+        if(sessionStorage.hiddenSection != '' && sessionStorage.hiddenSection != undefined)
+        for(i = 0; i < sessionStorage.hiddenSection.split('|||').length-1; i++)
+        document.getElementById(sessionStorage.hiddenSection.split('|||')[i]).style.display = 'none';
+
+        document.getElementById('clearLocalStorage').onclick = function(){
+            if(currentSection == 'mySocialMediaSectionSetting')
+            delete localStorage.mySocialMediaTitle;
+            if(currentSection == 'referenceSectionSetting')
+            delete localStorage.referenceTitle;
+            if(currentSection == 'languageSectionSetting')
+            delete localStorage.languageTitle;
+            if(currentSection == 'experiencesSectionSetting')
+            delete localStorage.experiences;
+            if(currentSection == 'educationsSectionSetting')
+            delete localStorage.educations;
+            if(currentSection == 'skillsSectionSetting')
+            delete localStorage.skills;
+            if(currentSection == 'hobbySectionSetting')
+            delete localStorage.hobby;
+            window.location.reload();
+        }
 
 
         //--------- Personal image section ---------//
@@ -823,6 +858,9 @@
                     allSettingsMenu.style.display = 'none';
                 }
             }
+            setTimeout(function(){
+                sizingAllCv(cvSizeRange.value);
+            }, 0);
         }
 
 
@@ -836,11 +874,10 @@
         function addSkillFromStorage(ttl, lvl){
             var skill = document.createElement('div');
             var numbrOfSkll = skillsSection.getElementsByClassName('skill').length;
-            skill.id = 'clientSkill' + parseInt(numbrOfSkll + 1) + 'Div';
             skill.className = 'skill';
 
             var title = document.createElement('p');
-            title.id = 'clientSkill' + parseInt(numbrOfSkll + 1) + 'Title';
+            title.id = parseInt(Math.ceil(Math.random()*9999)+10000) + 'Title';
             title.className = 'changable';
             title.innerHTML = ttl;
             title.title = ttl;
@@ -849,10 +886,12 @@
             levelDiv.className = 'levelDiv';
 
             var level = document.createElement('div');
-            level.id = 'clientSkill' + parseInt(numbrOfSkll + 1) + 'Level';
+            level.id = parseInt(Math.ceil(Math.random()*9999)+10000) + 'Skill';
             level.className = 'changable';
-            level.level = lvl;
+            level.innerHTML = lvl;
             level.style.width = lvl*10 + '%';
+
+            skill.id = title.id + 'Div';
 
             levelDiv.appendChild(level);
 
@@ -864,11 +903,8 @@
 
         function lclStSkill(){
             localStorage.skills = '';
-            for(i = 0; i < document.getElementsByClassName('skill').length; i++){
-                document.getElementsByClassName('skill')[i].title = document.getElementById('clientSkill' + parseInt(i + 1) + 'Title').innerHTML;
-                document.getElementsByClassName('skill')[i].level = document.getElementById('clientSkill' + parseInt(i + 1) + 'Level').level;
-                localStorage.skills += document.getElementsByClassName('skill')[i].title + '|||' + document.getElementsByClassName('skill')[i].level + '|||' + '***';
-            }
+            for(i = 0; i < document.getElementsByClassName('skill').length; i++)
+            localStorage.skills += document.getElementsByClassName('skill')[i].getElementsByTagName('p')[0].innerHTML + '|||' + document.getElementsByClassName('levelDiv')[i].getElementsByTagName('div')[0].innerHTML + '|||' + '***';
             localStorage.skillWord = skillsTitle.innerHTML;
         }
 

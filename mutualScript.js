@@ -189,6 +189,3 @@ document.getElementById('removeImage').onclick = function(){
     window.location.href = '/deleteImage/' + localStorage.imageName + '/' + cvName.value;
     delete localStorage.imageName;
 }
-
-localStorage.clear();
-sessionStorage.clear();

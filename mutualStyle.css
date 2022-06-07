@@ -117,6 +117,9 @@ body{
 #allSettingsMenu > textarea, #allSettingsMenu > input{
     border-bottom: solid 1px #111;
 }
+#allSettingsMenu > input{
+    padding: 5% 20%;
+}
 
 #cvSizeRange, .fontPSize{
     z-index: 100;
