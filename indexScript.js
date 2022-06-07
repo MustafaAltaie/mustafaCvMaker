@@ -6,7 +6,7 @@ document.addEventListener('click', function(evt){
         window.location.href = evt.target.id;
     }
 });
-setInterval(function(){
-    document.getElementsByTagName('body')[0].style.filter = 'hue-rotate(' + Math.ceil(Math.random()*360) + 'deg)';
-}, 1000);
+// setInterval(function(){
+//     document.getElementsByTagName('body')[0].style.filter = 'hue-rotate(' + Math.ceil(Math.random()*360) + 'deg)';
+// }, 1000);
 //delete localStorage.CVAuthorization;

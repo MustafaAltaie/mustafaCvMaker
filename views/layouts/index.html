@@ -1,5 +1,5 @@
 <body>
-    <div>
+    <div id="demo1">
         <span id="design1"><img src="/designs/design1.jpeg"></span>
         <span id="design2"><img src="/designs/design2.jpeg"></span>
         <span id="design3"><img src="/designs/design3.jpeg"></span>
@@ -14,6 +14,22 @@
         <span id="design12"><img src="/designs/design12.jpeg"></span>
         <span id="design13"><img src="/designs/design13.jpeg"></span>
     </div>
+
+    <div id="demo2">
+        <div id="page1"><img src="/designs/design1.jpeg"></div>
+        <div id="page2"><img src="/designs/design2.jpeg"></div>
+        <div id="page3"><img src="/designs/design3.jpeg"></div>
+        <div id="page4"><img src="/designs/design4.jpeg"></div>
+        <div id="page5"><img src="/designs/design5.jpeg"></div>
+        <div id="page6"><img src="/designs/design6.jpg"></div>
+        <div id="page7"><img src="/designs/design7.jpg"></div>
+        <div id="page8"><img src="/designs/design8.jpeg"></div>
+        <div id="page9"><img src="/designs/design9.jpeg"></div>
+        <div id="page10"><img src="/designs/design10.jpeg"></div>
+        <div id="page11"><img src="/designs/design11.jpeg"></div>
+        <div id="page12"><img src="/designs/design12.jpeg"></div>
+        <div id="page13"><img src="/designs/design13.jpeg"></div>
+    </div>
 </body>
 
 
@@ -22,12 +38,20 @@
         body span{
             width: 40%;
         }
-        body div{
+        body #demo1{
             padding: 10% 1%;
             gap: 7%;
         }
         body span{
             margin-bottom: 10%;
+        }
+        body #demo2{
+            height: 1200px;
+        }
+        body #demo2 > div{
+            left: 28.5%;
+            width: 420px;
+            height: 600px;
         }
     }
     *{
@@ -35,16 +59,10 @@
         margin: 0;
     }
     body{
-        background-image: url('/images/backgroundLogo.jpg');
-        background-attachment: fixed;
-        background-position: center;
+        background: rgb(27, 27, 27);
         background-size: 80%;
     }
-    div{
-        background-image: url('/images/beehave2.png');
-        background-size: 100%;
-        background-position: center;
-        background-attachment: fixed;
+    #demo1{
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
@@ -57,8 +75,8 @@
         position: absolute;
         width: 10px;
         height: 99%;
-        background: #252525;
-        border-right: solid 1px rgba(255, 255, 255, 0.2);
+        background: rgb(30, 30, 30);
+        border-right: solid 1px rgba(255, 255, 255, 0.15);
         left: -10px;
         top: 0;
         transform-origin: right;
@@ -87,6 +105,54 @@
         width: 100%;
         pointer-events: none;
     }
+
+    #demo2{
+        position: relative;
+        height: 800px;
+        background: #aaa;
+    }
+    #demo2 > div{
+        position: absolute;
+        top: 200px;
+        left: 40%;
+        width: 315px;
+        height: 450px;
+        transform: perspective(850px) rotateY(10deg) translateX(-50%);
+        transition: 1.5s;
+    }
+    #demo2 > div > img{
+        width: 100%;
+        height: 100%;
+    }
+
 </style>
 
 <script src="/indexScript.js"></script>
+<script>
+    document.getElementById('page1').style.transform = 'perspective(850px) rotateY(10deg) translateX(-50%)';
+
+    for(i = 1; i <= demo2.querySelectorAll('div').length; i++)
+    document.getElementById('page' + i).style.zIndex = demo2.querySelectorAll('div').length-i;
+
+    var i = 1;
+    var slideStage = 1;
+
+    setInterval(function(){
+        if(slideStage == 1){
+            document.getElementById('page' + i).style.transform = 'perspective(850px) rotateY(170deg) translateX(-50%)';
+            i++;
+            setTimeout(function(){
+                document.getElementById('page' + parseInt(i-1)).style.zIndex = '';
+            }, 600);
+            if(i > demo2.querySelectorAll('div').length)
+            slideStage = 2;
+        }
+        else{
+            i--;
+            document.getElementById('page' + i).style.transform = 'perspective(850px) rotateY(10deg) translateX(-50%)';
+            document.getElementById('page' + i).style.zIndex = demo2.querySelectorAll('div').length-i;
+            if(i == 1)
+            slideStage = 1;
+        }
+    }, 1500);
+</script>
