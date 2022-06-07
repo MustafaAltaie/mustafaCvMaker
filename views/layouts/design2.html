@@ -16,6 +16,7 @@
             <h9 id="changeText">Change text size</h9>
             <h9 id="changeCvSize">Change CV size</h9>
             <h9 id="updateAllInfo" style="display: none">Update and logout</h9>
+            <h9 id="clearAll">Clear all</h9>
             <img src="/images/deleteUser.png" id="deleteUser" style="display: none">
         </div>
         <div id="mongoData">
@@ -91,7 +92,7 @@
         <div id="cvWrapper">
             <h6 id="imageSizeLabel"></h6>
             <input id="loginText" placeholder="Email Address">
-            <button id="loginButton">OK</button>
+            <button id="loginButton">Get data</button>
 
             <input type="range" id="cvSizeRange" min="1000" max="10000">
             <input type="range" id="pSizeRange" min="10" max="100" class="fontPSize">
@@ -503,39 +504,40 @@
 
         // --------------- Get background color from localStorage -------------//
 
-        if(localStorage.cvColor2 != '' || localStorage.cvColor2 != undefined){
-            leftSide.style.background = localStorage.cvColor2;
-            clientName.style.color = localStorage.cvColor2;
-            for(i = 0; i < document.getElementsByClassName('clientSkill').length; i++)
-            document.getElementsByClassName('clientSkill')[i].style.background = localStorage.cvColor2;
-            if(document.querySelectorAll('.experiencePoint').length > 0)
-            for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++)
-            document.getElementsByClassName('experiencePoint')[i].style.background = localStorage.cvColor2;
-            if(document.querySelectorAll('.educationPoint').length > 0)
-            for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++)
-            document.getElementsByClassName('educationPoint')[i].style.background = localStorage.cvColor2;
-        }
+        setTimeout(function(){
+            if(localStorage.cvColor2 == '' || localStorage.cvColor2 == undefined){
+                cvColor('rgb(70, 70, 70)');
+            }
+            else
+            cvColor(localStorage.cvColor2);
+        }, 1);
+        
 
         // --------------- Change background color -------------//
 
         colorSettings.addEventListener('click', function(evt){
             if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings'){
-                leftSide.style.background = evt.target.id;
-                clientName.style.color = evt.target.id;
-                for(i = 0; i < document.getElementsByClassName('clientSkill').length; i++)
-                document.getElementsByClassName('clientSkill')[i].style.background = evt.target.id;
-                for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
-                document.getElementsByClassName('colorSettingDivs')[i].style.border = 'none';
-                document.getElementById(evt.target.id).style.border = 'solid 1px #fff';
-                if(document.querySelectorAll('.experiencePoint').length > 0)
-                for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++)
-                document.getElementsByClassName('experiencePoint')[i].style.background = evt.target.id;
-                if(document.querySelectorAll('.educationPoint').length > 0)
-                for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++)
-                document.getElementsByClassName('educationPoint')[i].style.background = evt.target.id;
+                cvColor(evt.target.id);
             }
             localStorage.cvColor2 = evt.target.id;
         });
+
+
+        function cvColor(n){
+            leftSide.style.background = n;
+            clientName.style.color = n;
+            for(i = 0; i < document.getElementsByClassName('clientSkill').length; i++)
+            document.getElementsByClassName('clientSkill')[i].style.background = n;
+            if(document.querySelectorAll('.experiencePoint').length > 0)
+            for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++)
+            document.getElementsByClassName('experiencePoint')[i].style.background = n;
+            if(document.querySelectorAll('.educationPoint').length > 0)
+            for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++)
+            document.getElementsByClassName('educationPoint')[i].style.background = n;
+            for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
+            document.getElementsByClassName('colorSettingDivs')[i].style.transform = 'rotate(0deg)';
+            document.getElementById(n).style.transform = 'rotate(10deg)';
+        }
 
 
         //--------- Show edit settings ---------//
@@ -743,15 +745,13 @@
 
 
         //---- Personal image section -----//
-        if(localStorage.imageName != undefined)
-        clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';
-        else{
-            changeImage.innerHTML = 'Add image';
+        if(localStorage.imageName == undefined || localStorage.imageName == ''){
             clientPhoto.style.display = 'none';
             leftSide.style.padding = '15% 5%';
             imageWrapper.style.position = 'absolute';
             imageWrapper.style.top = 0;
         }
+
 
         //----- Profile ----//
         if(localStorage.profileWord == '' || localStorage.profileWord == undefined)

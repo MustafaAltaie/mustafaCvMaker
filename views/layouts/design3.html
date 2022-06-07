@@ -15,6 +15,7 @@
             <h9 id="changeText">Change text size</h9>
             <h9 id="changeCvSize">Change CV size</h9>
             <h9 id="updateAllInfo" style="display: none">Update and logout</h9>
+            <h9 id="clearAll">Clear all</h9>
             <img src="/images/deleteUser.png" id="deleteUser" style="display: none">
         </div>
         <div id="mongoData">
@@ -92,7 +93,7 @@
 
         <div id="cvWrapper">
             <input id="loginText" placeholder="Email Address">
-            <button id="loginButton">OK</button>
+            <button id="loginButton">Get data</button>
 
             <input type="range" id="cvSizeRange" min="1000" max="10000">
             <input type="range" id="pSizeRange" min="10" max="100" class="fontPSize">
@@ -502,40 +503,36 @@
 
         // --------------- Get background color from localStorage -------------//
         setTimeout(function(){
-            if(localStorage.cvColor3 != '' || localStorage.cvColor3 != undefined){
-                document.getElementById(localStorage.cvColor3).style.transform = 'rotate(10deg)';
-                skillEducationContainer.style.background = localStorage.cvColor3;
-                profileTitleWrapper.style.background = localStorage.cvColor3;
-                for(i = 0; i < document.getElementsByClassName('hobbyPoint').length; i++)
-                document.getElementsByClassName('hobbyPoint')[i].style.background = localStorage.cvColor3;
-                headerRightSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor3;
-                headerRightSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor3;
-                headerLeftSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor3;
-                headerLeftSection.style.borderLeft = 'solid ' + cv.offsetWidth/60 + 'px '  + localStorage.cvColor3;
-                profile.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + localStorage.cvColor3;
-                for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
-                document.getElementsByClassName('colorSettingDivs')[i].style.border = 'none';
+            if(localStorage.cvColor3 == '' || localStorage.cvColor3 == undefined){
+                cvColor('rgb(190, 164, 98)');
             }
+            else
+            cvColor(localStorage.cvColor3);
         }, 1);
 
         // --------------- Change background color -------------//
         colorSettings.addEventListener('click', function(evt){
             if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings'){
-                skillEducationContainer.style.background = evt.target.id;
-                profileTitleWrapper.style.background = evt.target.id;
-                for(i = 0; i < document.getElementsByClassName('hobbyPoint').length; i++)
-                document.getElementsByClassName('hobbyPoint')[i].style.background = evt.target.id;
-                headerRightSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + evt.target.id;
-                headerRightSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + evt.target.id;
-                headerLeftSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + evt.target.id;
-                headerLeftSection.style.borderLeft = 'solid ' + cv.offsetWidth/60 + 'px '  + evt.target.id;
-                profile.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + evt.target.id;
-                for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
-                document.getElementsByClassName('colorSettingDivs')[i].style.transform = 'rotate(0deg)';
-                document.getElementById(evt.target.id).style.transform = 'rotate(10deg)';
+                cvColor(evt.target.id);
             }
             localStorage.cvColor3 = evt.target.id;
         });
+
+
+        function cvColor(n){
+            skillEducationContainer.style.background = n;
+            profileTitleWrapper.style.background = n;
+            for(i = 0; i < document.getElementsByClassName('hobbyPoint').length; i++)
+            document.getElementsByClassName('hobbyPoint')[i].style.background = n;
+            headerRightSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + n;
+            headerRightSection.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + n;
+            headerLeftSection.style.borderTop = 'solid ' + cv.offsetWidth/60 + 'px ' + n;
+            headerLeftSection.style.borderLeft = 'solid ' + cv.offsetWidth/60 + 'px '  + n;
+            profile.style.borderRight = 'solid ' + cv.offsetWidth/60 + 'px ' + n;
+            for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
+            document.getElementsByClassName('colorSettingDivs')[i].style.transform = 'rotate(0deg)';
+            document.getElementById(n).style.transform = 'rotate(10deg)';
+        }
 
 
 
@@ -704,16 +701,6 @@
             window.location.reload();
         }
 
-
-
-        //-----------Header------------//
-        //---- Personal image section -----//
-        if(localStorage.imageName != undefined)
-        clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';
-        else{
-            changeImage.innerHTML = 'Add image';
-            clientPhoto.src = '/images/personalImageIcon.png';
-        }
 
 
 

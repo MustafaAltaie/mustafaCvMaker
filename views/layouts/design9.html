@@ -16,6 +16,7 @@
             <h9 id="changeText">Change text size</h9>
             <h9 id="changeCvSize">Change CV size</h9>
             <h9 id="updateAllInfo" style="display: none">Update and logout</h9>
+            <h9 id="clearAll">Clear all</h9>
             <img src="/images/deleteUser.png" id="deleteUser" style="display: none">
         </div>
         <div id="mongoData">
@@ -89,7 +90,7 @@
         <div id="cvWrapper">
             <h6 id="imageSizeLabel"></h6>
             <input id="loginText" placeholder="Email Address">
-            <button id="loginButton">OK</button>
+            <button id="loginButton">Get data</button>
 
             <input type="range" id="cvSizeRange" min="1000" max="10000">
             <input type="range" id="pSizeRange" min="10" max="100" class="fontPSize">
@@ -793,16 +794,6 @@
             if(currentSection == 'hobbySectionMainSectionSetting')
             delete localStorage.hobby;
             window.location.reload();
-        }
-
-
-
-        //---- Personal image section -----//
-        if(localStorage.imageName != undefined)
-        clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';
-        else{
-            changeImage.innerHTML = 'Add image';
-            clientPhoto.src = '/images/personalImageIcon.png';
         }
 
 

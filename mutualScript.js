@@ -29,6 +29,7 @@ if(document.querySelectorAll('#_IdDB').length != 0){
     _idText.value = _IdDB.value;
     localStorage.clientName = clientNameDB.value;
     sessionStorage.clientEmail = clientEmailDB.value;
+    localStorage.imageName = clientEmailDB.value;
     localStorage.clientNumber = clientNumberDB.value;
     localStorage.clientTitle = clientTitleDB.value;
     localStorage.clientAddress = clientAddressDB.value.replace(' ', ' /');
@@ -42,13 +43,44 @@ if(document.querySelectorAll('#_IdDB').length != 0){
     localStorage.skills = skillsDB.value;
     localStorage.hobby = hobbyDB.value;
     login.style.display = 'none';
+    clearAll.style.display = 'none';
     updateAllInfo.style.display = 'block';
     deleteUser.style.display = 'block';
+    clientPhoto.src = '/personal images/' + clientEmailDB.value + '.jpg';
 }
 else{
     if(window.location.href.includes('@'))
     window.history.back();
 }
+
+document.getElementById('clearAll').onclick = function(){
+    if(confirm('Are you sure?') == true){
+        delete localStorage.clientName;
+        delete sessionStorage.clientEmail;
+        delete localStorage.imageName;
+        delete localStorage.clientNumber;
+        delete localStorage.clientTitle;
+        delete localStorage.clientAddress;
+        delete localStorage.clientProfile;
+        delete localStorage.mySocialMediaTitle;
+        delete localStorage.mySocialMediaText;
+        delete localStorage.referenceTitle;
+        delete localStorage.languageTitle;
+        delete localStorage.experiences;
+        delete localStorage.educations;
+        delete localStorage.skills;
+        delete localStorage.hobby;
+        window.location.reload();
+    }
+}
+
+if(localStorage.cvSize == undefined || localStorage.cvSize == ''){
+    if(window.matchMedia('(min-width: 1024px)').matches)
+    cvSizeRange.value = 3000;
+    else
+    cvSizeRange.value = 5000;
+}
+
 
 
 document.getElementById('loginButton').onclick = function(){
@@ -172,15 +204,9 @@ document.getElementById('imageFile').onchange = function(){
         }
         if(uploadPerm == 0) alert('File is not image');
         else{
-            if(changeImage.innerHTML == 'Add image'){
-                localStorage.imageName = clientEmail.innerHTML;
-                imageFileName.value = clientEmail.innerHTML;
-                imageUploadSubmit.click();
-            }
-            else{
-                imageFileName.value = sessionStorage.clientEmail;
-                imageUploadSubmit.click();
-            }
+            localStorage.imageName = clientEmail.innerHTML;
+            imageFileName.value = clientEmail.innerHTML;
+            imageUploadSubmit.click();
         }
     }
 }
@@ -189,3 +215,11 @@ document.getElementById('removeImage').onclick = function(){
     window.location.href = '/deleteImage/' + localStorage.imageName + '/' + cvName.value;
     delete localStorage.imageName;
 }
+
+
+if(localStorage.imageName == undefined || localStorage.imageName == ''){
+    changeImage.innerHTML = 'Add image';
+    clientPhoto.style.display = 'none';
+}
+else
+clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';

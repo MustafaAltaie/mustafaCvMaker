@@ -16,6 +16,7 @@
             <h9 id="changeText">Change text size</h9>
             <h9 id="changeCvSize">Change CV size</h9>
             <h9 id="updateAllInfo" style="display: none">Update and logout</h9>
+            <h9 id="clearAll">Clear all</h9>
             <img src="/images/deleteUser.png" id="deleteUser" style="display: none">
         </div>
         <div id="mongoData">
@@ -97,9 +98,8 @@
         </form>
 
         <div id="cvWrapper">
-            <h7 id="imageSizeLabel"></h7>
             <input id="loginText" placeholder="Email Address">
-            <button id="loginButton">OK</button>
+            <button id="loginButton">Get data</button>
 
             <input type="range" id="cvSizeRange" min="1000" max="10000">
             <input type="range" id="pSizeRange" min="10" max="100" class="fontPSize">
@@ -438,9 +438,6 @@
         // --------------- Change CV size via range -------------//
 
         document.getElementById('cvSizeRange').oninput = function(){
-            ratio1 = cv.offsetWidth*cv.offsetHeight/27;
-            ratio2 = Math.ceil(ratio1/100000);
-            imageSizeLabel.innerHTML = ratio2/10;
             sizingAllCv(cvSizeRange.value);
             localStorage.cvSize = cvSizeRange.value;
         }
@@ -519,11 +516,12 @@
 
         //--------------- Get background color from localStorage -------------//
 
-        if(localStorage.cvColor1 != '' || localStorage.cvColor1 != undefined)
         setInterval(function(){
+            if(localStorage.cvColor1 == '' || localStorage.cvColor1 == undefined)
+            changeColor('#09b');
+            else
             changeColor(localStorage.cvColor1);
         }, 1);
-        changeColor('#09c');
 
         // --------------- Change background color -------------//
 
@@ -556,6 +554,9 @@
             for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++)
             document.getElementsByClassName('educationPoint')[i].style.background = n;
             experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px ' + n;
+            for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
+            document.getElementsByClassName('colorSettingDivs')[i].style.transform = 'rotate(0deg)';
+            document.getElementById(n).style.transform = 'rotate(10deg)';
         }
 
 
@@ -703,19 +704,6 @@
             delete localStorage.hobby;
             window.location.reload();
         }
-
-
-        //--------- Personal image section ---------//
-        //--------- Upload personal image ---------//
-
-        if(localStorage.imageName != undefined)
-        clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';
-        else{
-            changeImage.innerHTML = 'Add image';
-            clientPhoto.style.display = 'none';
-            imageWrapper.style.height = '15%';
-        }
-
 
 
         //--------- Contact section ---------//
@@ -1070,5 +1058,8 @@
             localStorage.experiences += exp[i].getElementsByTagName('b')[0].innerHTML + '|||' + exp[i].getElementsByTagName('p')[0].innerHTML + '|||' + exp[i].getElementsByTagName('b')[1].innerHTML + '|||' + exp[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
         }
         setLocalStorageExperience();
+
+
+
     </script>
 </html>

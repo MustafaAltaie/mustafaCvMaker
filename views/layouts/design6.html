@@ -16,6 +16,7 @@
             <h9 id="changeText">Change text size</h9>
             <h9 id="changeCvSize">Change CV size</h9>
             <h9 id="updateAllInfo" style="display: none">Update and logout</h9>
+            <h9 id="clearAll">Clear all</h9>
             <img src="/images/deleteUser.png" id="deleteUser" style="display: none">
         </div>
         <div id="mongoData">
@@ -89,7 +90,7 @@
         <div id="cvWrapper">
             <h6 id="imageSizeLabel"></h6>
             <input id="loginText" placeholder="Email Address">
-            <button id="loginButton">OK</button>
+            <button id="loginButton">Get data</button>
 
             <input type="range" id="cvSizeRange" min="1000" max="10000">
             <input type="range" id="pSizeRange" min="10" max="100" class="fontPSize">
@@ -578,18 +579,18 @@
 
 
         // --------------- Get background color from localStorage -------------//
-        if(localStorage.cvColor6 != '' || localStorage.cvColor6 != undefined){
-            setTimeout(function(){
-                backColor(localStorage.cvColor6);
-            }, 10);
-        }
+        setTimeout(function(){
+            if(localStorage.cvColor6 == '' || localStorage.cvColor6 == undefined)
+            backColor('#71ad58');
+            else
+            backColor(localStorage.cvColor6);
+        }, 1);
 
 
         // --------------- Change background color -------------//
         colorSettings.addEventListener('click', function(evt){
-            if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings'){
-                backColor(evt.target.id);
-            }
+            if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings')
+            backColor(evt.target.id);
             localStorage.cvColor6 = evt.target.id;
         });
 
@@ -775,15 +776,6 @@
             window.location.reload();
         }
 
-
-
-        //---- Personal image section -----//
-        if(localStorage.imageName != undefined)
-        clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';
-        else{
-            changeImage.innerHTML = 'Add image';
-            clientPhoto.src = '/images/personalImageIcon.png';
-        }
 
 
 
