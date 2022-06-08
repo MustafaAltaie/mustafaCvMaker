@@ -213,6 +213,7 @@ router.post('/newCV', async function(req, res){
     }
     else{
         NewClient.findByIdAndUpdate({_id: req.body._id}, req.body, {new: true}, function(){
+            fs.renameSync('personal images/' + req.body.oldEmail + '.jpg', 'personal images/' + req.body.clientEmail + '.jpg');
             res.redirect('/' + req.body.designNumber);
         });
     }

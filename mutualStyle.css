@@ -2,17 +2,33 @@
     body #cvWrapper{
         padding: 1200px 0 50px 0;
     }
+    body #navButtonMobile{
+        display: block;
+    }
+    body #nav{
+        transform: translateY(-110%);
+        flex-direction: column;
+        width: 80%;
+        background: #111;
+    }
     body #nav > h9{
-        font-size: 15em;
-        padding: 0.5em;
+        font-size: 20em;
+        padding: 1em;
+    }
+    body #nav > h9:hover{
+        padding: 1em;
     }
     body #login, body #home, body #deleteUser{
-        width: 30em;
+        width: 25%;
+    }
+    body #login:hover, #deleteUser:hover{
+        margin-top: unset;
+        padding-bottom: unset;
     }
     body #cvSizeRange, body .fontPSize{
-        width: 95%;
-        top: 800px;
-        left: 2.5%;
+        width: 80%;
+        height: 2%;
+        top: 50%;
     }
     body #mainSettings{
         width: 40%;
@@ -26,18 +42,16 @@
     }
     body #loginText, body #loginButton{
         left: 1%;
-        transform: translateY(0%);
-        padding: 100px 100px 100px 400px;
-        font-size: 15em;
-        border-radius: 200px;
-        border: none;
+        transform: translateY(-110%);
+        padding: 170px 100px 170px 400px;
+        font-size: 20em;
     }
     body #loginText{
         width: 70%;
     }
     body #loginButton{
-        border-radius: 200px 0 0 200px;
-        padding: 100px 200px;
+        padding: 170px 200px;
+        background: #004b77;
     }
 }
 *{
@@ -56,12 +70,29 @@ body{
     justify-content: center;
     padding: 500px 0 50px 0;
 }
+#newCVSubmit{
+    display: none;
+}
 #nav{
-    z-index: 1000;
+    z-index: 100;
     position: fixed;
     top: 0;
     left: 0;
     display: flex;
+    transition: 0.3s;
+}
+#navButtonMobile{
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1% 3%;
+    color: #fff;
+    cursor: pointer;
+    transform: rotate(90deg);
+    font-size: 400px;
+    letter-spacing: 50px;
+    display: none;
 }
 #nav > h9{
     padding: 0.5em 1em;
@@ -134,8 +165,8 @@ body{
     display: none;
 }
 #cvSizeRange::-webkit-slider-thumb, .fontPSize::-webkit-slider-thumb{
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
     background: #000;
     cursor: pointer;
@@ -147,11 +178,11 @@ body{
 }
 
 #loginText, #loginButton{
-    z-index: 10;
+    z-index: 1000;
     position: fixed;
     left: 20px;
     top: 0;
-    transform: translateY(0%);
+    transform: translateY(-110%);
     padding: 50px 50px 50px 200px;
     font-size: 120px;
     background: #fff;

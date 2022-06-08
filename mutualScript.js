@@ -42,6 +42,7 @@ if(document.querySelectorAll('#_IdDB').length != 0){
     localStorage.educations = educationsDB.value;
     localStorage.skills = skillsDB.value;
     localStorage.hobby = hobbyDB.value;
+    oldEmail.value = clientEmailDB.value;
     login.style.display = 'none';
     clearAll.style.display = 'none';
     updateAllInfo.style.display = 'block';
@@ -52,6 +53,7 @@ else{
     if(window.location.href.includes('@'))
     window.history.back();
 }
+
 
 document.getElementById('clearAll').onclick = function(){
     if(confirm('Are you sure?') == true){
@@ -98,19 +100,23 @@ function getData(){
 
 document.addEventListener('click', function(evt){
     if(evt.target.id != 'login' && evt.target.id != 'loginText' && evt.target.id != 'loginButton'){
-        loginText.style.transform = 'translateY(0%)';
-            loginButton.style.transform = 'translateY(0%)';
+        loginText.style.transform = 'translateY(-110%)';
+        loginButton.style.transform = 'translateY(-110%)';
     }
+    if(evt.target.parentNode.id != 'nav' && evt.target.id != 'navButtonMobile'
+    && window.matchMedia('(max-width: 1024px)').matches)
+    nav.style.transform = 'translateY(-110%)';
 });
 
 nav.addEventListener('click', function(evt){
     if(evt.target.tagName == 'H9' || evt.target.tagName == 'IMG'){
         if(evt.target.id == 'saveCv')
+        if(clientEmail.innerHTML != 'emailaddress@example.com' && localStorage.imageName != undefined)
         screenShot();
 
         if(evt.target.id == 'login'){
-            loginText.style.transform = 'translateY(130%)';
-            loginButton.style.transform = 'translateY(130%)';
+            loginText.style.transform = 'translateY(10%)';
+            loginButton.style.transform = 'translateY(10%)';
             loginText.focus();
         }
 
@@ -138,6 +144,11 @@ nav.addEventListener('click', function(evt){
     if(evt.target.id == 'home')
     window.location.href = '/';
 });
+
+
+document.getElementById('navButtonMobile').onclick = function(){
+    nav.style.transform = 'translateY(0%)';
+}
 
 
 
@@ -218,8 +229,13 @@ document.getElementById('imageFile').onchange = function(){
 }
 
 document.getElementById('removeImage').onclick = function(){
-    window.location.href = '/deleteImage/' + localStorage.imageName + '/' + cvName.value;
-    delete localStorage.imageName;
+    if(localStorage.imageName == undefined || localStorage.imageName == ''){
+        alert('No image added!');
+    }
+    else{
+        window.location.href = '/deleteImage/' + localStorage.imageName + '/' + cvName.value;
+        delete localStorage.imageName;
+    }
 }
 
 if(localStorage.imageName == undefined || localStorage.imageName == ''){
@@ -227,4 +243,5 @@ if(localStorage.imageName == undefined || localStorage.imageName == ''){
     clientPhoto.style.display = 'none';
 }
 else
+if(localStorage.clientEmail != undefined)
 clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';
