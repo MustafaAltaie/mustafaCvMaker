@@ -115,8 +115,14 @@ nav.addEventListener('click', function(evt){
         screenShot();
 
         if(evt.target.id == 'login'){
-            loginText.style.transform = 'translateY(10%)';
-            loginButton.style.transform = 'translateY(10%)';
+            if(window.matchMedia('(max-width: 1024px)').matches){
+                loginText.style.transform = 'translateY(10%)';
+                loginButton.style.transform = 'translateY(10%)';
+            }
+            else{
+                loginText.style.transform = 'translateY(110%)';
+                loginButton.style.transform = 'translateY(110%)';
+            }
             loginText.focus();
         }
 
@@ -243,5 +249,4 @@ if(localStorage.imageName == undefined || localStorage.imageName == ''){
     clientPhoto.style.display = 'none';
 }
 else
-if(localStorage.clientEmail != undefined)
 clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';
