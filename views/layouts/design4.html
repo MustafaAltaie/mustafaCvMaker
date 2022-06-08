@@ -688,7 +688,7 @@
             if(currentSection == 'experiencesSectionSetting')
             delete localStorage.experiences;
             if(currentSection == 'educationsSectionSetting')
-            delete localStorage.myEducations;
+            delete localStorage.educations;
             if(currentSection == 'skillsSectionSetting')
             delete localStorage.skills;
             if(currentSection == 'hobbySectionMainSectionSetting')
@@ -816,13 +816,13 @@
         else
         educationWord.innerHTML = localStorage.educationWord;
 
-        if(localStorage.myEducations == '' || localStorage.myEducations == undefined){
+        if(localStorage.educations == '' || localStorage.educations == undefined){
             addEducation('Education title', '2022/02/22', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
             addEducation('Education title', '2022/02/22', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
         }
         else
-        for(i = 0; i < localStorage.myEducations.split('***').length-1; i++)
-        addEducation(localStorage.myEducations.split('***')[i].split('|||')[0], localStorage.myEducations.split('***')[i].split('|||')[1], localStorage.myEducations.split('***')[i].split('|||')[2]);
+        for(i = 0; i < localStorage.educations.split('***').length-1; i++)
+        addEducation(localStorage.educations.split('***')[i].split('|||')[0], localStorage.educations.split('***')[i].split('|||')[1], localStorage.educations.split('***')[i].split('|||')[2]);
 
         function addEducation(title, date, text){
             var education = document.createElement('div');
@@ -854,10 +854,10 @@
         }
 
         function setLocalStorageEducation(){
-            localStorage.myEducations = '';
+            localStorage.educations = '';
             var edu = document.getElementsByClassName('educationMainBlock');
             for(i = 0; i < edu.length; i++)
-            localStorage.myEducations += edu[i].getElementsByTagName('h6')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
+            localStorage.educations += edu[i].getElementsByTagName('h6')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
         }
 
 

@@ -55,23 +55,27 @@ else{
 
 document.getElementById('clearAll').onclick = function(){
     if(confirm('Are you sure?') == true){
-        delete localStorage.clientName;
-        delete sessionStorage.clientEmail;
-        delete localStorage.imageName;
-        delete localStorage.clientNumber;
-        delete localStorage.clientTitle;
-        delete localStorage.clientAddress;
-        delete localStorage.clientProfile;
-        delete localStorage.mySocialMediaTitle;
-        delete localStorage.mySocialMediaText;
-        delete localStorage.referenceTitle;
-        delete localStorage.languageTitle;
-        delete localStorage.experiences;
-        delete localStorage.educations;
-        delete localStorage.skills;
-        delete localStorage.hobby;
+        clearLocalStorage();
         window.location.reload();
     }
+}
+
+function clearLocalStorage(){
+    delete localStorage.clientName;
+    delete sessionStorage.clientEmail;
+    delete localStorage.imageName;
+    delete localStorage.clientNumber;
+    delete localStorage.clientTitle;
+    delete localStorage.clientAddress;
+    delete localStorage.clientProfile;
+    delete localStorage.mySocialMediaTitle;
+    delete localStorage.mySocialMediaText;
+    delete localStorage.referenceTitle;
+    delete localStorage.languageTitle;
+    delete localStorage.experiences;
+    delete localStorage.educations;
+    delete localStorage.skills;
+    delete localStorage.hobby;
 }
 
 if(localStorage.cvSize == undefined || localStorage.cvSize == ''){
@@ -121,8 +125,10 @@ nav.addEventListener('click', function(evt){
         cvSizeRange.style.display = 'none';
 
         if(evt.target.id == 'deleteUser'){
-            if(confirm('Are you sure you want to delete all user data?') == true)
-            window.location.href = '/deleteUser/' + _idText.value + '/' + cvName.value;
+            if(confirm('Are you sure you want to delete all user data?') == true){
+                window.location.href = '/deleteUser/' + _idText.value + '/' + cvName.value + '/' + sessionStorage.clientEmail;
+                clearLocalStorage();
+            }
         }
 
         if(evt.target.id == 'updateAllInfo')
@@ -215,7 +221,6 @@ document.getElementById('removeImage').onclick = function(){
     window.location.href = '/deleteImage/' + localStorage.imageName + '/' + cvName.value;
     delete localStorage.imageName;
 }
-
 
 if(localStorage.imageName == undefined || localStorage.imageName == ''){
     changeImage.innerHTML = 'Add image';

@@ -226,8 +226,9 @@ router.get('/:clientEmail/:designNumber', function(req, res){
     }).lean();
 });
 
-router.get('/deleteUser/:id/:designNumber', function(req, res){
+router.get('/deleteUser/:id/:designNumber/:email', function(req, res){
     NewClient.findByIdAndRemove(req.params.id, function(){
+        fs.unlinkSync('personal images/' + req.params.email + '.jpg', function(){});
         res.redirect('/' + req.params.designNumber);
     });
 });

@@ -133,7 +133,6 @@
                     <div id="headerRightSection">
                         <h1 id="clientName" class="changable">Mustafa Altaie</h1>
                         <b id="clientTitle" class="changable">Software Developer</b>
-                        <p id="clientTitle2"class="changable">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione voluptas et distinctio numquam quidem placeat incidunt</p>
                     </div>
                 </div>
                 <!-- Footer section -->
@@ -307,10 +306,11 @@
             margin: 3% 0;
         }
         .skillMainBlock > p{
-            margin-bottom: 2%;
+            margin-bottom: 1%;
         }
         .clientSkillWrapper{
             width: 100%;
+            background: rgba(0, 0, 0, 0.2);
         }
         .clientSkill{
             height: 100%;
@@ -334,13 +334,12 @@
             padding: 5%;
         }
         #profileTitleWrapper{
-            background: rgb(190, 164, 98);
             display: flex;
             flex-direction: column;
-            padding: 5% 5% 7% 5%;
+            padding: 2% 3% 4% 5%;
         }
         #profileTitleWrapper > b{
-            margin-bottom: 3%;
+            margin-bottom: 2%;
         }
         /* Experience */
         #experiencesSection{
@@ -376,24 +375,25 @@
             padding: 5%;
         }
         #hobbySection{
-            padding: 5%;
+            padding: 2% 5%;
             background: #353535;
             color: #eee;
         }
         #mainHobbyWrapper{
             display: flex;
             flex-wrap: wrap;
-            gap: 10%;
+            gap: 5%;
             margin-top: 2%;
         }
         #mainHobbyWrapper > div{
             display: flex;
             align-items: center;
-            gap: 10%;
-            margin: 3% 0;
+            gap: 5%;
+            margin: 2% 0;
         }
         #mainHobbyWrapper > div > p{
             white-space: nowrap;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
         }
         .hobbyPoint{
             background: #bea462;
@@ -446,11 +446,11 @@
             for(i = 0; i < document.querySelectorAll('p').length; i++)
             document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
             for(i = 0; i < document.querySelectorAll('b').length; i++)
-            document.getElementsByTagName('b')[i].style.fontSize = cv.offsetWidth/pSize*1.3 + 'px';
+            document.getElementsByTagName('b')[i].style.fontSize = cv.offsetWidth/pSize*1.5 + 'px';
             for(i = 0; i < document.querySelectorAll('h6').length; i++)
-            document.getElementsByTagName('h6')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
+            document.getElementsByTagName('h6')[i].style.fontSize = cv.offsetWidth/pSize*1.2 + 'px';
             for(i = 0; i < document.querySelectorAll('h1').length; i++){
-                document.getElementsByTagName('h1')[i].style.fontSize = cv.offsetWidth/pSize*3 + 'px';
+                document.getElementsByTagName('h1')[i].style.fontSize = cv.offsetWidth/pSize*4 + 'px';
                 document.getElementsByTagName('h1')[i].style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
             }
             for(i = 0; i < document.querySelectorAll('u').length; i++)
@@ -472,10 +472,8 @@
                 document.querySelectorAll('.icons')[i].style.width = cv.offsetWidth/25 + 'px';
                 document.querySelectorAll('.icons')[i].style.minHeight = cv.offsetWidth/23 + 'px';
             }
-            for(i = 0; i < document.querySelectorAll('.clientSkillWrapper').length; i++){
-                document.querySelectorAll('.clientSkillWrapper')[i].style.height = cv.offsetWidth/70 + 'px';
-                document.querySelectorAll('.clientSkillWrapper')[i].style.border = 'solid ' + cv.offsetWidth/800 + 'px #333'
-            }
+            for(i = 0; i < document.querySelectorAll('.clientSkillWrapper').length; i++)
+            document.querySelectorAll('.clientSkillWrapper')[i].style.height = cv.offsetWidth/100 + 'px';
             experiencesSection.style.borderTop = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
             experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
             if(document.querySelectorAll('.experiencePoint').length > 0)
@@ -693,7 +691,7 @@
             if(currentSection == 'experiencesSectionSetting')
             delete localStorage.experiences;
             if(currentSection == 'educationsSectionSetting')
-            delete localStorage.myEducations;
+            delete localStorage.educations;
             if(currentSection == 'skillsSectionSetting')
             delete localStorage.skills;
             if(currentSection == 'hobbySectionMainSectionSetting')
@@ -714,11 +712,6 @@
         clientTitle.innerHTML = 'Title or information';
         else
         clientTitle.innerHTML = localStorage.clientTitle;
-
-        if(localStorage.clientTitle2 == '' || localStorage.clientTitle2 == undefined)
-        clientTitle2.innerHTML = 'Title or information';
-        else
-        clientTitle2.innerHTML = localStorage.clientTitle2;
 
         if(localStorage.mobileWord == '' || localStorage.mobileWord == undefined)
         mobileWord.innerHTML = 'Mobile';
@@ -753,7 +746,6 @@
         function setLocalStorageHeader(){
             localStorage.clientName = clientName.innerHTML;
             localStorage.clientTitle = clientTitle.innerHTML;
-            localStorage.clientTitle2 = clientTitle2.innerHTML;
             localStorage.mobileWord = mobileWord.innerHTML;
             localStorage.clientNumber = clientNumber.innerHTML;
             localStorage.emailWord = emailWord.innerHTML;
@@ -821,13 +813,13 @@
         else
         educationWord.innerHTML = localStorage.educationWord;
 
-        if(localStorage.myEducations == '' || localStorage.myEducations == undefined){
+        if(localStorage.educations == '' || localStorage.educations == undefined){
             addEducation('Education title', '2022/02/22', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
             addEducation('Education title', '2022/02/22', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.');
         }
         else
-        for(i = 0; i < localStorage.myEducations.split('***').length-1; i++)
-        addEducation(localStorage.myEducations.split('***')[i].split('|||')[0], localStorage.myEducations.split('***')[i].split('|||')[1], localStorage.myEducations.split('***')[i].split('|||')[2]);
+        for(i = 0; i < localStorage.educations.split('***').length-1; i++)
+        addEducation(localStorage.educations.split('***')[i].split('|||')[0], localStorage.educations.split('***')[i].split('|||')[1], localStorage.educations.split('***')[i].split('|||')[2]);
 
         function addEducation(title, date, text){
             var education = document.createElement('div');
@@ -859,10 +851,10 @@
         }
 
         function setLocalStorageEducation(){
-            localStorage.myEducations = '';
+            localStorage.educations = '';
             var edu = document.getElementsByClassName('educationMainBlock');
             for(i = 0; i < edu.length; i++)
-            localStorage.myEducations += edu[i].getElementsByTagName('h6')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
+            localStorage.educations += edu[i].getElementsByTagName('h6')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[0].innerHTML + '|||' + edu[i].getElementsByTagName('p')[1].innerHTML + '|||' + '***';
         }
 
 

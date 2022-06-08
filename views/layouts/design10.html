@@ -57,44 +57,6 @@
             <input type="hidden" name="designNumber" value="design10" id="cvName">
             <button id="newCVSubmit">OK</button>
         </form>
-        <div id="mongoData">
-            {{#each dataDBList}}
-            <input type="hidden" value="{{this._id}}" id="_IdDB">
-            <input type="hidden" value="{{this.clientName}}" id="clientNameDB">
-            <input type="hidden" value="{{this.clientEmail}}" id="clientEmailDB">
-            <input type="hidden" value="{{this.clientNumber}}" id="clientNumberDB">
-            <input type="hidden" value="{{this.clientTitle}}" id="clientTitleDB">
-            <input type="hidden" value="{{this.clientAddress}}" id="clientAddressDB">
-            <input type="hidden" value="{{this.clientProfile}}" id="clientProfileDB">
-            <input type="hidden" value="{{this.mySocialMediaTitle}}" id="mySocialMediaTitleDB">
-            <input type="hidden" value="{{this.mySocialMediaText}}" id="mySocialMediaTextDB">
-            <input type="hidden" value="{{this.referenceTitle}}" id="referenceTitleDB">
-            <input type="hidden" value="{{this.languageTitle}}" id="languageTitleDB">
-            <input type="hidden" value="{{this.experiences}}" id="experiencesDB">
-            <input type="hidden" value="{{this.educations}}" id="educationsDB">
-            <input type="hidden" value="{{this.skills}}" id="skillsDB">
-            <input type="hidden" value="{{this.hobby}}" id="hobbyDB">
-            {{/each}}
-        </div>
-        <form action="/newCV" method="post" id="newCVForm">
-            <input type="hidden" name="_id" id="_idText">
-            <input type="hidden" name="clientName" id="clientNameText">
-            <input type="hidden" name="clientEmail" id="clientEmailText">
-            <input type="hidden" name="clientNumber" id="clientNumberText">
-            <input type="hidden" name="clientTitle" id="clientTitleText">
-            <input type="hidden" name="clientAddress" id="clientAddressText">
-            <input type="hidden" name="clientProfile" id="clientProfileText">
-            <input type="hidden" name="mySocialMediaTitle" id="mySocialMediaTitleText">
-            <input type="hidden" name="mySocialMediaText" id="mySocialMediaTextText">
-            <input type="hidden" name="referenceTitle" id="referenceTitleText">
-            <input type="hidden" name="languageTitle" id="languageTitleText">
-            <input type="hidden" name="experiences" id="experiencesText">
-            <input type="hidden" name="educations" id="educationsText">
-            <input type="hidden" name="skills" id="skillsText">
-            <input type="hidden" name="hobby" id="hobbyText">
-            <input type="hidden" name="designNumber" value="design10">
-            <button id="newCVSubmit">OK</button>
-        </form>
         <div id="mainSettings" class="mainSettings">
             <div id="colorSettings" class="mainSettings">
                 <div id="#dac77e" class="colorSettingDivs" style="background:#dac77e"></div>
