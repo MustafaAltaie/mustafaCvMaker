@@ -29,6 +29,7 @@
         <div id="page11"><img src="/designs/design11.jpeg"></div>
         <div id="page12"><img src="/designs/design12.jpeg"></div>
         <div id="page13"><img src="/designs/design13.jpeg"></div>
+        <input type="range" max="6000" min="150" value="1500" id="sliderSpeedRange">
     </div>
 </body>
 
@@ -114,45 +115,107 @@
     #demo2 > div{
         position: absolute;
         top: 200px;
-        left: 40%;
+        left: 450px;
         width: 315px;
         height: 450px;
-        transform: perspective(850px) rotateY(10deg) translateX(-50%);
-        transition: 1.5s;
+        transform-origin: right;
+        transform: perspective(1000px) rotateY(20deg);
+    }
+    #demo2 > div::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        top: -2px;
+        background: linear-gradient(to right, rgb(197, 172, 115), #a70);
+        width: 30px;
+        height: 4px;
+    }
+    #demo2 > div::after{
+        content: '';
+        position: absolute;
+        left: -2px;
+        top: 0;
+        background: linear-gradient(rgb(197, 172, 115), #a70);
+        width: 4px;
+        height: 30px;
     }
     #demo2 > div > img{
         width: 100%;
         height: 100%;
+    }
+    #sliderSpeedRange{
+        position: sticky;
+        top:  10px;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        transform: rotate(180deg);
+        -webkit-appearance: none;
+        background: linear-gradient(to right, rgb(195, 58, 20), rgb(236, 234, 116));
+    }
+    #sliderSpeedRange::-webkit-slider-thumb{
+        -webkit-appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 15px;
+        background: #000;
     }
 
 </style>
 
 <script src="/indexScript.js"></script>
 <script>
-    document.getElementById('page1').style.transform = 'perspective(850px) rotateY(10deg) translateX(-50%)';
 
-    for(i = 1; i <= demo2.querySelectorAll('div').length; i++)
-    document.getElementById('page' + i).style.zIndex = demo2.querySelectorAll('div').length-i;
+    document.getElementById('sliderSpeedRange').onchange = function(){
+        localStorage.sliderSpeedRange = sliderSpeedRange.value;
+        window.location.reload();
+    }
+
+    if(localStorage.sliderSpeedRange == undefined)
+    var sliderSpeed = sliderSpeedRange.value;
+    else{
+        sliderSpeedRange.value = localStorage.sliderSpeedRange;
+        var sliderSpeed = localStorage.sliderSpeedRange;
+    }
+
+    document.getElementById('page1').style.transform = 'perspective(1000px) rotateY(20deg)';
+
+    for(i = 1; i <= demo2.querySelectorAll('div').length; i++){
+        document.getElementById('page' + i).style.zIndex = demo2.querySelectorAll('div').length-i;
+        document.getElementById('page' + i).style.transition = sliderSpeed/1000 + 's';
+    }
 
     var i = 1;
     var slideStage = 1;
 
-    setInterval(function(){
+    function slider(){
         if(slideStage == 1){
-            document.getElementById('page' + i).style.transform = 'perspective(850px) rotateY(170deg) translateX(-50%)';
+            document.getElementById('page' + i).style.transform = 'perspective(1000px) rotateY(160deg)';
             i++;
             setTimeout(function(){
                 document.getElementById('page' + parseInt(i-1)).style.zIndex = '';
-            }, 600);
+            }, sliderSpeed/2);
             if(i > demo2.querySelectorAll('div').length)
             slideStage = 2;
         }
         else{
             i--;
-            document.getElementById('page' + i).style.transform = 'perspective(850px) rotateY(10deg) translateX(-50%)';
+            document.getElementById('page' + i).style.transform = 'perspective(1000px) rotateY(20deg)';
             document.getElementById('page' + i).style.zIndex = demo2.querySelectorAll('div').length-i;
             if(i == 1)
             slideStage = 1;
         }
-    }, 1500);
+    }
+    var sliderInterval = setInterval(slider, sliderSpeed);
+
+
+    document.addEventListener('visibilitychange', function(){
+        if(document.hidden){
+            clearInterval(sliderInterval);
+        }
+        else{
+            window.location.reload();
+        }
+    });
+
 </script>
