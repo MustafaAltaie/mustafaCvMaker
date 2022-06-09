@@ -47,13 +47,17 @@ if(document.querySelectorAll('#_IdDB').length != 0){
     clearAll.style.display = 'none';
     updateAllInfo.style.display = 'block';
     deleteUser.style.display = 'block';
-    clientPhoto.src = '/personal images/' + clientEmailDB.value + '.jpg';
+    if(allImageNames.value.includes(sessionStorage.clientEmail))
+    clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';
+    else{
+        changeImage.innerHTML = 'Add image';
+        clientPhoto.style.display = 'none';
+    }
 }
 else{
     if(window.location.href.includes('@'))
     window.history.back();
 }
-
 
 document.getElementById('clearAll').onclick = function(){
     if(confirm('Are you sure?') == true){
@@ -138,8 +142,8 @@ nav.addEventListener('click', function(evt){
 
         if(evt.target.id == 'deleteUser'){
             if(confirm('Are you sure you want to delete all user data?') == true){
-                window.location.href = '/deleteUser/' + _idText.value + '/' + cvName.value + '/' + sessionStorage.clientEmail;
                 clearLocalStorage();
+                window.location.href = '/deleteUser/' + _idText.value + '/' + cvName.value + '/' + sessionStorage.clientEmail;
             }
         }
 
@@ -244,9 +248,12 @@ document.getElementById('removeImage').onclick = function(){
     }
 }
 
-if(localStorage.imageName == undefined || localStorage.imageName == ''){
-    changeImage.innerHTML = 'Add image';
-    clientPhoto.style.display = 'none';
+if(document.querySelectorAll('#_IdDB').length == 0){
+    if(localStorage.imageName == undefined || localStorage.imageName == ''){
+        changeImage.innerHTML = 'Add image';
+        clientPhoto.style.display = 'none';
+    }
+    else
+    if(allImageNames.value.includes(sessionStorage.clientEmail))
+    clientPhoto.src = '/personal images/' + sessionStorage.clientEmail + '.jpg';
 }
-else
-clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';

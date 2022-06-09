@@ -591,9 +591,10 @@
 
         // --------------- Change background color -------------//
         colorSettings.addEventListener('click', function(evt){
-            if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings')
-            backColor(evt.target.id);
-            localStorage.cvColor6 = evt.target.id;
+            if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings'){
+                backColor(evt.target.id);
+                localStorage.cvColor6 = evt.target.id;
+            }
         });
 
         function backColor(n){

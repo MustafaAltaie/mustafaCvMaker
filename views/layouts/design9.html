@@ -596,8 +596,8 @@
         colorSettings.addEventListener('click', function(evt){
             if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings'){
                 backColor(evt.target.id);
+                localStorage.cvColor9 = evt.target.id;
             }
-            localStorage.cvColor9 = evt.target.id;
         });
 
         function backColor(n){

@@ -90,7 +90,7 @@
                 <div id="#f94474" class="colorSettingDivs" style="background:#f94474"></div>
             </div>
         </div>
-        <input type="hidden" value="{{imageFiles}}" id="allImageNames">
+        <input type="" value="{{imageFiles}}" id="allImageNames">
 
         <form action="/imageUpload" method="post" enctype="multipart/form-data" style="display: none">
             <input type="file" name="file" id="imageFile">
@@ -528,9 +528,10 @@
         // --------------- Change background color -------------//
 
         colorSettings.addEventListener('click', function(evt){
-            if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings')
-            changeColor(evt.target.id);
-            localStorage.cvColor1 = evt.target.id;
+            if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings'){
+                changeColor(evt.target.id);
+                localStorage.cvColor1 = evt.target.id;
+            }
         });
 
         function changeColor(n){

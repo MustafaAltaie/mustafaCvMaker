@@ -537,9 +537,9 @@
 
         //--------------- Get background color from localStorage -------------//
 
-        if(localStorage.cvColor8 != '' || localStorage.cvColor8 != undefined)
+        if(localStorage.cvColor14 != '' || localStorage.cvColor14 != undefined)
         setInterval(function(){
-            changeColor(localStorage.cvColor8);
+            changeColor(localStorage.cvColor14);
         }, 1);
 
         // --------------- Change background color -------------//
@@ -547,7 +547,7 @@
         colorSettings.addEventListener('click', function(evt){
             if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings')
             changeColor(evt.target.id);
-            localStorage.cvColor8 = evt.target.id;
+            localStorage.cvColor14 = evt.target.id;
         });
 
         function changeColor(n){

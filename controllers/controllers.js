@@ -220,15 +220,30 @@ router.post('/newCV', async function(req, res){
 });
 
 router.get('/:clientEmail/:designNumber', function(req, res){
-    NewClient.find({clientEmail: req.params.clientEmail}, function(err, data){
-        res.render('./layouts/' + req.params.designNumber, {
-            dataDBList: data
-        });
-    }).lean();
+    fs.readdir('personal images', function(err, imageFiles){
+        NewClient.find({clientEmail: req.params.clientEmail}, function(err, data){
+            res.render('./layouts/' + req.params.designNumber, {
+                dataDBList: data,
+                imageFiles: imageFiles
+            });
+        }).lean();
+    });
 });
 
 router.get('/deleteUser/:id/:designNumber/:email', function(req, res){
+    var imageFiles = 0;
+    fs.readdir('personal images/', function(err, files){
+        for(i = 0; i < files.length; i++){
+            if(files[i] == req.params.email + '.jpg'){
+                imageFiles = 1;
+                break;
+            }
+            else
+            imageFiles = 0;
+        }
+    });
     NewClient.findByIdAndRemove(req.params.id, function(){
+        if(imageFiles == 1)
         fs.unlinkSync('personal images/' + req.params.email + '.jpg', function(){});
         res.redirect('/' + req.params.designNumber);
     });
