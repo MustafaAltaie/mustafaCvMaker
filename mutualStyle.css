@@ -121,7 +121,7 @@ body{
 }
 
 #allSettingsMenu{
-    z-index: 200;
+    z-index: 300;
     position: absolute;
     flex-direction: column;
     align-items: center;
