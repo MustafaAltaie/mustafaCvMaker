@@ -56,16 +56,55 @@
             <input type="hidden" name="skills" id="skillsText">
             <input type="hidden" name="hobby" id="hobbyText">
             <input type="hidden" name="oldEmail" id="oldEmail">
-            <input type="hidden" name="designNumber" value="design14" id="cvName">
+            <input type="hidden" name="designNumber" value="design15" id="cvName">
             <button id="newCVSubmit">OK</button>
         </form>
+        <div id="mainSettings" class="mainSettings">
+            <div id="colorSettings" class="mainSettings">
+                <div id="#777" class="colorSettingDivs" style="background:#777"></div>
+                <div id="#555" class="colorSettingDivs" style="background:#555"></div>
+                <div id="#333" class="colorSettingDivs" style="background:#333"></div>
+                <div id="#9c943a" class="colorSettingDivs" style="background:#9c943a"></div>
+                <div id="#898445" class="colorSettingDivs" style="background:#898445"></div>
+                <div id="#77744d" class="colorSettingDivs" style="background:#77744d"></div>
+                <div id="#735e4b" class="colorSettingDivs" style="background:#735e4b"></div>
+                <div id="#604a37" class="colorSettingDivs" style="background:#604a37"></div>
+                <div id="#52382a" class="colorSettingDivs" style="background:#52382a"></div>
+                <div id="#453329" class="colorSettingDivs" style="background:#453329"></div>
+                <div id="#392e28" class="colorSettingDivs" style="background:#392e28"></div>
+                <div id="#6d8a6c" class="colorSettingDivs" style="background:#6d8a6c"></div>
+                <div id="#4f664e" class="colorSettingDivs" style="background:#4f664e"></div>
+                <div id="#4a6f49" class="colorSettingDivs" style="background:#4a6f49"></div>
+                <div id="#385636" class="colorSettingDivs" style="background:#385636"></div>
+                <div id="#3f503e" class="colorSettingDivs" style="background:#3f503e"></div>
+                <div id="#6b98b2" class="colorSettingDivs" style="background:#6b98b2"></div>
+                <div id="#3e789a" class="colorSettingDivs" style="background:#3e789a"></div>
+                <div id="#23719e" class="colorSettingDivs" style="background:#23719e"></div>
+                <div id="#296081" class="colorSettingDivs" style="background:#296081"></div>
+                <div id="#385769" class="colorSettingDivs" style="background:#385769"></div>
+                <div id="#8873cd" class="colorSettingDivs" style="background:#8873cd"></div>
+                <div id="#725abf" class="colorSettingDivs" style="background:#725abf"></div>
+                <div id="#746a94" class="colorSettingDivs" style="background:#746a94"></div>
+                <div id="#5a546d" class="colorSettingDivs" style="background:#5a546d"></div>
+                <div id="#3e3657" class="colorSettingDivs" style="background:#3e3657"></div>
+                <div id="#bd86b6" class="colorSettingDivs" style="background:#bd86b6"></div>
+                <div id="#aa6ba2" class="colorSettingDivs" style="background:#aa6ba2"></div>
+                <div id="#c353b4" class="colorSettingDivs" style="background:#c353b4"></div>
+                <div id="#83577d" class="colorSettingDivs" style="background:#83577d"></div>
+                <div id="#f94474" class="colorSettingDivs" style="background:#f94474"></div>
+                <div id="#f7255d" class="colorSettingDivs" style="background:#f7255d"></div>
+                <div id="#ca0036" class="colorSettingDivs" style="background:#ca0036"></div>
+                <div id="#960c31" class="colorSettingDivs" style="background:#960c31"></div>
+                <div id="#793245" class="colorSettingDivs" style="background:#793245"></div>
+            </div>
+        </div>
 
         <input type="hidden" value="{{imageFiles}}" id="allImageNames">
 
         <form action="/imageUpload" method="post" enctype="multipart/form-data" style="display: none">
             <input type="file" name="file" id="imageFile">
             <input type="text" name="fileName" id="imageFileName">
-            <input type="hidden" name="redirect" value="design14">
+            <input type="hidden" name="redirect" value="design15">
             <button id="imageUploadSubmit"></button>
         </form>
 
@@ -77,11 +116,13 @@
             <input type="range" id="cvSizeRange" min="1000" max="10000">
             <input type="range" id="pSizeRange" min="10" max="100" class="fontPSize">
             <div id="cv">
-                <img src="/images/laserCutGolden.png" id="line1">
+                <div id="line1"></div>
+                <div id="line2"></div>
                 <div id="settings">
                     <textarea id="editText"></textarea>
                     <p id="actionButton">Update</p>
                 </div>
+                <a id="mainSettingButton" class="secSetting" onclick="mainSettings.style.display='block'">...</a>
                 <div id="allSettingsMenu">
                     <p id="changeImage" class="allSettingsMenuOption">Change image</p>
                     <p id="removeImage" class="allSettingsMenuOption">Remove image</p>
@@ -197,7 +238,7 @@
             font-weight: bold;
         }
         h1{
-            color: #917139;
+            color: #9e8447;
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         }
         h3{
@@ -207,10 +248,20 @@
         #cv{
             display: flex;
         }
-        #line1{
+        #cv > a{
+            color: #9e8447;
+            right: 3%;
+        }
+        #line1, #line2{
             position: absolute;
-            right: 0;
+            right: 2.5%;
+            width: 0.5%;
             height: 100%;
+            background: #9e8447;
+        }
+        #line2{
+            right: 1%;
+            width: 1%;
         }
         #imageWrapper:hover > a, #experiencesSection:hover > a, #educationsSection:hover > a, #referenceSection:hover > a, #languageSection:hover > a, #cv:hover > a, #skillsSection:hover > a, #hobbySection:hover > a, #mySocialMediaSection:hover > a{
             display: block;
@@ -273,7 +324,7 @@
         .languageSectionPoint{
             width: 15px;
             height: 15px;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
         }
         #referenceSection > div{
             margin: 7% 0;
@@ -284,8 +335,8 @@
         #rightSide{
             width: 65%;
             background: linear-gradient(#151515, #151515, #151515);
-            color: #9a8a51;
-            padding-right: 5%;
+            color: #9e8447;
+            padding-right: 3%;
         }
         #rightSideHeader{
             display: flex;
@@ -318,7 +369,7 @@
             position: absolute;
             left: -1px;
             transform: translateX(-57%);
-            background: rgb(142, 102, 37);
+            background: #333;
         }
         #experiencesSection > div, #educationsSection > div{
             display: flex;
@@ -347,15 +398,20 @@
             width: 40%;
             margin: 1% 0;
         }
-        .clientSkillWrapper{
-            margin: 1% 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-        }
         .clientSkill{
-            height: 100%;
-            background: #a7883f;
+            -webkit-appearance: none;
+            height: 10px;
+            width: 90%;
+            padding-left: 10%;
+            background: #9e8447;
             cursor: pointer;
+        }
+        .clientSkill::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            border-radius: 75px;
+            height: 150px;
+            width: 150px;
+            background: #9e8447;
         }
 
         /* -- Hobbies -- */
@@ -379,7 +435,7 @@
         .hobbyPoint{
             min-width: 15px;
             min-height: 15px;
-            background: #9a8a51;
+            background: rgb(158, 132, 71);
         }
     </style>
 
@@ -389,13 +445,13 @@
     <script>
         // --------------- Get P size from localStorage -------------//
 
-        if(localStorage.pSize14 == '' || localStorage.pSize14 == undefined){
+        if(localStorage.pSize15 == '' || localStorage.pSize15 == undefined){
             var pSize = 45;
             pSizeRange.value = 45;
         }
         else{
-            var pSize = localStorage.pSize14;
-            pSizeRange.value = localStorage.pSize14;
+            var pSize = localStorage.pSize15;
+            pSizeRange.value = localStorage.pSize15;
         }
 
 
@@ -420,7 +476,7 @@
         // --------------- Change P size via range -------------//
 
         document.getElementById('pSizeRange').oninput = function(){
-            localStorage.pSize14 = pSizeRange.value;
+            localStorage.pSize15 = pSizeRange.value;
             for(i = 0; i < document.querySelectorAll('p').length; i++)
             document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSizeRange.value + 'px';
         }
@@ -460,9 +516,8 @@
                 document.getElementsByClassName('educationPoint')[i].style.width = cv.offsetWidth/150 + 'px';
                 document.getElementsByClassName('educationPoint')[i].style.height = cv.offsetWidth/38 + 'px';
             }
-            if(document.querySelectorAll('.clientSkillWrapper').length > 0)
-            for(i = 0; i < document.querySelectorAll('.clientSkillWrapper').length; i++)
-            document.getElementsByClassName('clientSkillWrapper')[i].style.height = cv.offsetWidth/90 + 'px';
+            // for(i = 0; i < document.querySelectorAll('.clientSkill').length; i++)
+            // document.getElementsByClassName('clientSkill')[i].style.height = cv.offsetWidth/90 + 'px';
             document.getElementById('editText').style.fontSize = cv.offsetWidth/pSize + 'px';
             if(document.querySelectorAll('.hobbyPoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.hobbyPoint').length; i++){
@@ -472,16 +527,16 @@
             profile.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
             mySocialMediaSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
             referenceSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.5)';
-            rightSideHeader.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(142, 102, 37, 0.4)';
-            experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(142, 102, 37, 0.4)';
-            educationsSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(142, 102, 37, 0.4)';
+            rightSideHeader.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' #333';
+            experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' #333';
+            educationsSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' #333';
             if(document.getElementsByClassName('expDiv2').length > 0)
             for(i = 0; i < document.getElementsByClassName('expDiv2').length; i++)
-            document.getElementsByClassName('expDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' rgba(142, 102, 37, 0.4)';
+            document.getElementsByClassName('expDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #333';
             if(document.getElementsByClassName('educDiv2').length > 0)
             for(i = 0; i < document.getElementsByClassName('educDiv2').length; i++)
-            document.getElementsByClassName('educDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' rgba(142, 102, 37, 0.4)';
-            skillsSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(142, 102, 37, 0.4)';
+            document.getElementsByClassName('educDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #333';
+            skillsSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' #333';
             if(localStorage.imageName != undefined)
             imageWrapper.style.border = 'solid ' + cv.offsetWidth/890 + 'px' + ' #222';
             for(i = 0; i < document.getElementsByClassName('allSettingsMenuOption').length; i++)
@@ -492,12 +547,40 @@
         }, 0);
 
 
+        //--------------- Get background color from localStorage -------------//
+
+        setInterval(function(){
+            if(localStorage.cvColor15 == '' || localStorage.cvColor15 == undefined)
+            changeColor('#23719e');
+            else
+            changeColor(localStorage.cvColor15);
+        }, 1);
+
+        // --------------- Change background color -------------//
+
+        colorSettings.addEventListener('click', function(evt){
+            if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings'){
+                changeColor(evt.target.id);
+                localStorage.cvColor15 = evt.target.id;
+            }
+        });
+
+        function changeColor(n){
+            //leftSide.style.background = n;
+        }
+
+
         //--------- Show edit settings ---------//
 
         var currentElement;
         var currentSection;
 
         document.addEventListener('click', function(evt){
+            if(evt.target.id != 'mainSettingButton'
+            && evt.target.parentNode.className != 'mainSettings'
+            && evt.target.id != 'mainSettings')
+            mainSettings.style.display = 'none';
+
             if(evt.target.className == 'changable' || evt.target.className == 'clientSkill'){
                 editText.style.width = cv.offsetWidth/2 + 'px';
                 editText.style.height = evt.target.offsetHeight + 'px';
@@ -1061,21 +1144,18 @@
             skillTitle.className = 'changable';
             skillTitle.innerHTML = title;
 
-            var clientSkillWrapper = document.createElement('div');
-            clientSkillWrapper.className = 'clientSkillWrapper';
-
-            var clientSkill = document.createElement('div');
+            var clientSkill = document.createElement('input');
+            clientSkill.type = 'range';
+            clientSkill.min = 1;
+            clientSkill.max = 10;
             clientSkill.id = parseInt(Math.ceil(Math.random()*9999)+10000) + 'Skill';
             clientSkill.className = 'clientSkill';
-            clientSkill.innerHTML = level;
-            clientSkill.style.width = level*10 + '%';
+            clientSkill.value = level;
 
             skillMainBlock.id = skillTitle.id + 'Div';
 
-            clientSkillWrapper.appendChild(clientSkill);
-
             skillMainBlock.appendChild(skillTitle);
-            skillMainBlock.appendChild(clientSkillWrapper);
+            skillMainBlock.appendChild(clientSkill);
 
             mainSkillWrapper.appendChild(skillMainBlock);
         }
@@ -1084,7 +1164,7 @@
             localStorage.skills = '';
             var skl = document.getElementsByClassName('skillMainBlock');
             for(i = 0; i < skl.length; i++)
-            localStorage.skills += skl[i].getElementsByTagName('p')[0].innerHTML + '|||' + skl[i].getElementsByClassName('clientSkill')[0].innerHTML + '|||' + '***';
+            localStorage.skills += skl[i].getElementsByTagName('p')[0].innerHTML + '|||' + skl[i].getElementsByClassName('clientSkill')[0].value + '|||' + '***';
         }
         setLocalStorageSkill();
 

@@ -123,6 +123,14 @@ router.get('/design14', function(req, res){
     });
 });
 
+router.get('/design15', function(req, res){
+    fs.readdir('personal images', function(err, imageFiles){
+        res.render('./layouts/design15', {
+            imageFiles: imageFiles
+        });
+    });
+});
+
 router.get('/allCvs', function(req, res){
     NewClient.find(function(err, data){
         res.render('./layouts/allCvs', {
