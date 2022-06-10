@@ -197,7 +197,7 @@
             font-weight: bold;
         }
         h1{
-            color: #917139;
+            color: #9e8447;
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         }
         h3{
@@ -207,16 +207,17 @@
         #cv{
             display: flex;
         }
-        #line1{
-            position: absolute;
-            right: 0;
-            height: 100%;
-        }
         #imageWrapper:hover > a, #experiencesSection:hover > a, #educationsSection:hover > a, #referenceSection:hover > a, #languageSection:hover > a, #cv:hover > a, #skillsSection:hover > a, #hobbySection:hover > a, #mySocialMediaSection:hover > a{
             display: block;
         }
         #cvWrapper, #experiencesSection, #educationsSection, #referenceSection, #languageSection, #cv, #skillsSection, #hobbySection, #leftSide, #profile, #mySocialMediaSection, .expDiv2, .educDiv2, #imageWrapper{
             position: relative;
+        }
+        #line1{
+            z-index: 1000;
+            position: absolute;
+            right: 0;
+            height: 100%;
         }
 
         /* ------------ Left side ------------ */
@@ -283,8 +284,8 @@
         /* ------------ Right side ------------ */
         #rightSide{
             width: 65%;
-            background: linear-gradient(#151515, #151515, #151515);
-            color: #9a8a51;
+            background: #151515;
+            color: #9e8447;
             padding-right: 5%;
         }
         #rightSideHeader{
@@ -318,14 +319,14 @@
             position: absolute;
             left: -1px;
             transform: translateX(-57%);
-            background: rgb(142, 102, 37);
+            background: #9e8447;
         }
         #experiencesSection > div, #educationsSection > div{
             display: flex;
         }
         .expDiv1, .educDiv1{
             width: 22%;
-            padding-right: 3%;
+            padding-right: 5%;
         }
         .expDiv2, .educDiv2{
             position: relative;
@@ -354,7 +355,7 @@
         }
         .clientSkill{
             height: 100%;
-            background: #a7883f;
+            background: #9e8447;
             cursor: pointer;
         }
 
@@ -379,7 +380,7 @@
         .hobbyPoint{
             min-width: 15px;
             min-height: 15px;
-            background: #9a8a51;
+            background: #9e8447;
         }
     </style>
 
@@ -441,7 +442,6 @@
             document.getElementsByTagName('h1')[i].style.fontSize = cv.offsetWidth/21 + 'px';
             for(i = 0; i < document.querySelectorAll('a').length; i++)
             document.getElementsByTagName('a')[i].style.fontSize = cv.offsetWidth/24.5 + 'px';
-            if(document.querySelectorAll('.languageSectionPoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.languageSectionPoint').length; i++){
                 document.getElementsByClassName('languageSectionPoint')[i].style.width = cv.offsetWidth/98 + 'px';
                 document.getElementsByClassName('languageSectionPoint')[i].style.height = cv.offsetWidth/98 + 'px';
@@ -450,21 +450,18 @@
                 contactSection.getElementsByTagName('img')[i].style.width = cv.offsetWidth/29.4 + 'px';
                 contactSection.getElementsByTagName('img')[i].style.height = cv.offsetWidth/29.4 + 'px';
             }
-            if(document.querySelectorAll('.experiencePoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.experiencePoint').length; i++){
                 document.getElementsByClassName('experiencePoint')[i].style.width = cv.offsetWidth/150 + 'px';
                 document.getElementsByClassName('experiencePoint')[i].style.height = cv.offsetWidth/38 + 'px';
             }
-            if(document.querySelectorAll('.educationPoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.educationPoint').length; i++){
                 document.getElementsByClassName('educationPoint')[i].style.width = cv.offsetWidth/150 + 'px';
                 document.getElementsByClassName('educationPoint')[i].style.height = cv.offsetWidth/38 + 'px';
             }
             if(document.querySelectorAll('.clientSkillWrapper').length > 0)
             for(i = 0; i < document.querySelectorAll('.clientSkillWrapper').length; i++)
-            document.getElementsByClassName('clientSkillWrapper')[i].style.height = cv.offsetWidth/90 + 'px';
+            document.getElementsByClassName('clientSkillWrapper')[i].style.height = cv.offsetWidth/120 + 'px';
             document.getElementById('editText').style.fontSize = cv.offsetWidth/pSize + 'px';
-            if(document.querySelectorAll('.hobbyPoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.hobbyPoint').length; i++){
                 document.getElementsByClassName('hobbyPoint')[i].style.minWidth = cv.offsetWidth/98 + 'px';
                 document.getElementsByClassName('hobbyPoint')[i].style.minHeight = cv.offsetWidth/98 + 'px';
@@ -475,10 +472,8 @@
             rightSideHeader.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(142, 102, 37, 0.4)';
             experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(142, 102, 37, 0.4)';
             educationsSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(142, 102, 37, 0.4)';
-            if(document.getElementsByClassName('expDiv2').length > 0)
             for(i = 0; i < document.getElementsByClassName('expDiv2').length; i++)
             document.getElementsByClassName('expDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' rgba(142, 102, 37, 0.4)';
-            if(document.getElementsByClassName('educDiv2').length > 0)
             for(i = 0; i < document.getElementsByClassName('educDiv2').length; i++)
             document.getElementsByClassName('educDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' rgba(142, 102, 37, 0.4)';
             skillsSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(142, 102, 37, 0.4)';
