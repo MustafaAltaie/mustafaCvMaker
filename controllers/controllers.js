@@ -176,13 +176,20 @@ router.get('/4435966mustafa', function(req, res){
 router.post('/imageUpload', function(req, res){
     var file = req.files.file;
     file.mv('personal images/' + req.body.fileName + '.jpg', function(){});
+    if(req.body.logInCase == 1)
+    res.redirect('/' + req.body.fileName + '/' + req.body.redirect);
+    else
     res.redirect('/' + req.body.redirect);
 });
 
-router.get('/deleteImage/:id/:redirect', function(req, res){
+router.get('/deleteImage/:id/:redirect/:loginCase/:email', function(req, res){
     fs.unlinkSync('personal images/' + req.params.id + '.jpg', function(){});
-    if(req.params.redirect != 'home')
-    res.redirect('/' + req.params.redirect);
+    if(req.params.redirect != 'home'){
+        if(req.params.loginCase == 1)
+        res.redirect('/' + req.params.email + '/' + req.params.redirect);
+        else
+        res.redirect('/' + req.params.redirect);
+    }
     else
     res.redirect('/');
 });
@@ -206,7 +213,7 @@ router.post('/newCV', async function(req, res){
         newClient.skills = req.body.skills;
         newClient.hobby = req.body.hobby;
         newClient.save(function(){
-            res.redirect('/' + req.body.designNumber);
+            res.redirect('/' + req.body.clientEmail + '/' + req.body.designNumber);
         });
     }
     if(req.body._id == ''){
@@ -221,8 +228,13 @@ router.post('/newCV', async function(req, res){
     }
     else{
         NewClient.findByIdAndUpdate({_id: req.body._id}, req.body, {new: true}, function(){
-            fs.renameSync('personal images/' + req.body.oldEmail + '.jpg', 'personal images/' + req.body.clientEmail + '.jpg');
-            res.redirect('/' + req.body.designNumber);
+            fs.readdir('personal images/', function(err, files){
+                for(i = 0; i < files.length; i++){
+                    if(files[i] == req.body.oldEmail + '.jpg')
+                    fs.renameSync('personal images/' + req.body.oldEmail + '.jpg', 'personal images/' + req.body.clientEmail + '.jpg');
+                }
+            });
+            res.redirect('/' + req.body.clientEmail + '/' + req.body.designNumber);
         });
     }
 });

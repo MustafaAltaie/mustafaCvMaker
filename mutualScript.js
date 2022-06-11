@@ -43,10 +43,12 @@ if(document.querySelectorAll('#_IdDB').length != 0){
     localStorage.skills = skillsDB.value;
     localStorage.hobby = hobbyDB.value;
     oldEmail.value = clientEmailDB.value;
+    logInCase.value = 1;
     login.style.display = 'none';
     clearAll.style.display = 'none';
     updateAllInfo.style.display = 'block';
     deleteUser.style.display = 'block';
+    logout.style.display = 'block';
     if(allImageNames.value.includes(sessionStorage.clientEmail))
     clientPhoto.src = '/personal images/' + localStorage.imageName + '.jpg';
     else{
@@ -55,8 +57,14 @@ if(document.querySelectorAll('#_IdDB').length != 0){
     }
 }
 else{
-    if(window.location.href.includes('@'))
-    window.history.back();
+    if(window.location.href.includes('@')){
+        if(sessionStorage.clientEmail != undefined)
+        delete sessionStorage.clientEmail;
+        if(localStorage.imageName != undefined)
+        delete localStorage.imageName;
+        window.history.back();
+        logInCase.value = 0;
+    }
 }
 
 document.getElementById('clearAll').onclick = function(){
@@ -115,7 +123,7 @@ document.addEventListener('click', function(evt){
 nav.addEventListener('click', function(evt){
     if(evt.target.tagName == 'H9' || evt.target.tagName == 'IMG'){
         if(evt.target.id == 'saveCv')
-        if(clientEmail.innerHTML != 'emailaddress@example.com' && localStorage.imageName != undefined)
+        if(clientEmail.innerHTML != 'emailaddress@example.com')
         screenShot();
 
         if(evt.target.id == 'login'){
@@ -143,12 +151,17 @@ nav.addEventListener('click', function(evt){
         if(evt.target.id == 'deleteUser'){
             if(confirm('Are you sure you want to delete all user data?') == true){
                 clearLocalStorage();
-                window.location.href = '/deleteUser/' + _idText.value + '/' + cvName.value + '/' + sessionStorage.clientEmail;
+                window.location.href = '/deleteUser/' + _idText.value + '/' + cvName.value + '/' + clientEmail.innerHTML;
             }
         }
 
         if(evt.target.id == 'updateAllInfo')
         db();
+
+        if(evt.target.id == 'logout'){
+            clearLocalStorage();
+            window.location.href = '/';
+        }
     }
 
     if(evt.target.id == 'home')
@@ -243,7 +256,7 @@ document.getElementById('removeImage').onclick = function(){
         alert('No image added!');
     }
     else{
-        window.location.href = '/deleteImage/' + localStorage.imageName + '/' + cvName.value;
+        window.location.href = '/deleteImage/' + localStorage.imageName + '/' + cvName.value + '/' + logInCase.value + '/' + clientEmail.innerHTML;
         delete localStorage.imageName;
     }
 }
