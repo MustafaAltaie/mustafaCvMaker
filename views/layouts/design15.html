@@ -63,6 +63,7 @@
         <div id="mainSettings" class="mainSettings">
             <div id="colorSettings" class="mainSettings">
                 <div id="#ac9e60" class="colorSettingDivs" style="background:#ac9e60"></div>
+                <div id="#93875f" class="colorSettingDivs" style="background:#93875f"></div>
                 <div id="#a38b50" class="colorSettingDivs" style="background:#a38b50"></div>
                 <div id="#9e8447" class="colorSettingDivs" style="background:#9e8447"></div>
                 <div id="#856f3a" class="colorSettingDivs" style="background:#856f3a"></div>
@@ -541,6 +542,9 @@
             imageWrapper.style.border = 'solid ' + cv.offsetWidth/890 + 'px ' + n;
             for(i = 0; i < document.getElementsByClassName('languageSectionPoint').length; i++)
             document.getElementsByClassName('languageSectionPoint')[i].style.background = n;
+            for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
+            document.getElementsByClassName('colorSettingDivs')[i].style.transform = 'rotate(0deg)';
+            document.getElementById(n).style.transform = 'rotate(10deg)'
         }
 
 

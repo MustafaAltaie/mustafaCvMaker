@@ -308,13 +308,14 @@
         }
         .skillMainBlock{
             width: 100%;
-            margin: 3% 0;
+            margin: 2% 0;
         }
         .skillMainBlock > p{
-            margin-bottom: 2%;
+            margin-bottom: 1%;
         }
         .clientSkillWrapper{
             width: 100%;
+            background: rgba(0, 0, 0, 0.2);
         }
         .clientSkill{
             height: 100%;
@@ -523,10 +524,8 @@
             document.getElementsByTagName('h1')[0].style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px ' + n;
             for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
             document.getElementsByClassName('colorSettingDivs')[i].style.transform = 'rotate(0deg)';
-            for(i = 0; i < document.getElementsByClassName('clientSkill').length; i++){
-                document.getElementsByClassName('clientSkill')[i].style.background = n;
-                document.getElementsByClassName('clientSkill')[i].parentNode.style.border = 'solid ' + cv.offsetWidth/cv.offsetWidth + 'px ' + n;
-            }
+            for(i = 0; i < document.getElementsByClassName('clientSkill').length; i++)
+            document.getElementsByClassName('clientSkill')[i].style.background = n;
             skillWord.style.color = n;
             skillWord.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px ' + n;
             skillsSection.style.color = n;
