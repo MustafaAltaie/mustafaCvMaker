@@ -147,7 +147,7 @@
                     <!-- Profile -->
                     <div id="profile">
                         <h4 id="profileTitle" class="changable">My profile</h4>
-                        <p id="clientProfile" class="changable"></p>
+                        <h6 id="clientProfile" class="changable"></h6>
                     </div>
                     <!-- Social media and links -->
                     <div id="mySocialMediaSection">
@@ -264,7 +264,7 @@
         /* Profile contact reference languages */
         #profile, #mySocialMediaSection, #referenceSection{
             width: 100%;
-            padding: 10% 0;
+            padding: 15% 0;
         }
         #profile > h3, #mySocialMediaSection > p, #mySocialMediaSection > h3{
             margin-bottom: 7%;
@@ -364,7 +364,7 @@
         }
         .skillMainBlock{
             width: 40%;
-            margin: 1% 0;
+            margin: 2% 0;
         }
         .clientSkillWrapper{
             margin: 1% 0;
@@ -452,6 +452,8 @@
             cv.style.height = n * 1.414285714285714 + 'px';
             for(i = 0; i < document.querySelectorAll('p').length; i++)
             document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSize + 'px';
+            for(i = 0; i < document.querySelectorAll('h6').length; i++)
+            document.getElementsByTagName('h6')[i].style.fontSize = cv.offsetWidth/pSize/1.1 + 'px';
             for(i = 0; i < document.querySelectorAll('b').length; i++)
             document.getElementsByTagName('b')[i].style.fontSize = cv.offsetWidth/50 + 'px';
             for(i = 0; i < document.querySelectorAll('h3').length; i++)
@@ -483,7 +485,7 @@
             }
             if(document.querySelectorAll('.clientSkillWrapper').length > 0)
             for(i = 0; i < document.querySelectorAll('.clientSkillWrapper').length; i++)
-            document.getElementsByClassName('clientSkillWrapper')[i].style.height = cv.offsetWidth/90 + 'px';
+            document.getElementsByClassName('clientSkillWrapper')[i].style.height = cv.offsetWidth/150 + 'px';
             document.getElementById('editText').style.fontSize = cv.offsetWidth/pSize + 'px';
             if(document.querySelectorAll('.hobbyPoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.hobbyPoint').length; i++){
