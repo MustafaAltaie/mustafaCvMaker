@@ -146,7 +146,7 @@
                     </div>
                     <!-- Profile -->
                     <div id="profile">
-                        <h3 id="profileTitle" class="changable">My profile</h3>
+                        <h4 id="profileTitle" class="changable">My profile</h4>
                         <p id="clientProfile" class="changable"></p>
                     </div>
                     <!-- Social media and links -->
@@ -157,12 +157,12 @@
                     <!-- Reference -->
                     <div id="referenceSection">
                         <a id="referenceSectionSetting" class="secSetting" onclick="allSettingsMenuF('addReference', 'clearLocalStorage', 'hideSection')">...</a>
-                        <h3 id="referenceWord" class="changable">Reference</h3>
+                        <h4 id="referenceWord" class="changable">Reference</h4>
                     </div>
                     <!-- Languages -->
                     <div id="languageSection">
                         <a id="languageSectionSetting" class="secSetting" onclick="allSettingsMenuF('addLanguage', 'clearLocalStorage', 'hideSection')">...</a>
-                        <h3 id="languageWord" class="changable">Languages</h3>
+                        <h4 id="languageWord" class="changable">Languages</h4>
                     </div>
                 </div>
 
@@ -176,15 +176,15 @@
                         </div>
                         <div id="contactSection">
                             <div>
-                                <img src="/images/mobileIconBlack.png">
+                                <img src="/images/mobileIconBlack2.png">
                                 <p id="clientNumber" class="changable">Mobile: 0725255471</p>
                             </div>
                             <div>
-                                <img src="/images/emailIconBlack.png">
+                                <img src="/images/emailIconBlack2.png">
                                 <p id="clientEmail" class="changable">mustafaphoto111@gmail.com</p>
                             </div>
                             <div>
-                                <img src="/images/addressIconBlack.png">
+                                <img src="/images/addressIconBlack2.png">
                                 <p id="clientAddress" class="changable">Kerstinbodagatan 16 Katrineholm</p>
                             </div>
                         </div>
@@ -224,9 +224,12 @@
             color: #555;
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         }
-        h3{
+        h3, h4{
             font-weight: bold;
             margin-bottom: 2%;
+        }
+        h4{
+            color: rgb(255, 231, 137);
         }
         #cv{
             display: flex;
@@ -261,7 +264,7 @@
         /* Profile contact reference languages */
         #profile, #mySocialMediaSection, #referenceSection{
             width: 100%;
-            padding: 5% 0;
+            padding: 10% 0;
         }
         #profile > h3, #mySocialMediaSection > p, #mySocialMediaSection > h3{
             margin-bottom: 7%;
@@ -274,7 +277,7 @@
             width: 50%;
             margin: 2% 0;
         }
-        #languageSection > h3{
+        #languageSection > h4{
             margin: 10% 0 5% 0;
             width: 100%;
         }
@@ -298,6 +301,7 @@
 
         /* ------------ Right side ------------ */
         #rightSide{
+            padding-top: 3%;
             width: 65%;
             background: #fff;
             color: #000;
@@ -452,6 +456,8 @@
             document.getElementsByTagName('b')[i].style.fontSize = cv.offsetWidth/50 + 'px';
             for(i = 0; i < document.querySelectorAll('h3').length; i++)
             document.getElementsByTagName('h3')[i].style.fontSize = cv.offsetWidth/42 + 'px';
+            for(i = 0; i < document.querySelectorAll('h4').length; i++)
+            document.getElementsByTagName('h4')[i].style.fontSize = cv.offsetWidth/42 + 'px';
             for(i = 0; i < document.querySelectorAll('h1').length; i++)
             document.getElementsByTagName('h1')[i].style.fontSize = cv.offsetWidth/21 + 'px';
             for(i = 0; i < document.querySelectorAll('a').length; i++)
