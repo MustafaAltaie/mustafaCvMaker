@@ -155,6 +155,14 @@ router.get('/design18', function(req, res){
     });
 });
 
+router.get('/design19', function(req, res){
+    fs.readdir('personal images', function(err, imageFiles){
+        res.render('./layouts/design19', {
+            imageFiles: imageFiles
+        });
+    });
+});
+
 router.get('/allCvs', function(req, res){
     NewClient.find(function(err, data){
         res.render('./layouts/allCvs', {

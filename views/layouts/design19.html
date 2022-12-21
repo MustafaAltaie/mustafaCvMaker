@@ -57,16 +57,18 @@
             <input type="hidden" name="skills" id="skillsText">
             <input type="hidden" name="hobby" id="hobbyText">
             <input type="hidden" name="oldEmail" id="oldEmail">
-            <input type="hidden" name="designNumber" value="design18" id="cvName">
+            <input type="hidden" name="designNumber" value="design19" id="cvName">
             <button id="newCVSubmit">OK</button>
         </form>
         <div id="mainSettings" class="mainSettings">
             <div id="colorSettings" class="mainSettings">
                 <div id="#444" class="colorSettingDivs" style="background:#444"></div>
                 <div id="#777" class="colorSettingDivs" style="background:#777"></div>
+                <div id="#6497c3" class="colorSettingDivs" style="background:#6497c3"></div>
                 <div id="#597095" class="colorSettingDivs" style="background:#597095"></div>
                 <div id="#4a6ca1" class="colorSettingDivs" style="background:#4a6ca1"></div>
-                <div id="#3c6fc0" class="colorSettingDivs" style="background:#3c6fc0"></div>
+                <div id="#3c82c0" class="colorSettingDivs" style="background:#3c82c0"></div>
+                <div id="#4a8298" class="colorSettingDivs" style="background:#4a8298"></div>
                 <div id="#517074" class="colorSettingDivs" style="background:#517074"></div>
                 <div id="#c0a15a" class="colorSettingDivs" style="background:#c0a15a"></div>
                 <div id="#b59753" class="colorSettingDivs" style="background:#b59753"></div>
@@ -88,7 +90,7 @@
         <form action="/imageUpload" method="post" enctype="multipart/form-data" style="display: none">
             <input type="file" name="file" id="imageFile">
             <input type="text" name="fileName" id="imageFileName">
-            <input type="hidden" name="redirect" value="design18">
+            <input type="hidden" name="redirect" value="design19">
             <input type="hidden" name="logInCase" id="logInCase">
             <button id="imageUploadSubmit"></button>
         </form>
@@ -169,15 +171,15 @@
                         </div>
                         <div id="contactSection">
                             <div>
-                                <img src="/images/mobileIconBlack.png">
+                                <img src="/images/mobileIconWhite.png">
                                 <p id="clientNumber" class="changable">Mobile: 0725255471</p>
                             </div>
                             <div>
-                                <img src="/images/emailIconBlack.png">
+                                <img src="/images/emailIconWhite.png">
                                 <p id="clientEmail" class="changable">mustafaphoto111@gmail.com</p>
                             </div>
                             <div>
-                                <img src="/images/addressIconBlack.png">
+                                <img src="/images/addressIconWhite.png">
                                 <p id="clientAddress" class="changable">Kerstinbodagatan 16 Katrineholm</p>
                             </div>
                         </div>
@@ -226,6 +228,7 @@
         }
         #cv > a{
             right: 3%;
+            color: #fff;
         }
         #imageWrapper:hover > a, #experiencesSection:hover > a, #educationsSection:hover > a, #languageSection:hover > a, #cv:hover > a, #skillsSection:hover > a, #hobbySection:hover > a, #mySocialMediaSection:hover > a{
             display: block;
@@ -312,6 +315,7 @@
             display: flex;
             justify-content: space-between;
             padding: 4% 5%;
+            background: #151515;
         }
         #nameAndTitle{
             width: 35%;
@@ -407,13 +411,13 @@
     <script>
         // --------------- Get P size from localStorage -------------//
 
-        if(localStorage.pSize18 == '' || localStorage.pSize18 == undefined){
+        if(localStorage.pSize19 == '' || localStorage.pSize19 == undefined){
             var pSize = 45;
             pSizeRange.value = 45;
         }
         else{
-            var pSize = localStorage.pSize18;
-            pSizeRange.value = localStorage.pSize18;
+            var pSize = localStorage.pSize19;
+            pSizeRange.value = localStorage.pSize19;
         }
 
 
@@ -438,7 +442,7 @@
         // --------------- Change P size via range -------------//
 
         document.getElementById('pSizeRange').oninput = function(){
-            localStorage.pSize18 = pSizeRange.value;
+            localStorage.pSize19 = pSizeRange.value;
             for(i = 0; i < document.querySelectorAll('p').length; i++)
             document.getElementsByTagName('p')[i].style.fontSize = cv.offsetWidth/pSizeRange.value + 'px';
         }
@@ -506,10 +510,10 @@
         //--------------- Get background color from localStorage -------------//
 
         setInterval(function(){
-            if(localStorage.cvColor18 == '' || localStorage.cvColor18 == undefined)
+            if(localStorage.cvColor19 == '' || localStorage.cvColor19 == undefined)
             changeColor('#23719e');
             else
-            changeColor(localStorage.cvColor18);
+            changeColor(localStorage.cvColor19);
         }, 1);
 
         // --------------- Change background color -------------//
@@ -517,7 +521,7 @@
         colorSettings.addEventListener('click', function(evt){
             if(evt.target.tagName == 'DIV' && evt.target.parentNode.id == 'colorSettings'){
                 changeColor(evt.target.id);
-                localStorage.cvColor18 = evt.target.id;
+                localStorage.cvColor19 = evt.target.id;
             }
         });
 
@@ -537,6 +541,8 @@
             document.getElementsByClassName('clientSkill')[i].style.background = n;
             for(i = 0; i < document.getElementsByClassName('hobbyPoint').length; i++)
             document.getElementsByClassName('hobbyPoint')[i].style.background = n;
+            for(i = 0; i < rightSideHeader.getElementsByTagName('p').length; i++)
+            rightSideHeader.getElementsByTagName('p')[i].style.color = n;
             for(i = 0; i < document.getElementsByClassName('colorSettingDivs').length; i++)
             document.getElementsByClassName('colorSettingDivs')[i].style.transform = 'rotate(0deg)';
             document.getElementById(n).style.transform = 'rotate(10deg)';

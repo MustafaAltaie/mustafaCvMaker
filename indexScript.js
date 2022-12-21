@@ -47,7 +47,7 @@ else{
 
 for(i = 1; i <= demo2.querySelectorAll('div').length; i++){
     document.getElementById('page' + i).style.zIndex = demo2.querySelectorAll('div').length-i;
-    document.getElementById('page' + i).style.transform = 'perspective(1000px) rotateY(' + parseInt(foldLeft-i*1) + 'deg)';
+    document.getElementById('page' + i).style.transform = 'perspective(1000px) rotateY(' + parseInt(foldLeft-i*0.5) + 'deg)';
     document.getElementById('page' + i).style.transition = sliderSpeed/1000 + 's';
 }
 
@@ -62,7 +62,7 @@ function slider(){
             stage1Play = 1;
         }, 2000);
         if(stage1Play == 1){
-            document.getElementById('page' + i).style.transform = 'perspective(1000px) rotateY(' + parseInt(foldRight-i*1) + 'deg)';
+            document.getElementById('page' + i).style.transform = 'perspective(1000px) rotateY(' + parseInt(foldRight-i*0.5) + 'deg)';
             i++;
             setTimeout(function(){
                 document.getElementById('page' + parseInt(i-1)).style.zIndex = '';
@@ -78,7 +78,7 @@ function slider(){
         }, 2000);
         if(stage2Play == 1){
             i--;
-            document.getElementById('page' + i).style.transform = 'perspective(1000px) rotateY(' + parseInt(foldLeft-i*1) + 'deg)';
+            document.getElementById('page' + i).style.transform = 'perspective(1000px) rotateY(' + parseInt(foldLeft-i*0.5) + 'deg)';
             document.getElementById('page' + i).style.zIndex = demo2.querySelectorAll('div').length-i;
             if(i == 1)
             slideStage = 1;
