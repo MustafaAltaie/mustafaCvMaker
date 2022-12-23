@@ -331,7 +331,7 @@
         }
         /* -- Experience and Education -- */
         #experiencesSection, #educationsSection{
-            padding: 4% 5%;
+            padding: 4% 5% 0 5%;
         }
         .experiencePoint, .educationPoint{
             position: absolute;
@@ -364,12 +364,12 @@
         }
         .skillMainBlock{
             width: 40%;
-            margin: 2% 0;
+            margin: 1% 0;
         }
         .clientSkillWrapper{
             margin: 1% 0;
             width: 100%;
-            background: #aaa;
+            background: #bbb;
         }
         .clientSkill{
             height: 100%;
@@ -485,26 +485,26 @@
             }
             if(document.querySelectorAll('.clientSkillWrapper').length > 0)
             for(i = 0; i < document.querySelectorAll('.clientSkillWrapper').length; i++)
-            document.getElementsByClassName('clientSkillWrapper')[i].style.height = cv.offsetWidth/150 + 'px';
+            document.getElementsByClassName('clientSkillWrapper')[i].style.height = cv.offsetWidth/120 + 'px';
             document.getElementById('editText').style.fontSize = cv.offsetWidth/pSize + 'px';
             if(document.querySelectorAll('.hobbyPoint').length > 0)
             for(i = 0; i < document.querySelectorAll('.hobbyPoint').length; i++){
                 document.getElementsByClassName('hobbyPoint')[i].style.minWidth = cv.offsetWidth/98 + 'px';
                 document.getElementsByClassName('hobbyPoint')[i].style.minHeight = cv.offsetWidth/98 + 'px';
             }
-            profile.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.3)';
-            mySocialMediaSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.3)';
-            referenceSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.3)';
-            rightSideHeader.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.3)';
-            experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.3)';
-            educationsSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.3)';
+            profile.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.5)';
+            mySocialMediaSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.5)';
+            referenceSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(255, 255, 255, 0.5)';
+            rightSideHeader.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 1)';
+            experiencesSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 1)';
+            educationsSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 1)';
+            hobbySection.style.borderTop = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 1)';
             if(document.getElementsByClassName('expDiv2').length > 0)
             for(i = 0; i < document.getElementsByClassName('expDiv2').length; i++)
             document.getElementsByClassName('expDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
             if(document.getElementsByClassName('educDiv2').length > 0)
             for(i = 0; i < document.getElementsByClassName('educDiv2').length; i++)
             document.getElementsByClassName('educDiv2')[i].style.borderLeft = 'solid ' + cv.offsetWidth/700 + 'px' + ' #555';
-            skillsSection.style.borderBottom = 'solid ' + cv.offsetWidth/980 + 'px' + ' rgba(0, 0, 0, 0.3)';
             if(localStorage.imageName != undefined)
             imageWrapper.style.border = 'solid ' + cv.offsetWidth/890 + 'px' + ' rgba(255, 255, 255, 0.5)';
             for(i = 0; i < document.getElementsByClassName('allSettingsMenuOption').length; i++)
